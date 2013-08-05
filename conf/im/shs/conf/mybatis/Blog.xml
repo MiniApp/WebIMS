@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE sqlMap      
+    PUBLIC "-//ibatis.apache.org//DTD SQL Map 2.0//EN"      
+    "http://ibatis.apache.org/dtd/sql-map-2.dtd">
+<sqlMap>
+<resultMap class="com.vnvtrip.search.ibatis.blog.model.Blog" id="blogResult">
+   <result property="blogid" column="blogid"/>
+   <result property="author" column="author"  />
+   <result property="subject" column="subject"/>
+   <result property="content" column="content"/>
+   <result property="publishTime" column="publishTime"/>
+</resultMap>
+ <!-- 
+    查询所有 
+  -->
+<select id="getAllBlog" resultMap="blogResult">
+     select * from Blog 
+</select>
+ <!-- 
+ 根据内容查询 
+  -->
+<select id="getAllBlogBySubject" resultMap="blogResult">
+     select * from Blog   where 1=1 
+     <![CDATA[
+       and subject like like CONCAT('%', #subject#, '%') 
+     ]]>
+</select>
+
+<!-- 
+删除 
+ -->
+<insert id="addBlog" parameterClass="com.vnvtrip.search.ibatis.blog.model.Blog">
+   insert into Blog(blogid,author,subject,content,publishTime) 
+   values(#blogid#,#author:VARCHAR#,#subject#,#content#,#publishTime#)
+</insert>
+<!-- 
+   添加
+ -->
+<update id="updateBlog" parameterClass="com.vnvtrip.search.ibatis.blog.model.Blog">
+  update Blog set author=#author#,subject=#subject#,content=#content#,
+  publishTime=#publishTime#  where blogid=#blogid#
+</update>
+</sqlMap>

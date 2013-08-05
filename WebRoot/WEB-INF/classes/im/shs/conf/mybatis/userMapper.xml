@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+        "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="user">
+    <resultMap type="im.shs.po.WebimsRole" id="userResult">
+        <result property="name" column="name" />
+        <result property="id" column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
+        <result property="age" column="age" jdbcType="INTEGER" javaType="java.lang.Integer" />
+    </resultMap>
+    
+    <select id="getListTest" resultType="im.shs.bean.UserBean">
+    	select * from User as u
+    </select>
+    <insert id="add">
+    	insert into user(name,age) values(#{name},#{age})
+    </insert>
+    
+    <insert id="insertUser" parameterType="user">
+        insert into user(name,age) values(#{name},#{age})
+    </insert>
+
+</mapper>
