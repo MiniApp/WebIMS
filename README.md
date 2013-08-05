@@ -1,4 +1,4 @@
-WebIMS SSHM¿ò¼Ü
+WebIMS SSHMæ¡†æž¶
 <ul>
 	<li>Struts2.3.15</li>
 	<li>Spring3.2.3</li>
