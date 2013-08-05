@@ -1,4 +1,4 @@
-WebIMS SSHM框架
+WebIMS S2SHM框架搭建
 <ul>
 	<li>Struts2.3.15</li>
 	<li>Spring3.2.3</li>
