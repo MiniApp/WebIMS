@@ -61,27 +61,34 @@
 	</bean>
 
 	<!-- 定义实体管理器工厂 -->
-	<bean id="entityManagerFactory"
+	<!-- <bean id="entityManagerFactory"
 		class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
 		<property name="persistenceUnitName" value="jpaWeb" />
-	</bean>
+	</bean> -->
 	<!-- 配置事务管理器 -->
-	<bean id="transactionManagerJpa" class="org.springframework.orm.jpa.JpaTransactionManager">
+	<!-- <bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+		<property name="entityManagerFactory" ref="entityManagerFactory" />
+	</bean> -->
+	<bean id="entityManagerFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+		<property name="persistenceUnitName" value="jpaWeb" />
+		<property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml"></property>
+	</bean>
+	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
 
 	<!-- 启用 annotation事务 -->
-	<tx:annotation-driven transaction-manager="transactionManagerJpa" />
+	<tx:annotation-driven transaction-manager="transactionManager" />
 
 	<!-- 配置Spring Data JPA扫描目录 -->
 	<jpa:repositories base-package="im.shs.po" />
 
 	<!-- Hibernate事物配置 -->
-	<bean id="transactionManagerHi"
+	<!-- <bean id="transactionManagerHi"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		<property name="sessionFactory" ref="sessionFactory"></property>
-	</bean>
-	<tx:advice id="txAdvice" transaction-manager="transactionManagerHi">
+	</bean> -->
+	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="find*" read-only="true" />
 			<tx:method name="add*" propagation="REQUIRED" />
