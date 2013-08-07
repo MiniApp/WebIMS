@@ -1,11 +1,5 @@
 package im.shs.base.persist;
 
-import java.util.List;
-
-import javax.annotation.Resource;
-
-import org.mybatis.spring.SqlSessionTemplate;
-import org.mybatis.spring.support.SqlSessionDaoSupport;
 import org.springframework.stereotype.Service;
 
 /**    
@@ -21,26 +15,5 @@ import org.springframework.stereotype.Service;
  *     
  */
 @Service("mybatisPersist")
-public class JpaPersistServiceImpl implements
-		JpaPersistService {
-	@Resource(name = "sqlSession")
-	private SqlSessionTemplate sqlSession;
-	/**    
-	 * Method：	findList
-	 *
-	 * Description：	
-	 *			描述
-	 * @param  	name
-	 *			参数 
-	 * @return	String DOM对象    
-	 * @since   
-	 */
-	@Override
-	public <T> List<T> findList(String sqlMap, Object param) {
-		return this.sqlSession.selectList(sqlMap, param);
-	}
-	@Override
-	public void add(String sqlMap, Object param) {
-		this.sqlSession.insert(sqlMap, param);
-	}
+public class JpaPersistServiceImpl implements JpaPersistService {
 }
