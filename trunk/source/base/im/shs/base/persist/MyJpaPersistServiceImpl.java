@@ -15,5 +15,5 @@ import org.springframework.stereotype.Service;
  *     
  */
 @Service("mybatisPersist")
-public class JpaPersistServiceImpl implements JpaPersistService {
+public class MyJpaPersistServiceImpl implements MyJpaPersistService {
 }
