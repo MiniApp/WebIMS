@@ -1,41 +1,26 @@
 package im.shs.po;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
-import static javax.persistence.GenerationType.IDENTITY;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.Table;
 
-/**
- * User entity. @author MyEclipse Persistence Tools
- */
+@SuppressWarnings("serial")
 @Entity
 @Table(name = "user", catalog = "webims")
-public class User implements java.io.Serializable {
-
-	// Fields
+public class User implements Serializable {
 
 	private Integer id;
 	private String name;
 	private Integer age;
 
-	// Constructors
-
-	/** default constructor */
-	public User() {
-	}
-
-	/** full constructor */
-	public User(String name, Integer age) {
-		this.name = name;
-		this.age = age;
-	}
-
-	// Property accessors
 	@Id
-	@GeneratedValue(strategy = IDENTITY)
-	@Column(name = "id", unique = true, nullable = false)
+	@GeneratedValue(strategy = GenerationType.AUTO)
+	@Column(name = "id")
 	public Integer getId() {
 		return this.id;
 	}
