@@ -14,16 +14,16 @@ import java.util.Map;
 
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
-import javax.persistence.PersistenceException;
+import javax.persistence.PersistenceContext;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.DataAccessException;
-import org.springframework.orm.jpa.JpaCallback;
 import org.springframework.orm.jpa.JpaTemplate;
 import org.springframework.orm.jpa.support.JpaDaoSupport;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 /**    
  *         
@@ -48,6 +48,7 @@ public class MyJpaPersistServiceImpl extends JpaDaoSupport implements MyJpaPersi
 		return getJpaTemplate();
 	}
 	protected int batchSize = 10;
+	@PersistenceContext
 	private EntityManager em;
 
 	/**    
@@ -64,6 +65,7 @@ public class MyJpaPersistServiceImpl extends JpaDaoSupport implements MyJpaPersi
 	 * @since   
 	 */
 	@Override
+	@Transactional
 	public <T> T find(Class<T> entityClass, final Object id) {
 		return em.find(entityClass, id);
 	}
@@ -174,6 +176,7 @@ public class MyJpaPersistServiceImpl extends JpaDaoSupport implements MyJpaPersi
 	 * @since   
 	 */
 	@Override
+	@Transactional
 	public void batchMerge(final List<?> objectsToMerge)
 			throws DataAccessException {
 		if (CollectionUtils.isEmpty(objectsToMerge)) {
