@@ -22,32 +22,45 @@ public class UserAction extends ActionSupport {
 	private String name;
 	private String age;
 	private UserBean user;
-	@Resource(name="test")
+	@Resource(name = "test")
 	private TestService test;
+
 	public String queryUser() {
 		test.getList();
 		return SUCCESS;
 	}
+
 	public String addUser() {
-		//String name = user.getName();
+		// String name = user.getName();
 		test.addUser();
 		return "userAdd";
 	}
+	
+	public String batchMerge() {
+		test.testBatchMerge();
+		return "batchMerge";
+	}
+
 	public String getName() {
 		return name;
 	}
+
 	public void setName(String name) {
 		this.name = name;
 	}
+
 	public String getAge() {
 		return age;
 	}
+
 	public void setAge(String age) {
 		this.age = age;
 	}
+
 	public UserBean getUser() {
 		return user;
 	}
+
 	public void setUser(UserBean user) {
 		this.user = user;
 	}

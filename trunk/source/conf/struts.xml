@@ -30,5 +30,8 @@
         <action name="userAdd" class="userAction" method="addUser">
         	<result name="userAdd">/userAdd.jsp</result>
         </action> 
+        <action name="ibatchMerge" class="userAction" method="batchMerge">
+        	<result name="batchMerge">/batchMerge.jsp</result>
+        </action> 
     </package>
 </struts>

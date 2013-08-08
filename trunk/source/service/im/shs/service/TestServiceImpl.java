@@ -3,7 +3,9 @@ package im.shs.service;
 import im.shs.base.AbstractService;
 import im.shs.base.util.CommonUtils;
 import im.shs.bean.UserBean;
+import im.shs.po.User;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
@@ -29,6 +31,31 @@ public class TestServiceImpl extends AbstractService implements TestService{
 		user.setName(name);
 		this.getPersist().add("user.add", user);
 		return 1;
+	}
+
+	/**    
+	 * Method：	testBatchMerge
+	 *
+	 * Description：	
+	 *			描述
+	 * @param  	name
+	 *			参数 
+	 * @return	String DOM对象    
+	 * @since   
+	 */
+	@Override
+	public void testBatchMerge() {
+		List<User> list = new ArrayList<User>();
+		for (int i = 1; i <= 10; i++) {
+			User user = this.getPersist().find(User.class, i);
+			list.add(user);
+		}
+		
+		for (int i = 0; i < list.size(); i++) {
+			User user = list.get(i);
+			user.setName("Suhao"+i);
+		}
+		this.getPersist().batchMerge(list);
 	} 
 
 }
