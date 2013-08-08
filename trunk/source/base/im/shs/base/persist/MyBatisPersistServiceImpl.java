@@ -20,7 +20,7 @@ import org.springframework.stereotype.Service;
  * @version     
  *     
  */
-@Service("mybatisPersist")
+@Service("mybatisPersistence")
 public class MyBatisPersistServiceImpl implements
 		MyBatisPersistService {
 	@Resource(name = "sqlSession")

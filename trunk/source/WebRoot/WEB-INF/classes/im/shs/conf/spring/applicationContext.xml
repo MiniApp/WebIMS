@@ -72,7 +72,23 @@
 	</bean>
 
 	<!-- 启用 annotation事务 -->
+	<!-- <tx:annotation-driven transaction-manager="transactionManagerJpa" /> -->
+	<aop:config>
+		<aop:pointcut id="crudMethos"
+			expression="execution(* im.shs.service.*.*(..))" />
+
+		<!-- 第一个*号代表可以是任意返回类型,第二个*代表包下的所有类,第三个*代表类下的所有方法,之后的(..)代表任意的参数 -->
+		<aop:advisor advice-ref="txAdviceJpa" pointcut-ref="crudMethos" />
+	</aop:config>
 	<tx:annotation-driven transaction-manager="transactionManagerJpa" />
+	<tx:advice id="txAdviceJpa" transaction-manager="transactionManagerJpa">
+		<tx:attributes>
+			<tx:method name="add*" propagation="REQUIRED" />
+			<tx:method name="edit*" propagation="REQUIRED" />
+			<tx:method name="delete*" propagation="REQUIRED" />
+			<tx:method name="*" read-only="true" />
+		</tx:attributes>
+	</tx:advice>
 
 	<!-- 配置Spring Data JPA扫描目录 -->
 	<jpa:repositories base-package="im.shs.po" />
@@ -87,6 +103,8 @@
 			<tx:method name="find*" read-only="true" />
 			<tx:method name="add*" propagation="REQUIRED" />
 			<tx:method name="save*" propagation="REQUIRED" />
+			<tx:method name="batch*" propagation="REQUIRED" />
+			<tx:method name="*" propagation="REQUIRED" read-only="true" />
 		</tx:attributes>
 	</tx:advice>
 	<aop:config>
