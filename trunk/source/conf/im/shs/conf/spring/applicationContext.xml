@@ -12,7 +12,7 @@
            http://www.springframework.org/schema/tx   
            http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
            http://www.springframework.org/schema/data/jpa
-           http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
+    	   http://www.springframework.org/schema/data/jpa/spring-jpa.xsd">
 	<!-- 用注解方式注入bean -->
 	<context:annotation-config />
 	<context:component-scan base-package="im.shs.*" />
@@ -92,7 +92,7 @@
 
 	<!-- 配置Spring Data JPA扫描目录 -->
 	<jpa:repositories base-package="im.shs.po" />
-
+	
 	<!-- Hibernate事物配置 -->
 	<bean id="transactionManagerHi"
 		class="org.springframework.orm.hibernate4.HibernateTransactionManager">
