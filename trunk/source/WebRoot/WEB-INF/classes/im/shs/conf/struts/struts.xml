@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>  
+<!DOCTYPE struts PUBLIC  
+"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"  
+"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<constant name="struts.devMode" value="true" />
+	<constant name="struts.objectFactory"
+		value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
+	<package name="struts2" extends="struts-default" namespace="/">
+		<default-action-ref name="index" />
+
+		<global-results>
+			<result name="error">/error.jsp</result>
+		</global-results>
+
+		<global-exception-mappings>
+			<exception-mapping exception="java.lang.Exception"
+				result="error" />
+		</global-exception-mappings>
+		<action name="*User*" class="userAction" method="{1}User{2}">
+			<result name="success">success.jsp</result>
+			<result name="list">list.jsp</result>
+			<result name="error">error.jsp</result>
+			<result name="userListBySqlMap">userList.jsp</result>
+		</action>
+	</package>
+</struts>
