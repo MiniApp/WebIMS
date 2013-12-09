@@ -1,9 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-modules id="moduleCoreId" project-version="1.5.0">
-    <wb-module deploy-name="WebIMS-BAE">
+    <wb-module deploy-name="WebIMS">
         <wb-resource deploy-path="/" source-path="/WebRoot"/>
         <wb-resource deploy-path="/WEB-INF/classes" source-path="/src"/>
-        <property name="java-output-path" value="/WebIMS-BAE/WebRoot/WEB-INF/classes"/>
-        <property name="context-root" value="/web"/>
+        <property name="context-root" value="/WebIMS"/>
+        <property name="java-output-path" value="/WebIMS/WebRoot/WEB-INF/classes"/>
     </wb-module>
 </project-modules>
