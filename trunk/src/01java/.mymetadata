@@ -1,11 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project-module
   type="WEB"
-  name="WebIMS"
+  name="WebIMS-GITHUB"
   id="myeclipse.1376373204817"
-  context-root="/WebIMS"
+  context-root="/web"
   j2ee-spec="6.0"
-  archive="WebIMS.war">
+  archive="WebIMS-GITHUB.war">
   <attributes>
     <attribute name="webrootdir" value="WebRoot" />
   </attributes>
