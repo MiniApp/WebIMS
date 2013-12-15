@@ -21,6 +21,15 @@
 		<action name="index" class="indexAction">
 			<result name="index">index.jsp</result>
 		</action>
+		<action name="tencentWeiboLoginInit" class="weiBoLoginAction" method="tencentWeiboLoginInit">
+      		<result name="tencentWeiboLoginInitRedirect" type="redirect">${url}</result>
+		</action>
+		<action name="tencentWeiboLogin" class="weiBoLoginAction" method="tencentWeiboLogin">
+			<result name="tencentWeiboLoginSuccess" type="redirect">${urlTokens}</result>
+		</action>
+		<action name="tencentWeibo" class="weiBoLoginAction" method="tencentWeibo">
+			<result name="tencentWeiboSuccess">weibo.jsp</result>
+		</action>
 		<action name="*User*" class="userAction" method="{1}User{2}">
 			<result name="success">success.jsp</result>
 			<result name="list">list.jsp</result>
