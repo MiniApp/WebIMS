@@ -1,8 +1,10 @@
 package im.shs.service;
 
-import javax.servlet.http.HttpServletResponse;
+import java.io.UnsupportedEncodingException;
+import java.util.Map;
 
 public interface WeiBoService {
-	public void tencentWeiboLogin();
-	public String tencentWeiboLoginInit();
+    public String tencentWeiboLoginInit();
+
+    public Map<String, Object> tencentWeiboLogin(String code_temp) throws UnsupportedEncodingException;
 }
