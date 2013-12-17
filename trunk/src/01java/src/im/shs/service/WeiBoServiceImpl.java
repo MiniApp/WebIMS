@@ -4,9 +4,13 @@ import im.shs.action.WeiboLoginAction;
 import im.shs.bean.WeiBoContentBean;
 
 import java.io.UnsupportedEncodingException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
+
+import net.sf.json.JSONObject;
 
 import org.apache.commons.httpclient.HttpClient;
 import org.apache.commons.httpclient.NameValuePair;
@@ -16,6 +20,7 @@ import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
 
 import com.tencent.weibo.api.StatusesAPI;
+import com.tencent.weibo.api.TAPI;
 import com.tencent.weibo.oauthv2.OAuthV2;
 import com.tencent.weibo.oauthv2.OAuthV2Client;
 
@@ -104,18 +109,18 @@ public class WeiBoServiceImpl implements WeiBoService {
                 if (OAuthV2Client.parseAccessTokenAndOpenId(responseData, oAuth)) {
                     logger.info("Get Access Token Successfully!");
                     StatusesAPI statusesAPI = new StatusesAPI(oAuth.getOauthVersion());
-                    //String response;
+                    String response;
                     String format = "json";
-                    /*String clientip = "127.0.0.1";
+                    String clientip = "127.0.0.1";
                     String jing = "";
                     String wei = "";
-                    String syncflag = "";*/
+                    String syncflag = "";
                     String pageflag = "0";
                     String pagetime = "0";
                     String reqnum = "5";
                     String lastid = "'0";
                     String contenttype = "0";
-                    /*String content = "3";// 注意：因为后台会对微博内容进行判重，所以在重复测试时加上变换部分++++++++
+                    String content = "3";// 注意：因为后台会对微博内容进行判重，所以在重复测试时加上变换部分++++++++
                     String twitterid = "0";
                     String fopenids = "";
                     String fopenid = "";
@@ -130,9 +135,9 @@ public class WeiBoServiceImpl implements WeiBoService {
                     String page = "0";
                     String searchtype = "0";
                     String msgtype = "0";
-                    String sorttype = "0";*/
+                    String sorttype = "0";
                     String type = "0";
-                    /*String op = "0";
+                    String op = "0";
                     String starttime = "";
                     String endtime = "";
                     String province = "";
@@ -144,11 +149,41 @@ public class WeiBoServiceImpl implements WeiBoService {
                     String mode = "0";
                     String install = "0";
                     String picpath = System.getProperty("user.dir") + "\\src\\main\\resources\\logo_QWeibo.jpg";
-                    */
+                    
                     try {
-                        m = statusesAPI.broadcastTimeline(oAuth, format, pageflag, pagetime, reqnum, lastid, type, contenttype);
+                        m = statusesAPI.broadcastTimeline(oAuth, format, pageflag, pagetime, reqnum, lastid, type,
+                                contenttype);
                         logger.info(m);
+                        JSONObject resopnseJsonObj;
+                        JSONObject dataJsonObj;
+                        resopnseJsonObj = JSONObject.fromObject(m);
+                        String tmp = resopnseJsonObj.getJSONObject("data").getString("info");
+                        dataJsonObj =  JSONObject.fromObject(tmp.substring(1, tmp.length() - 1));
+                        logger.info(dataJsonObj.get("text"));
                     } catch (Exception e) {
+                        e.printStackTrace();
+                    }
+                    TAPI tAPI=new TAPI(oAuth.getOauthVersion());//根据oAuth配置对应的连接管理器
+
+                    //取得返回结果
+                    try {
+                        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+                        Date date = new Date();
+                        String dateStr = sdf.format(date);
+                      /*  response = tAPI.add(oAuth, format, dateStr, clientip, jing, wei, syncflag);
+
+                        // json数据使用
+                        // response的结果可能是这样，{"data":{"id":"90221131024999","time":1333002978},"errcode":0,"msg":"ok","ret":0}
+                        // 下面的代码将取出 id 的对应值，并赋予 reid
+                        System.out.println("response = " + response);
+                        JSONObject responseJsonObject;
+                        JSONObject dataJsonObject;
+                        responseJsonObject = JSONObject.fromObject(response);
+                        dataJsonObject = (JSONObject) responseJsonObject.get("data");
+                        id = ids = reid = dataJsonObject.get("id").toString();//对后面用到的 reid 赋值
+                        System.out.println("reid = " + reid);*/
+                    } catch (Exception e) {
+                        // TODO Auto-generated catch block
                         e.printStackTrace();
                     }
                 } else {
