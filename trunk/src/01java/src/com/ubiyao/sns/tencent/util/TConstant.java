@@ -2,7 +2,7 @@ package com.ubiyao.sns.tencent.util;
 
 public class TConstant {
 
-    /** ��Ϣ���� **/
+    /** 消息句柄部分 **/
     public final static int    UPDATE_STATUS_SUCC_WHAT               = 70;
     public final static int    UPDATE_STATUS_FAIL_WHAT               = -70;
     public final static int    COMMENT_STATUS_SUCC_WHAT              = 71;
@@ -11,15 +11,15 @@ public class TConstant {
     public final static int    REPOST_STATUS_FAIL_WHAT               = -72;
     public static String       OPERATOR_FAIL_REASON                  = "";
 
-    /** OAuth��֤���� **/
+    /** OAuth认证部分 **/
     public final static String GET_REQUEST_TOKEN_URL                 = "http://open.t.qq.com/cgi-bin/request_token";
     public final static String GET_AUTHORIZATION_URL                 = "http://open.t.qq.com/cgi-bin/authorize";
     public final static String GET_ACCESS_TOKEN_URL                  = "http://open.t.qq.com/cgi-bin/access_token";
 
-    /** ÿҳ״̬�ĸ��� **/
+    /** 每页状态的个数 **/
     public static int          STATUS_COUNT_PER_PAGE                 = 20;
 
-    /** apiʹ��ʱ�ı�׼���� **/
+    /** api使用时的标准参数 **/
     public static String       PARA_OAUTH_CONSUMER_KEY               = "oauth_consumer_key";
     public static String       PARA_OAUTH_NONCE                      = "oauth_nonce";
     public static String       PARA_OAUTH_SIGNATURE                  = "oauth_signature";
@@ -28,93 +28,93 @@ public class TConstant {
     public static String       PARA_OAUTH_TOKEN                      = "oauth_token";
     public static String       PARA_OAUTH_VERSION                    = "oauth_version";
 
-    /** apiʹ�õĲ��ֱ�׼����ֵ **/
+    /** api使用的部分标准参数值 **/
     public static String       VALUE_OAUTH_VERSION                   = "1.0";
     public static String       VALUE_OAUTH_SIGNATURE_METHOD          = "HMAC-SHA1";
 
-    /** apiʹ��ʱ��������� **/
+    /** api使用时的其他参数 **/
     public static String       PARA_OAUTH_VERIFIER                   = "oauth_verifier";
     public static String       PARA_OAUTH_TOKEN_SECRET               = "oauth_token_secret";
     public static String       PARA_OAUTH_CALLBACK                   = "oauth_callback";
     public static String       PARA_FORMAT                           = "format";
 
     /**
-     * ΢��ʱ�����й�apiʹ��ʱ��url
+     * 微博时间线有关api使用时的url
      * http://wiki.open.t.qq.com/index.php/%E6%97%B6%E9%97%B4%E7%BA%BF
      **/
-    /** ��ҳʱ���� **/
+    /** 主页时间线 **/
     public static String       GET_HOME_TL_URL                       = "http://open.t.qq.com/api/statuses/home_timeline";
-    /** �㲥����ʱ���� **/
+    /** 广播大厅时间线 **/
     public static String       GET_PUBLIC_TL_URL                     = "http://open.t.qq.com/api/statuses/public_timeline";
-    /** �����û�����ʱ���� **/
+    /** 其他用户发表时间线 **/
     public static String       GET_USER_TL_URL                       = "http://open.t.qq.com/api/statuses/user_timeline";
-    /** �û��ἰʱ���� **/
+    /** 用户提及时间线 **/
     public static String       GET_MENTIONS_TL_URL                   = "http://open.t.qq.com/api/statuses/mentions_timeline";
-    /** ����ʱ���� **/
+    /** 话题时间线 **/
     public static String       GET_TOPIC_TL_URL                      = "http://open.t.qq.com/api/statuses/ht_timeline";
-    /** �ҷ���ʱ���� **/
+    /** 我发表时间线 **/
     public static String       GET_BROADCAST_TL_URL                  = "http://open.t.qq.com/api/statuses/broadcast_timeline";
-    /** �ر�������˷���ʱ���� **/
+    /** 特别收听的人发表时间线 **/
     public static String       GET_SPECIAL_TL_URL                    = "http://open.t.qq.com/api/statuses/special_timeline";
-    /** �����ʱ���� **/
+    /** 地区发表时间线 **/
     public static String       GET_AREA_TL_URL                       = "http://open.t.qq.com/api/statuses/area_timeline";
-    /** ��ҳʱ�������� **/
+    /** 主页时间线索引 **/
     public static String       GET_HOME_TL_IDS_URL                   = "http://open.t.qq.com/api/statuses/home_timeline_ids";
-    /** �����û�����ʱ�������� **/
+    /** 其他用户发表时间线索引 **/
     public static String       GET_USER_TL_IDS_URL                   = "http://open.t.qq.com/api/statuses/user_timeline_ids";
-    /** �ҷ���ʱ�������� **/
+    /** 我发表时间线索引 **/
     public static String       GET_BROADCAST_TL_IDS_URL              = "http://open.t.qq.com/api/statuses/broadcast_timeline_ids";
-    /** �û��ἰʱ�������� **/
+    /** 用户提及时间线索引 **/
     public static String       GET_MENTIONS_TL_IDS_URL               = "http://open.t.qq.com/api/statuses/mentions_timeline_ids";
-    /** ���û�����ʱ���� **/
+    /** 多用户发表时间线 **/
     public static String       GET_USERS_TL_URL                      = "http://open.t.qq.com/api/statuses/users_timeline";
-    /** ���û�����ʱ�������� **/
+    /** 多用户发表时间线索引 **/
     public static String       GET_USERS_TL_IDS_URL                  = "http://open.t.qq.com/api/statuses/users_timeline_ids";
-    /** ��ȡvip�û�����΢������Ϣ **/
+    /** 拉取vip用户发表微博的消息 **/
     public static String       GET_VIP_STATUS_TL_URL                 = "http://open.t.qq.com/api/status/home_timeline_vip";
 
     /**
-     * ΢��ʱ�����й�apiʹ��ʱ�Ĳ��ֲ���
+     * 微博时间线有关api使用时的部分参数
      **/
-    /** ��ҳ��ʶ��0����һҳ��1�����·�ҳ��2���Ϸ�ҳ�� **/
+    /** 分页标识（0：第一页，1：向下翻页，2向上翻页） **/
     public static String       PARA_PAGE_FLAG                        = "pageflag";
-    /** ��ҳ��ʼʱ�䣨��һҳ ʱ��0������ҳ������һ�����󷵻ص����һ����¼ʱ�䣩 **/
+    /** 本页起始时间（第一页 时填0，继续翻页：填上一次请求返回的最后一条记录时间） **/
     public static String       PARA_PAGE_TIME                        = "pagetime";
-    /** ��һҳ ʱ��0,�������·�ҳ������һ�����󷵻ص����һ����¼id����ҳ�� **/
+    /** 第一页 时填0,继续向下翻页，填上一次请求返回的最后一条记录id，翻页用 **/
     public static String       PARA_LAST_ID                          = "lastid";
-    /** ��Ҫ��ȡ���û��û����˽�Ž����� **/
+    /** 需要读取的用户用户名或私信接收者 **/
     public static String       PARA_USER_NAME                        = "name";
-    /** ��Ҫ��ȡ��һ���û��û��� **/
+    /** 需要读取的一批用户用户名 **/
     public static String       PARA_USER_NAMES                       = "names";
-    /** ��Ҫ��ȡ���û�open id **/
+    /** 需要读取的用户open id **/
     public static String       PARA_USER_OPEN_ID                     = "fopenid";
-    /** ��Ҫ��ȡ��һ���û�open id **/
+    /** 需要读取的一批用户open id **/
     public static String       PARA_USER_OPEN_IDS                    = "fopenids";
-    /** ÿ�������¼������1-70���� **/
+    /** 每次请求记录的条数（1-70条） **/
     public static String       PARA_PAGE_REQ_NUM                     = "reqnum";
-    /** ��ȡ����, 0x1 ԭ������ 0x2 ת�� 0x8 �ظ� 0x10 �ջ� 0x20 �ἰ 0x40 ���� , ������ȡ���������|��(0x1|0x2) �õ�3��type=3����,�����ʾ��ȡ�������� **/
+    /** 拉取类型, 0x1 原创发表 0x2 转载 0x8 回复 0x10 空回 0x20 提及 0x40 点评 , 如需拉取多个类型请|上(0x1|0x2) 得到3，type=3即可,填零表示拉取所有类型 **/
     public static String       PARA_STATUS_TYPE                      = "type";
-    /** ���ݹ��� �����ʾ�������� 1-���ı� 2-������ 4ͼƬ 8-����Ƶ 0x10-����Ƶ **/
+    /** 内容过滤 填零表示所有类型 1-带文本 2-带链接 4图片 8-带视频 0x10-带音频 **/
     public static String       PARA_CONTENT_TYPE                     = "contenttype";
-    /** Ȩ�ޱ�ʶ 1 ��ʾֻ��ʾ�ҷ���� **/
+    /** 权限标识 1 表示只显示我发表的 **/
     public static String       PARA_ACCESS_LEVEL                     = "accesslevel";
-    /** ��¼����ʼλ�ã���һ����������0��������������ϴη��ص�pos�� **/
+    /** 记录的起始位置（第一次请求是填0，继续请求进填上次返回的pos） **/
     public static String       PARA_POSITION                         = "pos";
-    /** ��ʶ0 ת���б?1�����б� 2 ������ת���б� **/
+    /** 标识0 转播列表，1点评列表 2 点评与转播列表 **/
     public static String       PARA_REPOST_OR_COMMENT_FLAG           = "flag";
-    /** ת�����߻ظ�����id��Դ΢��id�� **/
+    /** 转发或者回复根结点id（源微博id） **/
     public static String       PARA_ROOT_ID                          = "rootid";
-    /** 1-100����0,�������·�ҳ������һ�����󷵻ص����һ����¼id����ҳ�� **/
+    /** 1-100条填0,继续向下翻页，填上一次请求返回的最后一条记录id，翻页用 **/
     public static String       PARA_TWITTER_ID                       = "twitterid";
-    /** ��ȡ�ղص�΢���б�ʱʹ�ã����·�ҳ��ʼʱ�䣨��һҳ ʱ��0������ҳ������һ�����󷵻ص�nexttimeʱ�䣩 **/
+    /** 获取收藏的微博列表时使用，向下翻页起始时间（第一页 时填0，继续翻页：填上一次请求返回的nexttime时间） **/
     public static String       PARA_NEXT_TIME                        = "nexttime";
-    /** ��ȡ�ղص�΢���б�ʱʹ�ã����·� **/
+    /** 获取收藏的微博列表时使用，向下翻 **/
     public static String       PARA_PREV_TIME                        = "prevtime";
 
     /**
-     * ΢��ʱ�����й�apiʹ��ʱ�Ĳ��ֲ���ֵ
+     * 微博时间线有关api使用时的部分参数值
      **/
-    /** {@link TConstant#GET_COMMENTS_URL} flag:��ʶ0 ת���б?1�����б� 2 ������ת���б� **/
+    /** {@link QqTConstant#GET_COMMENTS_URL} flag:标识0 转播列表，1点评列表 2 点评与转播列表 **/
     public static int          VALUE_REPOST_FLAG                     = 0;
     public static int          VALUE_COMMENT_FLAG                    = 1;
     public static int          VALUE_REPOST_AND_COMMENT_FLAG         = 2;
@@ -124,78 +124,78 @@ public class TConstant {
     public static int          VALUE_LAST_PAGE                       = 2;
 
     /**
-     * ΢��ʱ�����й�apiʹ��ʱ�Ĳ��ֲ���ֵ
+     * 微博时间线有关api使用时的部分参数值
      **/
-    /** ��ȡ����, 0x0 ��ȡ�������� **/
+    /** 拉取类型, 0x0 拉取所有类型 **/
     public static int          VALUE_STATUS_TYPE_TL_ALL              = 0x0;
-    /** ��ȡ����, 0x1 ԭ������ **/
+    /** 拉取类型, 0x1 原创发表 **/
     public static int          VALUE_STATUS_TYPE_TL_ORIGINAL         = 0x1;
-    /** ��ȡ����, 0x2 ת�� **/
+    /** 拉取类型, 0x2 转载 **/
     public static int          VALUE_STATUS_TYPE_TL_REPOST           = 0x2;
-    /** ��ȡ����, 0x8 �ظ� **/
+    /** 拉取类型, 0x8 回复 **/
     public static int          VALUE_STATUS_TYPE_TL_REPLY            = 0x8;
-    /** ��ȡ����, 0x10 �ջ� **/
+    /** 拉取类型, 0x10 空回 **/
     public static int          VALUE_STATUS_TYPE_TL_NULL_COMMENT     = 0x10;
-    /** ��ȡ����, 0x20 �ἰ **/
+    /** 拉取类型, 0x20 提及 **/
     public static int          VALUE_STATUS_TYPE_TL_Mention          = 0x20;
-    /** ��ȡ����, 0x40 ���� **/
+    /** 拉取类型, 0x40 点评 **/
     public static int          VALUE_STATUS_TYPE_TL_COMMENT          = 0x40;
 
     /**
-     * ���ݹ������� �����ʾ�������� 1-���ı� 2-������ 4ͼƬ 8-����Ƶ 0x10-����Ƶ
+     * 内容过滤类型 填零表示所有类型 1-带文本 2-带链接 4图片 8-带视频 0x10-带音频
      */
-    /** ���ݹ�������, 0x0 ��ȡ�������� **/
+    /** 内容过滤类型, 0x0 拉取所有类型 **/
     public static int          VALUE_CONTENT_TYPE_TL_ALL             = 0x0;
-    /** ���ݹ�������, 0x1 ���ı� **/
+    /** 内容过滤类型, 0x1 带文本 **/
     public static int          VALUE_CONTENT_TYPE_TL_TEXT            = 0x1;
-    /** ���ݹ�������, 0x2 ������ **/
+    /** 内容过滤类型, 0x2 带链接 **/
     public static int          VALUE_CONTENT_TYPE_TL_LINK            = 0x2;
-    /** ���ݹ�������, 0x4 ��ͼƬ **/
+    /** 内容过滤类型, 0x4 带图片 **/
     public static int          VALUE_CONTENT_TYPE_TL_PICTURE         = 0x4;
-    /** ���ݹ�������, 0x8 ����Ƶ **/
+    /** 内容过滤类型, 0x8 带视频 **/
     public static int          VALUE_CONTENT_TYPE_TL_VIDEO           = 0x8;
-    /** ���ݹ�������, 0x10 ����Ƶ **/
+    /** 内容过滤类型, 0x10 带音频 **/
     public static int          VALUE_CONTENT_TYPE_TL_MUSIC           = 0x10;
-    /** Ȩ�ޱ�ʶ 1 ��ʾֻ��ʾ�ҷ���� **/
+    /** 权限标识 1 表示只显示我发表的 **/
     public static int          VALUE_ACCESS_LEVEL_TL_MINE            = 1;
 
     /**
-     * ΢�����apiʹ��ʱ��url
+     * 微博相关api使用时的url
      * http://wiki.open.t.qq.com/index.php/%E5%BE%AE%E5%8D%9A%E7%9B%B8%E5%85%B3
      */
-    /** ��ȡһ��΢����� **/
+    /** 获取一条微博数据 **/
     public static String       GET_STATUS_URL                        = "http://open.t.qq.com/api/t/show";
-    /** ����һ��΢���� **/
+    /** 发表一条微博　 **/
     public static String       ADD_STATUS_URL                        = "http://open.t.qq.com/api/t/add";
-    /** ɾ��һ��΢�� **/
+    /** 删除一条微博 **/
     public static String       DELETE_STATUS_URL                     = "http://open.t.qq.com/api/t/del";
-    /** ת��һ��΢�� **/
+    /** 转播一条微博 **/
     public static String       REPOST_STATUS_URL                     = "http://open.t.qq.com/api/t/re_add";
-    /** �ظ�һ��΢�� **/
+    /** 回复一条微博 **/
     public static String       REPLY_STATUS_URL                      = "http://open.t.qq.com/api/t/reply";
-    /** ����һ����ͼƬ��΢�� **/
+    /** 发表一条带图片的微博 **/
     public static String       ADD_STATUS_WITH_PIC_URL               = "http://open.t.qq.com/api/t/add_pic";
-    /** ת���������� **/
+    /** 转播数或点评数 **/
     public static String       GET_REPOST_AND_COMMENT_COUNT_URL      = "http://open.t.qq.com/api/t/re_count";
-    /** ��ȡ����΢����ת��������б� **/
+    /** 获取单条微博的转发或点评列表 **/
     public static String       GET_COMMENTS_URL                      = "http://open.t.qq.com/api/t/re_list";
-    /** ����һ��΢�� **/
+    /** 点评一条微博 **/
     public static String       COMMENT_STATUS_URL                    = "http://open.t.qq.com/api/t/comment";
-    /** ��������΢�� **/
+    /** 发表音乐微博 **/
     public static String       ADD_MUSIC_STATUS_URL                  = "http://open.t.qq.com/api/t/add_music";
-    /** ������Ƶ΢�� **/
+    /** 发表视频微博 **/
     public static String       ADD_VIDEO_STATUS_URL                  = "http://open.t.qq.com/api/t/add_video";
-    /** ��ȡ��Ƶ��Ϣ **/
+    /** 获取视频信息 **/
     public static String       GET_VIDEO_INFO_URL                    = "http://open.t.qq.com/api/t/getvideoinfo";
-    /** ���΢��id������ȡ΢������ **/
+    /** 根据微博id批量获取微博内容 **/
     public static String       GET_STATUS_BY_IDS_URL                 = "http://open.t.qq.com/api/t/list";
-    /** ��ȡת�����ٴ�ת���� **/
+    /** 获取转播的再次转播数 **/
     public static String       GET_RE_REPOST_COUNT_URL               = "http://open.t.qq.com/api/t/sub_re_count";
-    /** ������������ **/
+    /** 发表心情帖子 **/
     public static String       ADD_EMOTION_STATUS_URL                = "http://open.t.qq.com/api/t/add_emotion";
 
     /**
-     * ΢�����apiʹ��ʱ�Ĳ��ֲ���
+     * 微博相关api使用时的部分参数
      * http://wiki.open.t.qq.com/index.php/%E5%BE%AE%E5%8D%9A%E7%9B%B8%E5%85%B3
      */
     public static String       PARA_CONTENT                          = "content";
@@ -214,15 +214,15 @@ public class TConstant {
     public static String       PARA_SIGN_TYPE                        = "signtype";
 
     /**
-     * ΢�����apiʹ��ʱ�Ĳ��ֲ���ֵ
+     * 微博相关api使用时的部分参数值
      * http://wiki.open.t.qq.com/index.php/%E5%BE%AE%E5%8D%9A%E7%9B%B8%E5%85%B3
      */
-    /** ת����������api,0��ȡת������1��������, 2���߶�ȡ **/
+    /** 转播数或点评数api,0获取转发计数，1点评计数, 2两者都取 **/
     public static int          VALUE_RE_COUNT_FLAG_REPOST            = 0;
     public static int          VALUE_RE_COUNT_FLAG_COMMENT           = 1;
     public static int          VALUE_RE_COUNT_FLAG_ALL               = 2;
 
-    /** ����΢��apiʹ��ʱ�Ĳ��ֲ���ֵ **/
+    /** 发表微博api使用时的部分参数值 **/
     public static String       VALUE_FORMAT_JSON                     = "json";
     public static String       VALUE_FORMAT_XML                      = "xml";
     public static String       VALUE_CLIENT_IP                       = "127.0.0.1";
@@ -230,7 +230,7 @@ public class TConstant {
     public static String       PARA_STATUS_ID                        = "id";
 
     /**
-     * ΢�����api���ص�json key
+     * 微博相关api返回的json key
      */
     public static String       JSON_VIDEO_MINIPIC                    = "minipic";
     public static String       JSON_VIDEO_PLAYER                     = "player";
@@ -239,27 +239,27 @@ public class TConstant {
     public static String       JSON_VIDEO_TITLE                      = "title";
 
     /**
-     * ΢���ʻ����apiʹ��ʱ��url
+     * 微博帐户相关api使用时的url
      * http://wiki.open.t.qq.com/index.php/%E5%B8%90%E6%88%B7%E7%9B%B8%E5%85%B3
      */
-    /** ��ȡ�Լ�����ϸ���� **/
+    /** 获取自己的详细资料 **/
     public static String       GET_SELF_INFO_URL                     = "http://open.t.qq.com/api/user/info";
-    /** �����û���Ϣ **/
+    /** 更新用户信息 **/
     public static String       UPDATE_USER_INFO_URL                  = "http://open.t.qq.com/api/user/update";
-    /** �����û�ͷ����Ϣ **/
+    /** 更新用户头像信息 **/
     public static String       UPDATE_USER_HEAD_INFO_URL             = "http://open.t.qq.com/api/user/update_head";
-    /** �����û�������Ϣ **/
+    /** 更新用户教育信息 **/
     public static String       UPDATE_USER_EDU_INFO_URL              = "http://open.t.qq.com/api/user/update_edu";
-    /** ��ȡ���������� **/
+    /** 获取其他人资料 **/
     public static String       GET_OTHER_USER_INFO_URL               = "http://open.t.qq.com/api/user/other_info";
-    /** ��ȡһ���˵ļ����� **/
+    /** 获取一批人的简单资料 **/
     public static String       GET_OTHER_USERS_INFO_URL              = "http://open.t.qq.com/api/user/infos";
-    /** ��ȡһ���˵ļ����� **/
+    /** 获取一批人的简单资料 **/
     public static String       GET_SEVERAL_USER_INFOS_URL            = "http://open.t.qq.com/api/user/infos";
-    /** ��֤�˻��Ƿ�Ϸ� **/
+    /** 验证账户是否合法 **/
     public static String       VERIFY_ACCOUNT_URL                    = "http://open.t.qq.com/api/user/verify";
 
-    /** ΢���ʻ����apiʹ��ʱ�Ĳ��ֲ��� **/
+    /** 微博帐户相关api使用时的部分参数 **/
     public static String       PARA_NICK                             = "nick";
     public static String       PARA_SEX                              = "sex";
     public static String       PARA_BIRTH_YEAR                       = "year";
@@ -279,228 +279,228 @@ public class TConstant {
     public static String       PARA_VERIFY_ACCOUNT_ID                = "fopenid";
 
     /**
-     * ΢����ϵ�����apiʹ��ʱ��url
+     * 微博关系链相关api使用时的url
      * http://wiki.open.t.qq.com/index.php/%E5%85%B3%E7%B3%BB%E9%93%BE%E7%9B%B8%E5%85%B3
      */
-    /** �ҵ������б� **/
+    /** 我的听众列表 **/
     public static String       GET_SELF_FANS_URL                     = "http://open.t.qq.com/api/friends/fanslist";
-    /** �ҵ����������б� **/
+    /** 我的听众姓名列表 **/
     public static String       GET_SELF_FANS_NAMES_URL               = "http://open.t.qq.com/api/friends/fanslist_name";
-    /** ����������б� **/
+    /** 我收听的人列表 **/
     public static String       GET_SELF_INTERESTED_URL               = "http://open.t.qq.com/api/friends/idollist";
-    /** ��������������б� **/
+    /** 我收听的人姓名列表 **/
     public static String       GET_SELF_INTERESTED_NAMES_URL         = "http://open.t.qq.com/api/friends/idollist_name";
-    /** �����б� **/
+    /** 黑名单列表 **/
     public static String       GET_SELF_BLACK_LIST_URL               = "http://open.t.qq.com/api/friends/blacklist";
-    /** �ҵ������б?����Ϣ��200���� **/
+    /** 我的听众列表，简单信息（200个） **/
     public static String       GET_SELF_FANS_SIMPLE_URL              = "http://open.t.qq.com/api/friends/fanslist_s";
-    /** �ҵ������б?����Ϣ��200���� **/
+    /** 我的收听列表，简单信息（200个） **/
     public static String       GET_SELF_INTERESTED_SIMPLE_URL        = "http://open.t.qq.com/api/friends/idollist_s";
-    /** �ر������б� **/
+    /** 特别收听列表 **/
     public static String       GET_SELF_SPECIAL_INTERESTED_URL       = "http://open.t.qq.com/api/friends/speciallist";
-    /** ����ĳ���û� **/
+    /** 收听某个用户 **/
     public static String       ADD_FRIEND_URL                        = "http://open.t.qq.com/api/friends/add";
-    /** ȡ������ĳ���û� **/
+    /** 取消收听某个用户 **/
     public static String       DELETE_FRIEND_URL                     = "http://open.t.qq.com/api/friends/del";
-    /** �ر�����ĳ���û� **/
+    /** 特别收听某个用户 **/
     public static String       ADD_SPECIAL_FRIEND_URL                = "http://open.t.qq.com/api/friends/addspecial";
-    /** ȡ���ر�����ĳ���û� **/
+    /** 取消特别收听某个用户 **/
     public static String       DELETE_SPECIAL_FRIEND_URL             = "http://open.t.qq.com/api/friends/delspecial";
-    /** ���ĳ���û������� **/
+    /** 添加某个用户到黑名单 **/
     public static String       ADD_OTHER_TO_BLACK_LIST_URL           = "http://open.t.qq.com/api/friends/addblacklist";
-    /** �Ӻ�����ɾ��ĳ���û� **/
+    /** 从黑名单中删除某个用户 **/
     public static String       DELETE_OTHER_FROM_BLACK_LIST_URL      = "http://open.t.qq.com/api/friends/delblacklist";
-    /** ����Ƿ��ҵ����ڻ�������� **/
+    /** 检测是否我的听众或收听的人 **/
     public static String       CHECK_RELATION_WITH_SELF_URL          = "http://open.t.qq.com/api/friends/check";
-    /** �����ʻ������б� **/
+    /** 其他帐户听众列表 **/
     public static String       GET_OTHER_USER_FANS_URL               = "http://open.t.qq.com/api/friends/user_fanslist";
-    /** �����ʻ���������б� **/
+    /** 其他帐户收听的人列表 **/
     public static String       GET_OTHER_USER_INTERESTED_URL         = "http://open.t.qq.com/api/friends/user_idollist";
-    /** �����ʻ��ر���������б� **/
+    /** 其他帐户特别收听的人列表 **/
     public static String       GET_OTHER_USER_SPECIAL_INTERESTED_URL = "http://open.t.qq.com/api/friends/user_speciallist";
-    /** �����ϵ���б� **/
+    /** 互听关系链列表 **/
     public static String       GET_Mutual_INTERESTED_URL             = "http://open.t.qq.com/api/friends/mutual_list";
 
-    /** ΢����ϵ�����apiʹ��ʱ�Ĳ��ֲ��� **/
-    /** ������� **/
+    /** 微博关系链相关api使用时的部分参数 **/
+    /** 请求个数 **/
     public static String       PARA_REQ_NUM                          = "reqnum";
-    /** ��ʼλ��(��һҳ��0���������·�ҳ���[reqnum*(page-1)]) **/
+    /** 起始位置(第一页填0，继续向下翻页，填：[reqnum*(page-1)]) **/
     public static String       PARA_START_INDEX                      = "startindex";
-    /** �û��ʻ����ѡ�� **/
+    /** 用户帐户名（可选） **/
     public static String       PARA_RELATION_USER_NAMES              = "names";
-    /** �û�openid(��ѡ),name��fopenid����ѡһ������ͬʱ��������nameֵΪ�� **/
+    /** 用户openid(可选),name和fopenid至少选一个，若同时存在则以name值为主 **/
     public static String       PARA_RELATION_USER_OPEN_ID            = "fopenid";
-    /** �û�openids(��ѡ),name��fopenids����ѡһ������ͬʱ��������nameֵΪ�� **/
+    /** 用户openids(可选),name和fopenids至少选一个，若同时存在则以name值为主 **/
     public static String       PARA_RELATION_USER_OPEN_IDS           = "fopenids";
     /** **/
     public static String       PARA_RELATION_FLAG                    = "flag";
 
-    /** ΢����ϵ�����apiʹ��ʱ�Ĳ��ֲ��� ֵ **/
-    /** ������ڱ�־ **/
+    /** 微博关系链相关api使用时的部分参数 值 **/
+    /** 检测听众标志 **/
     public static int          VALUE_FANS_RELATION_FLAG              = 0;
-    /** ���������˱�־ **/
+    /** 检测收听的人标志 **/
     public static int          VALUE_INTERESTED_RELATION_FLAG        = 1;
-    /** ���ֹ�ϵ������־ **/
+    /** 两种关系都检测标志 **/
     public static int          VALUE_BOTH_RELATION_FLAG              = 2;
 
     /**
-     * ΢��˽�����apiʹ��ʱ��url
+     * 微博私信相关api使用时的url
      * http://wiki.open.t.qq.com/index.php/%E7%A7%81%E4%BF%A1%E7%9B%B8%E5%85%B3
      */
-    /** ��˽�� **/
+    /** 发私信 **/
     public static String       SEND_MESSAGE_URL                      = "http://open.t.qq.com/api/private/add";
-    /** ɾ��һ��˽�� **/
+    /** 删除一条私信 **/
     public static String       DELETE_MESSAGE_URL                    = "http://open.t.qq.com/api/private/del";
-    /** �ռ��� **/
+    /** 收件箱 **/
     public static String       GET_RECEIVE_MESSAGES_URL              = "http://open.t.qq.com/api/private/recv";
-    /** ������ **/
+    /** 发件箱 **/
     public static String       GET_SEND_MESSAGES_URL                 = "http://open.t.qq.com/api/private/send";
 
     /**
-     * ΢���������apiʹ��ʱ��url
+     * 微博搜索相关api使用时的url
      * http://wiki.open.t.qq.com/index.php/%E6%90%9C%E7%B4%A2%E7%9B%B8%E5%85%B3
      */
-    /** �����û� **/
+    /** 搜索用户 **/
     public static String       SEARCH_USER_URL                       = "http://open.t.qq.com/api/search/user";
-    /** ����΢�� **/
+    /** 搜索微博 **/
     public static String       SEARCH_STATUS_URL                     = "http://open.t.qq.com/api/search/t";
-    /** ͨ���ǩ�����û� **/
+    /** 通过标签搜索用户 **/
     public static String       SEARCH_USER_BY_TAG_URL                = "http://open.t.qq.com/api/search/userbytag";
 
     /**
-     * ΢���������apiʹ��ʱ�Ĳ��ֲ���
+     * 微博搜索相关api使用时的部分参数
      **/
-    /** �����ؼ��� **/
+    /** 搜索关键字 **/
     public static String       PARA_KEYWORD                          = "keyword";
-    /** ÿҳ��С **/
+    /** 每页大小 **/
     public static String       PARA_PAGE_SIZE                        = "pagesize";
-    /** ҳ�� **/
+    /** 页码 **/
     public static String       PARA_PAGE                             = "page";
 
     /**
-     * ΢���ȶȣ��������apiʹ��ʱ��url
+     * 微博热度，趋势相关api使用时的url
      * http://wiki.open.t.qq.com/index.php/%E7%83%AD%E5%BA%A6%EF%BC%8C%E8%B6%8B%E5%8A%BF
      */
-    /** �����Ȱ� **/
+    /** 话题热榜 **/
     public static String       GET_HOT_TOPICS_URL                    = "http://open.t.qq.com/api/trends/ht";
-    /** ת���Ȱ� **/
+    /** 转播热榜 **/
     public static String       GET_HOT_REPOSTS_URL                   = "http://open.t.qq.com/api/trends/t";
 
     /**
-     * ΢���ȶȣ��������apiʹ��ʱ�Ĳ��ֲ���
+     * 微博热度，趋势相关api使用时的部分参数
      **/
-    /** �������� 1 ������2 �����ؼ��� 3 �������Ͷ��� **/
+    /** 请求类型 1 话题名，2 搜索关键字 3 两种类型都有 **/
     public static String       PARA_HOT_SEARCH_TYPE                  = "type";
-    /** ������� **/
+    /** 请求个数 **/
     public static String       PARA_REQ_NUMBER                       = "reqnum";
-    /** ����λ�ã���һ������ʱ��0���������ϴη��ص�pos **/
+    /** 请求位置，第一次请求时填0，继续填上次返回的pos **/
     public static String       PARA_LAST_POSITION                    = "pos";
 
     /**
-     * ΢����ݸ������apiʹ��ʱ��url
+     * 微博数据更新相关api使用时的url
      * http://wiki.open.t.qq.com/index.php/%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E7%9B%B8%E5%85%B3/%E6%9F%A5%E7%9C%8B%E6%
      * 95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E6%9D%A1%E6%95%B0
      */
-    /** �鿴��ݸ������� **/
+    /** 查看数据更新条数 **/
     public static String       GET_UPDATE_INFO_NUM_URL               = "http://open.t.qq.com/api/info/update";
 
     /**
-     * ΢����ݸ������apiʹ��ʱ�Ĳ��ֲ���
+     * 微博数据更新相关api使用时的部分参数
      **/
-    /** �������� 0��ֻ�����������������1�����������Ը��������� **/
+    /** 请求类型 0：只请求更新数，不清除更新数，1：请求更新数，并对更新数清零 **/
     public static String       PARA_REQ_TYPE                         = "op";
-    /** 5 ��ҳδ����Ϣ����61-100������ 7 ˽��ҳ��Ϣ���� 8 ���������� 9 ��ҳ�㲥��ԭ���ģ� **/
+    /** 5 首页未读消息记数，61-100条记数 7 私信页消息计数 8 新增听众数 9 首页广播数（原创的） **/
     public static String       PARA_CLEAR_TYPE                       = "type";
 
-    /** ΢����ݸ������apiʹ��ʱ�Ĳ��ֲ���ֵ **/
+    /** 微博数据更新相关api使用时的部分参数值 **/
     /**
-     * 5-��ҳδ����Ϣ����6-@ҳδ����Ϣ����7-˽��ҳ��Ϣ����8-����������9-��ҳ�㲥��ԭ���ģ�
+     * 5-首页未读消息计数，6-@页未读消息计数，7-私信页消息计数，8-新增听众数，9-首页广播数（原创的）
      */
-    /** ΢����ݸ��� 5-��ҳδ����Ϣ���� **/
+    /** 微博数据更新 5-首页未读消息计数 **/
     public static int          VALUE_CLEAR_TYPE_HOME_PAGE            = 5;
-    /** ΢����ݸ��� 6-@ҳδ����Ϣ���� **/
+    /** 微博数据更新 6-@页未读消息计数 **/
     public static int          VALUE_CLEAR_TYPE_AT                   = 6;
-    /** ΢����ݸ��� 7-˽��ҳ��Ϣ���� **/
+    /** 微博数据更新 7-私信页消息计数 **/
     public static int          VALUE_CLEAR_TYPE_PRIVATE_MSG          = 7;
-    /** ΢����ݸ��� 8-���������� **/
+    /** 微博数据更新 8-新增听众数 **/
     public static int          VALUE_CLEAR_TYPE_NEW_FANS             = 8;
-    /** ΢����ݸ��� 9-��ҳ�㲥��ԭ���ģ� **/
+    /** 微博数据更新 9-首页广播数（原创的） **/
     public static int          VALUE_CLEAR_TYPE_HOME_BROADCAST       = 9;
 
     /**
-     * ΢������ղ����apiʹ��ʱ��url
+     * 微博数据收藏相关api使用时的url
      * http://wiki.open.t.qq.com/index.php/%E6%95%B0%E6%8D%AE%E6%94%B6%E8%97%8F
      */
-    /** �ղ�һ��΢�� **/
+    /** 收藏一条微博 **/
     public static String       COLLECT_STATUS_URL                    = "http://open.t.qq.com/api/fav/addt";
-    /** ȡ���ղ�һ��΢�� **/
+    /** 取消收藏一条微博 **/
     public static String       UNCOLLECT_STATUS_URL                  = "http://open.t.qq.com/api/fav/delt";
-    /** �ղص�΢���б� **/
+    /** 收藏的微博列表 **/
     public static String       GET_COLLECT_STATUS_URL                = "http://open.t.qq.com/api/fav/list_t";
-    /** ���Ļ��� **/
+    /** 订阅话题 **/
     public static String       SUBSCRIBE_TOPIC_URL                   = "http://open.t.qq.com/api/fav/addht";
-    /** ȡ���Ļ��� **/
+    /** 取消订阅话题 **/
     public static String       UNSUBSCRIBE_TOPIC_URL                 = "http://open.t.qq.com/api/fav/delht";
-    /** ��ȡ�Ѷ��Ļ����б� **/
+    /** 获取已订阅话题列表 **/
     public static String       GET_SUBSCRIBE_TOPICS_URL              = "http://open.t.qq.com/api/fav/list_ht";
 
     /**
-     * ΢���������apiʹ��ʱ��url
+     * 微博话题相关api使用时的url
      * http://wiki.open.t.qq.com/index.php/%E8%AF%9D%E9%A2%98%E7%9B%B8%E5%85%B3
      */
-    /** ��ݻ�����Ʋ�ѯ����id **/
+    /** 根据话题名称查询话题id **/
     public static String       GET_TOPIC_ID_URL                      = "http://open.t.qq.com/api/ht/ids";
-    /** ��ݻ���id��ȡ���������Ϣ **/
+    /** 根据话题id获取话题相关信息 **/
     public static String       GET_TOPIC_INFO_URL                    = "http://open.t.qq.com/api/ht/info";
 
     /**
-     * ΢���������apiʹ��ʱ�Ĳ��ֲ���
+     * 微博话题相关api使用时的部分参数
      **/
-    /** ���������б?abc,efg,�� **/
+    /** 话题名字列表（abc,efg,） **/
     public static String       PARA_TOPIC_NAMES                      = "httexts";
-    /** ����id�б?�Զ��ŷָ�����12345,12345 **/
+    /** 话题id列表，以逗号分隔，如12345,12345 **/
     public static String       PARA_TOPIC_IDS                        = "ids";
 
     /**
-     * ΢����ǩ���apiʹ��ʱ��url
+     * 微博标签相关api使用时的url
      * http://wiki.open.t.qq.com/index.php/%E8%AF%9D%E9%A2%98%E7%9B%B8%E5%85%B3
      */
-    /** ��ӱ�ǩ **/
+    /** 添加标签 **/
     public static String       ADD_TAG_URL                           = "http://open.t.qq.com/api/tag/add";
-    /** ɾ���ǩ **/
+    /** 删除标签 **/
     public static String       DELETE_TAG_URL                        = "http://open.t.qq.com/api/tag/del";
 
     /**
-     * ΢����ǩ���apiʹ��ʱ�Ĳ��ֲ���
+     * 微博标签相关api使用时的部分参数
      **/
-    /** ��ǩ���� **/
+    /** 标签内容 **/
     public static String       PARA_TAG_NAME                         = "tag";
-    /** ��ǩid **/
+    /** 标签id **/
     public static String       PARA_TAG_ID                           = "tagid";
 
-    /** mac ����ʱ���㷨 **/
+    /** mac 编码时的算法 **/
     public static String       MAC_ALGORITHM                         = "HmacSHA1";
-    /** ����ʱ��encoding�ַ� **/
+    /** 编码时的encoding字符集 **/
     public static String       MAC_ENCODING                          = "US-ASCII";
 
-    /** api ���صĲ��ֲ��� **/
+    /** api 返回的部分参数 **/
     public static String       RET_PARA_MSG                          = "msg";
     public static String       RET_PARA_RET                          = "ret";
 
-    /** api ���صĲ��ֲ�����ֵ **/
+    /** api 返回的部分参数正常值 **/
     public static String       RET_VALUE_MSG                         = "ok";
     public static int          RET_VALUE_RET                         = 0;
 
-    /** api ���ص�json���е��ֶ� **/
+    /** api 返回的json传中的字段 **/
 
-    /** ����ͷ��ͼƬ��С���ƣ� ����20��30��40��50��100����http://open.t.qq.com/resource.php?i=2,1#faq_common ��5�� **/
+    /** 返回头像图片大小限制， 包括20、30、40、50、100，见http://open.t.qq.com/resource.php?i=2,1#faq_common 第5条 **/
     public static int          HEAD_ICON_SIZE_20                     = 20;
     public static int          HEAD_ICON_SIZE_30                     = 30;
     public static int          HEAD_ICON_SIZE_40                     = 40;
     public static int          HEAD_ICON_SIZE_50                     = 50;
     public static int          HEAD_ICON_SIZE_100                    = 100;
 
-    /** ����ͼƬ�Ĵ�С���ƣ�����120��160��460��2000����http://open.t.qq.com/resource.php?i=2,1#faq_common ��6�� **/
+    /** 返回图片的大小限制，包括120、160、460、2000，见http://open.t.qq.com/resource.php?i=2,1#faq_common 第6条 **/
     public static int          IMAGE_SIZE_60                         = 60;
     public static int          IMAGE_SIZE_120                        = 120;
     public static int          IMAGE_SIZE_240                        = 240;
@@ -508,8 +508,8 @@ public class TConstant {
     public static int          IMAGE_SIZE_2000                       = 2000;
 
     /**
-     * api���ص�״̬����
-     * 1-ԭ�����?2-ת�ء�3-˽�� 4-�ظ� 5-�ջ� 6-�ἰ 7-����
+     * api返回的状态类型
+     * 1-原创发表、2-转载、3-私信 4-回复 5-空回 6-提及 7-评论
      **/
     public static int          VALUE_STATUS_TYPE_ORIGINAL            = 1;
     public static int          VALUE_STATUS_TYPE_REPOST              = 2;

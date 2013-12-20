@@ -1,6 +1,6 @@
 package im.shs.action;
 
-import im.shs.model.TUser;
+import im.shs.service.TctService;
 import im.shs.service.WeiBoService;
 
 import java.io.UnsupportedEncodingException;
@@ -23,7 +23,6 @@ import org.apache.struts2.interceptor.ServletResponseAware;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
-import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
 import com.tencent.weibo.oauthv2.OAuthV2;
 
@@ -49,10 +48,10 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
 
     private String state;
 
-    private static OAuthV2 oAuth = new OAuthV2();
-
     @Resource(name = "weiboService")
     private WeiBoService weiboService;
+    @Resource(name = "tctService")
+    private TctService tctService;
 
     public String tencentWeiboLoginInit() {
         url = weiboService.tencentWeiboLoginInit();
@@ -75,8 +74,8 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
         return "tencentWeiboLoginSuccess";
     }
 
+    @SuppressWarnings({ "rawtypes", "unchecked" })
     public String tencentWeibo() {
-        ActionContext context = ActionContext.getContext(); ;
         Map map = new HashMap();
         Cookie allCookie[]= request.getCookies();
 
@@ -98,9 +97,9 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
         return "tencentWeiboSuccess";
     }
 
-    public String sinaWeiBoLogin() {
-
-        return null;
+    public String test() {
+        tctService.addStatus();
+        return "test";
     }
 
     public String qqWeiBoShow() {
@@ -132,6 +131,7 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
      * @param params 要携带的参数
      * @return
      */
+    @SuppressWarnings("unused")
     private String doHttpClient(String url, NameValuePair[] params) {
         PostMethod post = new PostMethod(url);
 
@@ -155,6 +155,7 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
 
     }
 
+    @SuppressWarnings("unused")
     private static void init(OAuthV2 oAuth) {
         ResourceBundle resource = ResourceBundle.getBundle("tencentWeiboConfig");// 这个配置文件是我自己创建的
         String client_id_temp = resource.getString("client_ID");

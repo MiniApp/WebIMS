@@ -1030,8 +1030,8 @@ public class TSdkServiceImpl implements TSdkService {
             return null;
         }
         parasMap.put(TConstant.PARA_FORMAT, format);
-        //--MapUtils.putMapNotEmptyValue(parasMap, QqTConstant.PARA_USER_NAMES, userNames);
-        //--MapUtils.putMapNotEmptyValue(parasMap, QqTConstant.PARA_USER_OPEN_IDS, userOpenIds);
+        MapUtils.putMapNotEmptyValue(parasMap, TConstant.PARA_USER_NAMES, userNames);
+        MapUtils.putMapNotEmptyValue(parasMap, TConstant.PARA_USER_OPEN_IDS, userOpenIds);
         return TSignAndHttpUtils.signAndHttpGet(TConstant.GET_OTHER_USERS_INFO_URL, parasMap, qqTAppAndToken);
     }
 

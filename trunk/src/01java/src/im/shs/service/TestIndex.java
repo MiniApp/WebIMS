@@ -17,6 +17,17 @@ import org.springframework.stereotype.Component;
 import com.opensymphony.xwork2.ActionContext;
 
 //@Component
+/**    
+ *         
+ * Class Name：
+ *			TestIndex    
+ * Description：    
+ *			描述
+ * @Author	suhao
+ * @Date	2013-12-20 上午11:21:10    
+ * @Version	
+ *     
+ */
 public class TestIndex {
     @Resource(name="weiboService")
     private WeiBoService ws;
@@ -27,7 +38,7 @@ public class TestIndex {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
         String dateStr = sdf.format(date);
-        String url = ws.tencentWeiboLoginInit();
+        //String url = ws.tencentWeiboLoginInit();
         NameValuePair[] params = new NameValuePair[]{};
         //  String CallResult = this.doHttpClient(url, params);
         //System.out.println(CallResult);

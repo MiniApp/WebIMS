@@ -52,7 +52,6 @@ public class TCheckAndTransUtils {
         if (StringUtils.isEmpty(response)) {
             return false;
         }
-
         try {
             return checkModifyResult(JSONObject.fromObject(response));
         } catch (JSONException e) {
