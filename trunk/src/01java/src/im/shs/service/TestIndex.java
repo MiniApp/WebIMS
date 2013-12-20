@@ -3,6 +3,7 @@ package im.shs.service;
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
+import java.util.Map;
 import java.util.ResourceBundle;
 
 import javax.annotation.Resource;
@@ -12,6 +13,8 @@ import org.apache.commons.httpclient.NameValuePair;
 import org.apache.commons.httpclient.methods.PostMethod;
 import org.springframework.scheduling.annotation.Scheduled;
 import org.springframework.stereotype.Component;
+
+import com.opensymphony.xwork2.ActionContext;
 
 //@Component
 public class TestIndex {

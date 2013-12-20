@@ -1,7 +1,10 @@
 package im.shs.service;
 
 import im.shs.action.WeiboLoginAction;
+import im.shs.base.AbstractService;
 import im.shs.bean.WeiBoContentBean;
+import im.shs.model.TAuthInfo;
+import im.shs.model.TUser;
 
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
@@ -21,11 +24,12 @@ import org.springframework.stereotype.Service;
 
 import com.tencent.weibo.api.StatusesAPI;
 import com.tencent.weibo.api.TAPI;
+import com.tencent.weibo.api.UserAPI;
 import com.tencent.weibo.oauthv2.OAuthV2;
 import com.tencent.weibo.oauthv2.OAuthV2Client;
 
 @Service("weiboService")
-public class WeiBoServiceImpl implements WeiBoService {
+public class WeiBoServiceImpl extends AbstractService implements WeiBoService {
     private final Log logger = LogFactory.getLog(WeiboLoginAction.class);
 
     private static OAuthV2 oAuth = new OAuthV2();
@@ -100,6 +104,8 @@ public class WeiBoServiceImpl implements WeiBoService {
                 }
                 urlTokens = redirect_uri_succ_temp;
                 logger.info("urlToken:" + urlTokens);
+                oAuth.setAccessToken((String) code_map.get("access_token"));
+                logger.info("====="+oAuth.getAccessToken());
                 String s = (String) code_map.get("nick");
                 byte[] tmpByteArray = s.getBytes("iso-8859-1");
                 s = new String(tmpByteArray, "UTF-8");
@@ -163,6 +169,13 @@ public class WeiBoServiceImpl implements WeiBoService {
                     } catch (Exception e) {
                         e.printStackTrace();
                     }
+                    UserAPI userApi = new UserAPI(oAuth.getOauthVersion());
+                    try {
+                        logger.info("My Info:"+userApi.info(oAuth, "JSON"));
+                    } catch (Exception e1) {
+                        // TODO Auto-generated catch block
+                        e1.printStackTrace();
+                    }
                     TAPI tAPI=new TAPI(oAuth.getOauthVersion());//根据oAuth配置对应的连接管理器
 
                     //取得返回结果
@@ -191,9 +204,16 @@ public class WeiBoServiceImpl implements WeiBoService {
                 }
             }
         }
+        TAuthInfo u = this.getPersist().findObjectByField(TAuthInfo.class, "accessToken", oAuth.getAccessToken());
+        if (u == null) {
+            TAuthInfo tai = new TAuthInfo();
+            tai.setAccessToken(oAuth.getAccessToken());
+            this.getPersist().persist(tai);
+        }
         
         returnData.put("urlTokens", urlTokens);
         returnData.put("data", m);
+        returnData.put("accessToken", oAuth.getAccessToken());
         return returnData;
 	}
 

@@ -1,25 +1,15 @@
 package im.shs.action;
 
-import java.io.BufferedReader;
-import java.io.IOException;
+import im.shs.model.TUser;
+import im.shs.service.WeiBoService;
+
 import java.io.UnsupportedEncodingException;
-import java.util.Enumeration;
 import java.util.HashMap;
-import java.util.Locale;
 import java.util.Map;
 import java.util.ResourceBundle;
 
-import im.shs.service.UserServiceImpl;
-import im.shs.service.WeiBoService;
-
 import javax.annotation.Resource;
-import javax.servlet.AsyncContext;
-import javax.servlet.DispatcherType;
-import javax.servlet.RequestDispatcher;
-import javax.servlet.ServletContext;
-import javax.servlet.ServletInputStream;
-import javax.servlet.ServletRequest;
-import javax.servlet.ServletResponse;
+import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
@@ -35,10 +25,7 @@ import org.springframework.stereotype.Component;
 
 import com.opensymphony.xwork2.ActionContext;
 import com.opensymphony.xwork2.ActionSupport;
-import com.tencent.weibo.api.StatusesAPI;
-import com.tencent.weibo.api.TAPI;
 import com.tencent.weibo.oauthv2.OAuthV2;
-import com.tencent.weibo.oauthv2.OAuthV2Client;
 
 @Component("weiBoLoginAction")
 @Scope("prototype")
@@ -82,12 +69,32 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
         logger.info("Code is : " + code_temp);
         Map<String, Object> map = weiboService.tencentWeiboLogin(code_temp);
         this.urlTokens = (String) map.get("urlTokens");
-
+        Cookie accessToken=new Cookie("accessToken",(String) map.get("accessToken"));
+        accessToken.setMaxAge(60*60*24*365);
+        response.addCookie(accessToken);
         return "tencentWeiboLoginSuccess";
     }
 
     public String tencentWeibo() {
+        ActionContext context = ActionContext.getContext(); ;
+        Map map = new HashMap();
+        Cookie allCookie[]= request.getCookies();
 
+        if(allCookie!=null&&allCookie.length!=0)
+         {
+             for(int i=0;i<allCookie.length;i++)
+             {
+                 String keyname=  allCookie[i].getName();
+                 if ("accessToken".equals(keyname)) {
+                     map.put("clientAccessToken", allCookie[i].getValue());
+                 }
+                 
+              }
+         }
+        if (!"38fc777338dfb01ea1a23ab163c15e77".equals(map.get("clientAccessToken"))) {
+            return "failLogin";
+        }
+        
         return "tencentWeiboSuccess";
     }
 

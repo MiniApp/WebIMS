@@ -28,6 +28,7 @@
 			<result name="tencentWeiboLoginSuccess" type="redirect">${urlTokens}</result>
 		</action>
 		<action name="tencentWeibo" class="weiBoLoginAction" method="tencentWeibo">
+			<result name="failLogin" type="redirectAction">tencentWeiboLoginInit</result>
 			<result name="tencentWeiboSuccess">weibo.jsp</result>
 		</action>
 		<action name="*User*" class="userAction" method="{1}User{2}">
