@@ -5,6 +5,10 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import javax.annotation.Resource;
+
+import org.springframework.stereotype.Service;
+
 import com.ubiyao.base.tencent.util.HttpUtils;
 import com.ubiyao.base.tencent.util.JSONUtils;
 import com.ubiyao.base.tencent.util.MapUtils;
@@ -33,9 +37,11 @@ import com.ubiyao.sns.tencent.util.TParaMapUtils;
 import com.ubiyao.sns.tencent.util.TSignAndHttpUtils;
 import com.ubiyao.sns.tencent.util.TTransformUtils;
 
+@Service("tSdkService")
 public class TSdkServiceImpl implements TSdkService {
 
     /** 应用和用户相关信息 **/
+    @Resource(name = "qqTAppAndToken")
     private TAppAndToken qqTAppAndToken;
 
     @Override

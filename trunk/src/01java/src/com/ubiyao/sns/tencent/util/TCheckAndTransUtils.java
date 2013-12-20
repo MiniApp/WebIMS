@@ -2,8 +2,8 @@ package com.ubiyao.sns.tencent.util;
 
 import java.util.List;
 
-import net.sf.json.JSONException;
-import net.sf.json.JSONObject;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.ubiyao.base.tencent.util.StringUtils;
 import com.ubiyao.sns.tencent.entity.TStatus;
@@ -53,7 +53,7 @@ public class TCheckAndTransUtils {
             return false;
         }
         try {
-            return checkModifyResult(JSONObject.fromObject(response));
+            return checkModifyResult(new JSONObject(response));
         } catch (JSONException e) {
             return false;
         }
