@@ -2,6 +2,7 @@ package com.ubiyao.base.tencent.util;
 
 import java.io.UnsupportedEncodingException;
 import java.net.URLEncoder;
+import java.util.Random;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -243,4 +244,23 @@ public class StringUtils extends org.apache.commons.lang3.StringUtils {
         }
         return new String(source);
     }
+    public static String getRandomNumbersAndLetters(int length)
+	{
+		return getRandom("0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ", length);
+	}
+    public static String getRandom(String source, int length)
+	{
+		return isEmpty(source) ? null : getRandom(source.toCharArray(), length);
+	}
+    public static String getRandom(char sourceChar[], int length)
+	{
+		if (sourceChar == null || sourceChar.length == 0 || length < 0)
+			return null;
+		StringBuilder str = new StringBuilder("");
+		Random random = new Random();
+		for (int i = 0; i < length; i++)
+			str.append(sourceChar[random.nextInt(sourceChar.length)]);
+
+		return str.toString();
+	}
 }

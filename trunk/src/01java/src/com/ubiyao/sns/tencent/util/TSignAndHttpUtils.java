@@ -145,6 +145,7 @@ public class TSignAndHttpUtils {
         qqTSign.setTokenSecret(qqTAppAndToken.getTokenSecret());
         qqTSign.setParasMap(parasMap);
         parasMap.put(TConstant.PARA_OAUTH_SIGNATURE, signature(qqTSign));
+        System.out.println("7777 : "+HttpUtils.httpPostEncodeParas(qqTSign.getBaseUrl(), parasMap));
         return HttpUtils.httpPostEncodeParas(qqTSign.getBaseUrl(), parasMap);
     }
 

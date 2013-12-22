@@ -57,8 +57,8 @@ public class THotStatusPara implements Serializable {
      */
     public Map<String, String> getParasMap() {
         Map<String, String> parasMap = new HashMap<String, String>();
-        MapUtils.putMapNotEmptyValue(parasMap, TConstant.PARA_FORMAT, format);
-        MapUtils.putMapNotEmptyValue(parasMap, TConstant.PARA_HOT_SEARCH_TYPE, type);
+        MapUtils.putMapNotEmptyKey(parasMap, TConstant.PARA_FORMAT, format);
+        MapUtils.putMapNotEmptyKey(parasMap, TConstant.PARA_HOT_SEARCH_TYPE, type);
         if (reqNum >= 0) {
             parasMap.put(TConstant.PARA_REQ_NUMBER, Integer.toString(reqNum));
         }

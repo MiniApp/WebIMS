@@ -91,15 +91,15 @@ public class TUserPara implements Serializable {
      */
     public Map<String, String> getParasMap() {
         Map<String, String> parasMap = new HashMap<String, String>();
-        MapUtils.putMapNotEmptyValue(parasMap, TConstant.PARA_FORMAT, format);
-        MapUtils.putMapNotEmptyValue(parasMap, TConstant.PARA_NICK, nick);
-        MapUtils.putMapNotEmptyValue(parasMap, TConstant.PARA_BIRTH_YEAR, birthYear);
-        MapUtils.putMapNotEmptyValue(parasMap, TConstant.PARA_BIRTH_MONTH, birthMonth);
-        MapUtils.putMapNotEmptyValue(parasMap, TConstant.PARA_BIRTH_DAY, birthDay);
-        MapUtils.putMapNotEmptyValue(parasMap, TConstant.PARA_COUNTRY_CODE, countryCode);
-        MapUtils.putMapNotEmptyValue(parasMap, TConstant.PARA_PROVINCE_CODE, provinceCode);
-        MapUtils.putMapNotEmptyValue(parasMap, TConstant.PARA_CITY_CODE, cityCode);
-        MapUtils.putMapNotEmptyValue(parasMap, TConstant.PARA_INTRODUCTION, introduction);
+        MapUtils.putMapNotEmptyKey(parasMap, TConstant.PARA_FORMAT, format);
+        MapUtils.putMapNotEmptyKey(parasMap, TConstant.PARA_NICK, nick);
+        MapUtils.putMapNotEmptyKey(parasMap, TConstant.PARA_BIRTH_YEAR, birthYear);
+        MapUtils.putMapNotEmptyKey(parasMap, TConstant.PARA_BIRTH_MONTH, birthMonth);
+        MapUtils.putMapNotEmptyKey(parasMap, TConstant.PARA_BIRTH_DAY, birthDay);
+        MapUtils.putMapNotEmptyKey(parasMap, TConstant.PARA_COUNTRY_CODE, countryCode);
+        MapUtils.putMapNotEmptyKey(parasMap, TConstant.PARA_PROVINCE_CODE, provinceCode);
+        MapUtils.putMapNotEmptyKey(parasMap, TConstant.PARA_CITY_CODE, cityCode);
+        MapUtils.putMapNotEmptyKey(parasMap, TConstant.PARA_INTRODUCTION, introduction);
         if (sex >= 0) {
             parasMap.put(TConstant.PARA_SEX, Integer.toString(sex));
         }

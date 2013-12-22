@@ -2,6 +2,7 @@ package com.ubiyao.sns.tencent.entity;
 
 import java.io.Serializable;
 
+import org.springframework.stereotype.Component;
 import org.springframework.stereotype.Repository;
 
 import com.ubiyao.base.tencent.util.StringUtils;
@@ -11,7 +12,7 @@ import com.ubiyao.base.tencent.util.StringUtils;
  * 
  * @author Trinea 2011-9-25 下午11:41:38
  */
-@Repository("qqTAppAndToken")
+@Component("qqTAppAndToken")
 public class TAppAndToken implements Serializable {
 
     private static final long serialVersionUID = 5951645915037611059L;
@@ -65,4 +66,5 @@ public class TAppAndToken implements Serializable {
     public void setTokenSecret(String tokenSecret) {
         this.tokenSecret = tokenSecret;
     }
+
 }

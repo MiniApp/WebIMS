@@ -74,4 +74,5 @@ public class TSign implements Serializable {
     public boolean isValid() {
         return !(StringUtils.isEmpty(baseUrl) || StringUtils.isEmpty(httpMethod) || StringUtils.isEmpty(appSecret) || MapUtils.isEmpty(parasMap));
     }
+
 }

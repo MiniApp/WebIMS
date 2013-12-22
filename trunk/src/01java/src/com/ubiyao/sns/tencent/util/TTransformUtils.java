@@ -7,9 +7,9 @@ import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
 
-import net.sf.json.JSONArray;
-import net.sf.json.JSONException;
-import net.sf.json.JSONObject;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import com.ubiyao.base.tencent.util.HttpUtils;
 import com.ubiyao.base.tencent.util.JSONUtils;
@@ -26,7 +26,6 @@ import com.ubiyao.sns.tencent.entity.TUser;
 import com.ubiyao.sns.tencent.entity.TUserEduInfo;
 import com.ubiyao.sns.tencent.entity.TUserRelation;
 import com.ubiyao.sns.tencent.entity.TVideoInfo;
-import com.ubiyao.sns.tencent.util.TConstant;
 
 /**
  * 腾讯微博转换函数
@@ -63,7 +62,7 @@ public class TTransformUtils {
      * @return
      *         <ul>
      *         <li>1、字符串转换为JSONObject</li>
-     *         <li>2、调用{@link TTransformUtils#transResponse(JSONObject)}</li>
+     *         <li>2、调用{@link QqTTransformUtils#transResponse(JSONObject)}</li>
      *         </ul>
      */
     public static TResponse transResponse(String responseStr) {
@@ -72,7 +71,7 @@ public class TTransformUtils {
         }
 
         try {
-            return transResponse(JSONObject.fromObject(responseStr));
+            return transResponse(new JSONObject(responseStr));
         } catch (JSONException e) {
             return null;
         }
@@ -120,7 +119,7 @@ public class TTransformUtils {
      * @return
      *         <ul>
      *         <li>1、字符串转换为JSONObject</li>
-     *         <li>2、调用{@link TTransformUtils#transQqTListData(JSONObject)}</li>
+     *         <li>2、调用{@link QqTTransformUtils#transQqTListData(JSONObject)}</li>
      *         </ul>
      */
     public static TListData transQqTListData(String responseStr) {
@@ -129,7 +128,7 @@ public class TTransformUtils {
         }
 
         try {
-            return transQqTListData(JSONObject.fromObject(responseStr));
+            return transQqTListData(new JSONObject(responseStr));
         } catch (JSONException e) {
             return null;
         }
@@ -165,7 +164,7 @@ public class TTransformUtils {
      * @return
      *         <ul>
      *         <li>1、字符串转换为JSONObject</li>
-     *         <li>2、调用{@link TTransformUtils#transQqTIdAndTime(JSONObject)}</li>
+     *         <li>2、调用{@link QqTTransformUtils#transQqTIdAndTime(JSONObject)}</li>
      *         </ul>
      */
     public static TIdAndTime transQqTIdAndTime(String responseStr) {
@@ -174,7 +173,7 @@ public class TTransformUtils {
         }
 
         try {
-            return transQqTIdAndTime(JSONObject.fromObject(responseStr));
+            return transQqTIdAndTime(new JSONObject(responseStr));
         } catch (JSONException e) {
             return null;
         }
@@ -188,7 +187,7 @@ public class TTransformUtils {
      *         <ul>
      *         <li>1、获得data</li>
      *         <li>2、解析data得到info数组</li>
-     *         <li>3、调用{@link TTransformUtils#transStatus(JSONObject)}解析info数组中的每一条微博</li>
+     *         <li>3、调用{@link QqTTransformUtils#transStatus(JSONObject)}解析info数组中的每一条微博</li>
      *         </ul>
      */
     public static List<TStatus> transTLStatusesToList(JSONObject statusesObj) {
@@ -197,9 +196,9 @@ public class TTransformUtils {
                 JSONObject dataObj = statusesObj.getJSONObject("data");
                 if (dataObj != null) {
                     JSONArray statusArray = dataObj.getJSONArray("info");
-                    if (statusArray != null && statusArray.size() > 0) {
+                    if (statusArray != null && statusArray.length() > 0) {
                         List<TStatus> qqTStatusList = new ArrayList<TStatus>();
-                        for (int i = 0; i < statusArray.size(); i++) {
+                        for (int i = 0; i < statusArray.length(); i++) {
                             ListUtils.addListNotNullValue(qqTStatusList, transStatus(statusArray.optJSONObject(i)));
                         }
                         return qqTStatusList;
@@ -219,7 +218,7 @@ public class TTransformUtils {
      * @return
      *         <ul>
      *         <li>1、字符串转换为JSONObject</li>
-     *         <li>2、调用{@link TTransformUtils#transTLStatusesToList(JSONObject)}</li>
+     *         <li>2、调用{@link QqTTransformUtils#transTLStatusesToList(JSONObject)}</li>
      *         </ul>
      */
     public static List<TStatus> transTLStatusesToList(String statusesJsonStr) {
@@ -228,7 +227,7 @@ public class TTransformUtils {
         }
 
         try {
-            return transTLStatusesToList(JSONObject.fromObject(statusesJsonStr));
+            return transTLStatusesToList(new JSONObject(statusesJsonStr));
         } catch (JSONException e) {
             return null;
         }
@@ -240,16 +239,16 @@ public class TTransformUtils {
      * @param statusArray status jsonArray
      * @return
      *         <ul>
-     *         <li>3、调用{@link TTransformUtils#transStatus(JSONObject)}解析statusArray中的每一条微博</li>
+     *         <li>3、调用{@link QqTTransformUtils#transStatus(JSONObject)}解析statusArray中的每一条微博</li>
      *         </ul>
      */
     public static List<TStatus> transStatusesToList(JSONArray statusArray) {
-        if (statusArray == null || statusArray.size() == 0) {
+        if (statusArray == null || statusArray.length() == 0) {
             return null;
         }
 
         List<TStatus> qqTStatusList = new ArrayList<TStatus>();
-        for (int i = 0; i < statusArray.size(); i++) {
+        for (int i = 0; i < statusArray.length(); i++) {
             ListUtils.addListNotNullValue(qqTStatusList, transStatus(statusArray.optJSONObject(i)));
         }
         return qqTStatusList;
@@ -262,7 +261,7 @@ public class TTransformUtils {
      * @return
      *         <ul>
      *         <li>1、字符串转换为JSONArray</li>
-     *         <li>2、调用{@link TTransformUtils#transStatusesToList(JSONObject)}</li>
+     *         <li>2、调用{@link QqTTransformUtils#transStatusesToList(JSONObject)}</li>
      *         </ul>
      */
     public static List<TStatus> transStatusesToList(String statusesJsonStr) {
@@ -271,7 +270,7 @@ public class TTransformUtils {
         }
 
         try {
-            return transStatusesToList(JSONArray.fromObject(statusesJsonStr));
+            return transStatusesToList(new JSONArray(statusesJsonStr));
         } catch (JSONException e) {
             return null;
         }
@@ -320,7 +319,7 @@ public class TTransformUtils {
      * @return
      *         <ul>
      *         <li>1、字符串转换为JSONObject</li>
-     *         <li>2、调用{@link TTransformUtils#transStatus(JSONObject)}</li>
+     *         <li>2、调用{@link QqTTransformUtils#transStatus(JSONObject)}</li>
      *         </ul>
      */
     public static TStatus transStatus(String statusStr) {
@@ -329,7 +328,7 @@ public class TTransformUtils {
         }
 
         try {
-            return transStatus(JSONObject.fromObject(statusStr));
+            return transStatus(new JSONObject(statusStr));
         } catch (JSONException e) {
             return null;
         }
@@ -385,7 +384,7 @@ public class TTransformUtils {
      *         <ul>
      *         <li>1、获得data</li>
      *         <li>2、解析data得到info数组</li>
-     *         <li>3、调用{@link TTransformUtils#transUserInfo(JSONObject)}解析info数组中的每一条用户</li>
+     *         <li>3、调用{@link QqTTransformUtils#transUserInfo(JSONObject)}解析info数组中的每一条用户</li>
      *         </ul>
      */
     public static List<TUser> transUsersToList(JSONObject useresObj) {
@@ -394,9 +393,9 @@ public class TTransformUtils {
                 JSONObject dataObj = useresObj.getJSONObject("data");
                 if (dataObj != null) {
                     JSONArray userArray = dataObj.getJSONArray("info");
-                    if (userArray != null && userArray.size() > 0) {
+                    if (userArray != null && userArray.length() > 0) {
                         List<TUser> qqTUserList = new ArrayList<TUser>();
-                        for (int i = 0; i < userArray.size(); i++) {
+                        for (int i = 0; i < userArray.length(); i++) {
                             ListUtils.addListNotNullValue(qqTUserList, transUserInfo(userArray.optJSONObject(i)));
                         }
                         return qqTUserList;
@@ -416,7 +415,7 @@ public class TTransformUtils {
      * @return
      *         <ul>
      *         <li>1、字符串转换为JSONObject</li>
-     *         <li>2、调用{@link TTransformUtils#transUsersToList(JSONObject)}</li>
+     *         <li>2、调用{@link QqTTransformUtils#transUsersToList(JSONObject)}</li>
      *         </ul>
      */
     public static List<TUser> transUsersToList(String useresJsonStr) {
@@ -425,7 +424,7 @@ public class TTransformUtils {
         }
 
         try {
-            return transUsersToList(JSONObject.fromObject(useresJsonStr));
+            return transUsersToList(new JSONObject(useresJsonStr));
         } catch (JSONException e) {
             return null;
         }
@@ -448,9 +447,9 @@ public class TTransformUtils {
                 JSONObject dataObj = userNamesObj.getJSONObject("data");
                 if (dataObj != null) {
                     JSONArray userArray = dataObj.getJSONArray("info");
-                    if (userArray != null && userArray.size() > 0) {
+                    if (userArray != null && userArray.length() > 0) {
                         List<String> qqTUserNameList = new ArrayList<String>();
-                        for (int i = 0; i < userArray.size(); i++) {
+                        for (int i = 0; i < userArray.length(); i++) {
                             JSONObject userNameObj = userArray.optJSONObject(i);
                             ListUtils.addListNotNullValue(qqTUserNameList, JSONUtils.getString(userNameObj, "name", ""));
                         }
@@ -471,7 +470,7 @@ public class TTransformUtils {
      * @return
      *         <ul>
      *         <li>1、字符串转换为JSONObject</li>
-     *         <li>2、调用{@link TTransformUtils#transUserNamesToList(JSONObject)}</li>
+     *         <li>2、调用{@link QqTTransformUtils#transUserNamesToList(JSONObject)}</li>
      *         </ul>
      */
     public static List<String> transUserNamesToList(String userNameJsonStr) {
@@ -480,7 +479,7 @@ public class TTransformUtils {
         }
 
         try {
-            return transUserNamesToList(JSONObject.fromObject(userNameJsonStr));
+            return transUserNamesToList(new JSONObject(userNameJsonStr));
         } catch (JSONException e) {
             return null;
         }
@@ -541,7 +540,7 @@ public class TTransformUtils {
      * @return
      *         <ul>
      *         <li>1、字符串转换为JSONObject</li>
-     *         <li>2、调用{@link TTransformUtils#transUserInfo(JSONObject)}</li>
+     *         <li>2、调用{@link QqTTransformUtils#transUserInfo(JSONObject)}</li>
      *         </ul>
      */
     public static TUser transUserInfo(String userInfoStr) {
@@ -550,7 +549,7 @@ public class TTransformUtils {
         }
 
         try {
-            return transUserInfo(JSONObject.fromObject(userInfoStr));
+            return transUserInfo(new JSONObject(userInfoStr));
         } catch (JSONException e) {
             return null;
         }
@@ -568,7 +567,7 @@ public class TTransformUtils {
                 JSONArray userTagInfoArray = userTagInfoObj.getJSONArray("tag");
                 if (userTagInfoArray != null) {
                     Map<String, String> tagInfoMap = new HashMap<String, String>();
-                    for (int i = 0; i < userTagInfoArray.size(); i++) {
+                    for (int i = 0; i < userTagInfoArray.length(); i++) {
                         JSONObject userTagInfo = userTagInfoArray.optJSONObject(i);
                         tagInfoMap.put(JSONUtils.getString(userTagInfo, "id", ""),
                                        JSONUtils.getString(userTagInfo, "name", ""));
@@ -589,7 +588,7 @@ public class TTransformUtils {
      * @return
      *         <ul>
      *         <li>1、字符串转换为JSONObject</li>
-     *         <li>2、调用{@link TTransformUtils#transUserTagInfoToMap(JSONObject)}</li>
+     *         <li>2、调用{@link QqTTransformUtils#transUserTagInfoToMap(JSONObject)}</li>
      *         </ul>
      */
     public static Map<String, String> transUserTagInfoToMap(String userTagInfoStr) {
@@ -598,7 +597,7 @@ public class TTransformUtils {
         }
 
         try {
-            return transUserTagInfoToMap(JSONObject.fromObject(userTagInfoStr));
+            return transUserTagInfoToMap(new JSONObject(userTagInfoStr));
         } catch (JSONException e) {
             return null;
         }
@@ -612,7 +611,7 @@ public class TTransformUtils {
      *         <ul>
      *         <li>1、获得data</li>
      *         <li>2、解析data得到edu数组</li>
-     *         <li>3、调用{@link TTransformUtils#transUserEduInfo(JSONObject)}解析edu数组中的每一条教育信息</li>
+     *         <li>3、调用{@link QqTTransformUtils#transUserEduInfo(JSONObject)}解析edu数组中的每一条教育信息</li>
      *         </ul>
      */
     public static List<TUserEduInfo> transUserEduInfoToList(JSONObject userEduInfoObj) {
@@ -622,7 +621,7 @@ public class TTransformUtils {
                 userEduInfoArray = userEduInfoObj.getJSONArray("edu");
                 if (userEduInfoArray != null) {
                     List<TUserEduInfo> userEduInfoList = new ArrayList<TUserEduInfo>();
-                    for (int i = 0; i < userEduInfoArray.size(); i++) {
+                    for (int i = 0; i < userEduInfoArray.length(); i++) {
                         ListUtils.addListNotNullValue(userEduInfoList,
                                                       transUserEduInfo(userEduInfoArray.optJSONObject(i)));
                     }
@@ -642,7 +641,7 @@ public class TTransformUtils {
      * @return
      *         <ul>
      *         <li>1、字符串转换为JSONObject</li>
-     *         <li>2、调用{@link TTransformUtils#transUserEduInfoToList(JSONObject)}</li>
+     *         <li>2、调用{@link QqTTransformUtils#transUserEduInfoToList(JSONObject)}</li>
      *         </ul>
      */
     public static List<TUserEduInfo> transUserEduInfoToList(String userEduInfoStr) {
@@ -651,7 +650,7 @@ public class TTransformUtils {
         }
 
         try {
-            return transUserEduInfoToList(JSONObject.fromObject(userEduInfoStr));
+            return transUserEduInfoToList(new JSONObject(userEduInfoStr));
         } catch (JSONException e) {
             return null;
         }
@@ -684,7 +683,7 @@ public class TTransformUtils {
      * @return
      *         <ul>
      *         <li>1、字符串转换为JSONObject</li>
-     *         <li>2、调用{@link TTransformUtils#transUserEduInfo(JSONObject)}</li>
+     *         <li>2、调用{@link QqTTransformUtils#transUserEduInfo(JSONObject)}</li>
      *         </ul>
      */
     public static TUserEduInfo transUserEduInfo(String userEduInfoStr) {
@@ -693,7 +692,7 @@ public class TTransformUtils {
         }
 
         try {
-            return transUserEduInfo(JSONObject.fromObject(userEduInfoStr));
+            return transUserEduInfo(new JSONObject(userEduInfoStr));
         } catch (JSONException e) {
             return null;
         }
@@ -713,7 +712,7 @@ public class TTransformUtils {
                     Map<Long, Integer> statusesReCountMap = new HashMap<Long, Integer>();
                     String statusReCountInfo;
                     int seperator;
-                    for (int i = 0; i < statusesReCountArray.size(); i++) {
+                    for (int i = 0; i < statusesReCountArray.length(); i++) {
                         statusReCountInfo = statusesReCountArray.toString();
                         if (!StringUtils.isEmpty(statusReCountInfo)) {
                             seperator = statusReCountInfo.indexOf(":");
@@ -743,7 +742,7 @@ public class TTransformUtils {
      * @return
      *         <ul>
      *         <li>1、字符串转换为JSONObject</li>
-     *         <li>2、调用{@link TTransformUtils#transUserTagInfoToMap(JSONObject)}</li>
+     *         <li>2、调用{@link QqTTransformUtils#transUserTagInfoToMap(JSONObject)}</li>
      *         </ul>
      */
     public static Map<Long, Integer> transStatusesReCountToMap(String statusesReCountStr) {
@@ -752,7 +751,7 @@ public class TTransformUtils {
         }
 
         try {
-            return transStatusesReCountToMap(JSONObject.fromObject(statusesReCountStr));
+            return transStatusesReCountToMap(new JSONObject(statusesReCountStr));
         } catch (JSONException e) {
             return null;
         }
@@ -818,12 +817,12 @@ public class TTransformUtils {
                     List<TStatus> qqTStatusList = new ArrayList<TStatus>();
                     String statusReCountInfo, countInfo;
                     int seperator;
-                    for (int i = 0; i < statusesReCountArray.size(); i++) {
+                    for (int i = 0; i < statusesReCountArray.length(); i++) {
                         statusReCountInfo = statusesReCountArray.toString();
                         seperator = statusReCountInfo.indexOf(":");
                         try {
                             countInfo = statusReCountInfo.substring(seperator + 1);
-                            JSONObject countInfoObj = JSONObject.fromObject(countInfo);
+                            JSONObject countInfoObj = new JSONObject(countInfo);
 
                             TStatus qqTStatus = new TStatus();
                             qqTStatus.setStatusId(Long.parseLong(statusReCountInfo.substring("\"".length(),
@@ -851,7 +850,7 @@ public class TTransformUtils {
      * @return
      *         <ul>
      *         <li>1、字符串转换为JSONObject</li>
-     *         <li>2、调用{@link TTransformUtils#transStatusesReCountToList(JSONObject)}</li>
+     *         <li>2、调用{@link QqTTransformUtils#transStatusesReCountToList(JSONObject)}</li>
      *         </ul>
      */
     public static List<TStatus> transStatusesReCountToList(String statusesReCountStr) {
@@ -860,7 +859,7 @@ public class TTransformUtils {
         }
 
         try {
-            return transStatusesReCountToList(JSONObject.fromObject(statusesReCountStr));
+            return transStatusesReCountToList(new JSONObject(statusesReCountStr));
         } catch (JSONException e) {
             return null;
         }
@@ -878,7 +877,7 @@ public class TTransformUtils {
         }
 
         try {
-            return transVideoInfo(JSONObject.fromObject(videoInfo));
+            return transVideoInfo(new JSONObject(videoInfo));
         } catch (JSONException e) {
             return null;
         }
@@ -914,7 +913,7 @@ public class TTransformUtils {
                     Map<String, Boolean> userRelationMap = new HashMap<String, Boolean>();
                     String userRelationInfo;
                     int seperator;
-                    for (int i = 0; i < userRelationArray.size(); i++) {
+                    for (int i = 0; i < userRelationArray.length(); i++) {
                         userRelationInfo = userRelationArray.toString();
                         seperator = userRelationInfo.indexOf(":");
                         try {
@@ -939,7 +938,7 @@ public class TTransformUtils {
      * @return
      *         <ul>
      *         <li>1、字符串转换为JSONObject</li>
-     *         <li>2、调用{@link TTransformUtils#transUserRelationToMap(JSONObject)}</li>
+     *         <li>2、调用{@link QqTTransformUtils#transUserRelationToMap(JSONObject)}</li>
      *         </ul>
      */
     public static Map<String, Boolean> transUserRelationToMap(String userRelationStr) {
@@ -948,7 +947,7 @@ public class TTransformUtils {
         }
 
         try {
-            return transUserRelationToMap(JSONObject.fromObject(userRelationStr));
+            return transUserRelationToMap(new JSONObject(userRelationStr));
         } catch (JSONException e) {
             return null;
         }
@@ -974,13 +973,13 @@ public class TTransformUtils {
             List<TUserRelation> userRelationList = new ArrayList<TUserRelation>();
             String userRelationInfo, relationInfo;
             int seperator;
-            for (int i = 0; i < userRelationArray.size(); i++) {
+            for (int i = 0; i < userRelationArray.length(); i++) {
                 userRelationInfo = userRelationArray.toString();
 
                 seperator = userRelationInfo.indexOf(":");
                 try {
                     relationInfo = userRelationInfo.substring(seperator + 1);
-                    JSONObject relationInfoObj = JSONObject.fromObject(relationInfo);
+                    JSONObject relationInfoObj = new JSONObject(relationInfo);
 
                     TUserRelation userRelation = new TUserRelation();
                     userRelation.setUserName(userRelationInfo.substring(":".length(), seperator - 1));
@@ -1005,7 +1004,7 @@ public class TTransformUtils {
      * @return
      *         <ul>
      *         <li>1、字符串转换为JSONObject</li>
-     *         <li>2、调用{@link TTransformUtils#transUserRelationToList(JSONObject)}</li>
+     *         <li>2、调用{@link QqTTransformUtils#transUserRelationToList(JSONObject)}</li>
      *         </ul>
      */
     public static List<TUserRelation> transUserRelationToList(String userRelationStr) {
@@ -1014,7 +1013,7 @@ public class TTransformUtils {
         }
 
         try {
-            return transUserRelationToList(JSONObject.fromObject(userRelationStr));
+            return transUserRelationToList(new JSONObject(userRelationStr));
         } catch (JSONException e) {
             return null;
         }
@@ -1047,7 +1046,7 @@ public class TTransformUtils {
      *         <ul>
      *         <li>1、获得data</li>
      *         <li>2、解析data得到info数组</li>
-     *         <li>3、调用{@link TTransformUtils#transTopic(JSONObject)}解析info数组中的每一条主题</li>
+     *         <li>3、调用{@link QqTTransformUtils#transTopic(JSONObject)}解析info数组中的每一条主题</li>
      *         </ul>
      */
     public static List<TTopicSimple> transTopicsToList(JSONObject topicsObj) {
@@ -1056,9 +1055,9 @@ public class TTransformUtils {
                 JSONObject dataObj = topicsObj.getJSONObject("data");
                 if (dataObj != null) {
                     JSONArray topicArray = dataObj.getJSONArray("info");
-                    if (topicArray != null && topicArray.size() > 0) {
+                    if (topicArray != null && topicArray.length() > 0) {
                         List<TTopicSimple> qqTTopicSimpleList = new ArrayList<TTopicSimple>();
-                        for (int i = 0; i < topicArray.size(); i++) {
+                        for (int i = 0; i < topicArray.length(); i++) {
                             ListUtils.addListNotNullValue(qqTTopicSimpleList, transTopic(topicArray.optJSONObject(i)));
                         }
                         return qqTTopicSimpleList;
@@ -1078,7 +1077,7 @@ public class TTransformUtils {
      * @return
      *         <ul>
      *         <li>1、字符串转换为JSONObject</li>
-     *         <li>2、调用{@link TTransformUtils#transTopicsToList(JSONObject)}</li>
+     *         <li>2、调用{@link QqTTransformUtils#transTopicsToList(JSONObject)}</li>
      *         </ul>
      */
     public static List<TTopicSimple> transTopicsToList(String topicsJsonStr) {
@@ -1087,7 +1086,7 @@ public class TTransformUtils {
         }
 
         try {
-            return transTopicsToList(JSONObject.fromObject(topicsJsonStr));
+            return transTopicsToList(new JSONObject(topicsJsonStr));
         } catch (JSONException e) {
             return null;
         }
@@ -1130,7 +1129,7 @@ public class TTransformUtils {
         }
 
         try {
-            return transQqTUpdateNumInfo(JSONObject.fromObject(updateNumInfo));
+            return transQqTUpdateNumInfo(new JSONObject(updateNumInfo));
         } catch (JSONException e) {
             return null;
         }
@@ -1161,7 +1160,7 @@ public class TTransformUtils {
         }
 
         try {
-            return transVerifyResult(JSONObject.fromObject(verifyResultInfo));
+            return transVerifyResult(new JSONObject(verifyResultInfo));
         } catch (JSONException e) {
             return false;
         }
@@ -1186,7 +1185,7 @@ public class TTransformUtils {
             return null;
         }
         Map<String, String> topicInfoMap = new HashMap<String, String>();
-        for (int i = 0; i < topicInfoArray.size(); i++) {
+        for (int i = 0; i < topicInfoArray.length(); i++) {
             JSONObject topicInfo = topicInfoArray.optJSONObject(i);
             topicInfoMap.put(JSONUtils.getString(topicInfo, "id", ""), JSONUtils.getString(topicInfo, "text", ""));
         }
@@ -1200,7 +1199,7 @@ public class TTransformUtils {
      * @return
      *         <ul>
      *         <li>1、字符串转换为JSONObject</li>
-     *         <li>2、调用{@link TTransformUtils#transTopicInfoToMap(JSONObject)}</li>
+     *         <li>2、调用{@link QqTTransformUtils#transTopicInfoToMap(JSONObject)}</li>
      *         </ul>
      */
     public static Map<String, String> transTopicInfoIntoMap(String topicInfoStr) {
@@ -1209,7 +1208,7 @@ public class TTransformUtils {
         }
 
         try {
-            return transTopicInfoToMap(JSONObject.fromObject(topicInfoStr));
+            return transTopicInfoToMap(new JSONObject(topicInfoStr));
         } catch (JSONException e) {
             return null;
         }
@@ -1245,7 +1244,7 @@ public class TTransformUtils {
      * @return
      *         <ul>
      *         <li>1、字符串转换为JSONObject</li>
-     *         <li>2、调用{@link TTransformUtils#transQqTrelatedUser(JSONObject)}</li>
+     *         <li>2、调用{@link QqTTransformUtils#transQqTrelatedUser(JSONObject)}</li>
      *         </ul>
      */
     public static Map<String, String> transQqTrelatedUser(String responseInfo) {
@@ -1254,7 +1253,7 @@ public class TTransformUtils {
         }
 
         try {
-            return transQqTrelatedUser(JSONObject.fromObject(responseInfo));
+            return transQqTrelatedUser(new JSONObject(responseInfo));
         } catch (JSONException e) {
             return null;
         }

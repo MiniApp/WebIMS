@@ -67,8 +67,8 @@ public class TUserEduPara implements Serializable {
      */
     public Map<String, String> getParasMap() {
         Map<String, String> parasMap = new HashMap<String, String>();
-        MapUtils.putMapNotEmptyValue(parasMap, TConstant.PARA_FORMAT, format);
-        MapUtils.putMapNotEmptyValue(parasMap, TConstant.PARA_USER_EDU_YEAR, year);
+        MapUtils.putMapNotEmptyKey(parasMap, TConstant.PARA_FORMAT, format);
+        MapUtils.putMapNotEmptyKey(parasMap, TConstant.PARA_USER_EDU_YEAR, year);
         if (feildId >= 0) {
             parasMap.put(TConstant.PARA_USER_EDU_FEILD_ID, Long.toString(feildId));
         }

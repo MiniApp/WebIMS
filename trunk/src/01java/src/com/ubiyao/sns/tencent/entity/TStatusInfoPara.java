@@ -52,7 +52,7 @@ public class TStatusInfoPara implements Serializable {
 
     /** 心情类型（0，1，2，3，4） **/
     private int signType;
-
+    
     /** 默认值 **/
     private static String defaultFormat = "";
 
@@ -102,9 +102,9 @@ public class TStatusInfoPara implements Serializable {
      */
     public Map<String, String> getParasMap() {
         Map<String, String> parasMap = new HashMap<String, String>();
-        MapUtils.putMapNotEmptyValue(parasMap, TConstant.PARA_FORMAT, format);
-        MapUtils.putMapNotEmptyValue(parasMap, TConstant.PARA_CONTENT, statusContent, "");
-        MapUtils.putMapNotEmptyValue(parasMap, TConstant.PARA_PICTURE, imageFilePath);
+        MapUtils.putMapNotEmptyKey(parasMap, TConstant.PARA_FORMAT, format);
+        MapUtils.putMapNotEmptyKeyAndValue(parasMap, TConstant.PARA_CONTENT, statusContent, "");
+        MapUtils.putMapNotEmptyKey(parasMap, TConstant.PARA_PICTURE, imageFilePath);
         if (longitude <= 180 && longitude >= -180) {
             parasMap.put(TConstant.PARA_LONGITUDE, Double.toString(longitude));
         }
@@ -117,11 +117,11 @@ public class TStatusInfoPara implements Serializable {
         if (signType >= 0) {
             parasMap.put(TConstant.PARA_SIGN_TYPE, Integer.toString(signType));
         }
-        MapUtils.putMapNotEmptyValue(parasMap, TConstant.PARA_CLIENT_IP, clientIp);
-        MapUtils.putMapNotEmptyValue(parasMap, TConstant.PARA_MUSIC_URL, musicUrl);
-        MapUtils.putMapNotEmptyValue(parasMap, TConstant.PARA_MUSIC_TITLE, musicTitle);
-        MapUtils.putMapNotEmptyValue(parasMap, TConstant.PARA_MUSIC_AUTHOR, musicAuthor);
-        MapUtils.putMapNotEmptyValue(parasMap, TConstant.PARA_VIDEO_URL, videoUrl);
+        MapUtils.putMapNotEmptyKey(parasMap, TConstant.PARA_CLIENT_IP, clientIp);
+        MapUtils.putMapNotEmptyKey(parasMap, TConstant.PARA_MUSIC_URL, musicUrl);
+        MapUtils.putMapNotEmptyKey(parasMap, TConstant.PARA_MUSIC_TITLE, musicTitle);
+        MapUtils.putMapNotEmptyKey(parasMap, TConstant.PARA_MUSIC_AUTHOR, musicAuthor);
+        MapUtils.putMapNotEmptyKey(parasMap, TConstant.PARA_VIDEO_URL, videoUrl);
         return parasMap;
     }
 

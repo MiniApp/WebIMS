@@ -30,6 +30,7 @@ public class TConstant {
 
     /** api使用的部分标准参数值 **/
     public static String       VALUE_OAUTH_VERSION                   = "1.0";
+    public static String	   VALUE_OAUTH_VERSION_2_A				 = "2.a";
     public static String       VALUE_OAUTH_SIGNATURE_METHOD          = "HMAC-SHA1";
 
     /** api使用时的其他参数 **/
@@ -182,7 +183,7 @@ public class TConstant {
     /** 点评一条微博 **/
     public static String       COMMENT_STATUS_URL                    = "http://open.t.qq.com/api/t/comment";
     /** 发表音乐微博 **/
-    public static String       ADD_MUSIC_STATUS_URL                  = "http://open.t.qq.com/api/t/add_music";
+    public static String       ADD_MUSIC_STATUS_URL                  = "https://open.t.qq.com/api/t/add_music";
     /** 发表视频微博 **/
     public static String       ADD_VIDEO_STATUS_URL                  = "http://open.t.qq.com/api/t/add_video";
     /** 获取视频信息 **/

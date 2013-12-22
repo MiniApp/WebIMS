@@ -374,7 +374,8 @@ public class TSdkServiceImpl implements TSdkService {
             filePathMap.put(TConstant.PARA_PICTURE, status.getImageFilePath());
             return TSignAndHttpUtils.signAndHttpPostWithFile(addStatusUrl, filePathMap, parasMap, qqTAppAndToken);
         } else {
-            return TSignAndHttpUtils.signAndHttpPostEncodeParas(addStatusUrl, parasMap, qqTAppAndToken);
+        	String s = TSignAndHttpUtils.signAndHttpPostEncodeParas(addStatusUrl, parasMap, qqTAppAndToken);
+            return s;
         }
     }
 
@@ -998,8 +999,8 @@ public class TSdkServiceImpl implements TSdkService {
             return null;
         }
         parasMap.put(TConstant.PARA_FORMAT, format);
-        //--MapUtils.putMapNotEmptyValue(parasMap, QqTConstant.PARA_USER_NAME, userName);
-        //--MapUtils.putMapNotEmptyValue(parasMap, QqTConstant.PARA_USER_OPEN_ID, userOpenId);
+        MapUtils.putMapNotEmptyKey(parasMap, TConstant.PARA_USER_NAME, userName);
+        MapUtils.putMapNotEmptyKey(parasMap, TConstant.PARA_USER_OPEN_ID, userOpenId);
 
         return TSignAndHttpUtils.signAndHttpGet(TConstant.GET_OTHER_USER_INFO_URL, parasMap, qqTAppAndToken);
     }
@@ -1036,8 +1037,8 @@ public class TSdkServiceImpl implements TSdkService {
             return null;
         }
         parasMap.put(TConstant.PARA_FORMAT, format);
-        MapUtils.putMapNotEmptyValue(parasMap, TConstant.PARA_USER_NAMES, userNames);
-        MapUtils.putMapNotEmptyValue(parasMap, TConstant.PARA_USER_OPEN_IDS, userOpenIds);
+        MapUtils.putMapNotEmptyKey(parasMap, TConstant.PARA_USER_NAMES, userNames);
+        MapUtils.putMapNotEmptyKey(parasMap, TConstant.PARA_USER_OPEN_IDS, userOpenIds);
         return TSignAndHttpUtils.signAndHttpGet(TConstant.GET_OTHER_USERS_INFO_URL, parasMap, qqTAppAndToken);
     }
 

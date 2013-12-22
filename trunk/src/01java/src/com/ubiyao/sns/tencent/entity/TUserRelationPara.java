@@ -52,9 +52,9 @@ public class TUserRelationPara implements Serializable {
      */
     public Map<String, String> getParasMap() {
         Map<String, String> parasMap = new HashMap<String, String>();
-        MapUtils.putMapNotEmptyValue(parasMap, TConstant.PARA_FORMAT, format);
-        MapUtils.putMapNotEmptyValue(parasMap, TConstant.PARA_USER_NAME, userName);
-        MapUtils.putMapNotEmptyValue(parasMap, TConstant.PARA_RELATION_USER_OPEN_ID, userOpenId);
+        MapUtils.putMapNotEmptyKey(parasMap, TConstant.PARA_FORMAT, format);
+        MapUtils.putMapNotEmptyKey(parasMap, TConstant.PARA_USER_NAME, userName);
+        MapUtils.putMapNotEmptyKey(parasMap, TConstant.PARA_RELATION_USER_OPEN_ID, userOpenId);
         if (reqNumber >= 0) {
             parasMap.put(TConstant.PARA_REQ_NUM, Integer.toString(reqNumber));
         }
