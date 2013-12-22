@@ -23,6 +23,9 @@ public class TAppAndToken implements Serializable {
     private String            appSecret;
     /** access token **/
     private String            accessToken;
+    private String			  openid;
+    private String 			  oauthVersion;
+    private String			  scope;
     /** token 密码 ，可为空 **/
     private String            tokenSecret;
 
@@ -66,5 +69,29 @@ public class TAppAndToken implements Serializable {
     public void setTokenSecret(String tokenSecret) {
         this.tokenSecret = tokenSecret;
     }
+
+	public String getOpenid() {
+		return openid;
+	}
+
+	public void setOpenid(String openid) {
+		this.openid = openid;
+	}
+
+	public String getOauthVersion() {
+		return oauthVersion;
+	}
+
+	public void setOauthVersion(String oauthVersion) {
+		this.oauthVersion = oauthVersion;
+	}
+
+	public String getScope() {
+		return scope;
+	}
+
+	public void setScope(String scope) {
+		this.scope = scope;
+	}
 
 }
