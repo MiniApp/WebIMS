@@ -29,6 +29,9 @@ public class TSignAndHttpUtils {
      * @param appSecret 应用密码，用于加密，不可为空
      * @param tokenSecret token密码，用于加密，可为空
      * @return 签名值
+     * @throws NoSuchAlgorithmException 
+     * @throws UnsupportedEncodingException 
+     * @throws InvalidKeyException 
      */
     public static String signature(TSign qqTSign) {
         if (qqTSign == null || !qqTSign.isValid()) {
@@ -73,8 +76,11 @@ public class TSignAndHttpUtils {
      * @param parasMap key为参数名，value为参数值
      * @param qqTAppAndToken 用户信息
      * @return
+     * @throws UnsupportedEncodingException 
+     * @throws NoSuchAlgorithmException 
+     * @throws InvalidKeyException 
      */
-    public static String signAndHttpGet(String url, Map<String, String> parasMap, TAppAndToken qqTAppAndToken) {
+    public static String signAndHttpGet(String url, Map<String, String> parasMap, TAppAndToken qqTAppAndToken) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (StringUtils.isEmpty(url) || MapUtils.isEmpty(parasMap) || qqTAppAndToken == null
             || !qqTAppAndToken.isValid()) {
             return null;
@@ -101,8 +107,11 @@ public class TSignAndHttpUtils {
      * @param parasMap key为参数名，value为参数值
      * @param qqTAppAndToken 用户信息
      * @return
+     * @throws UnsupportedEncodingException 
+     * @throws NoSuchAlgorithmException 
+     * @throws InvalidKeyException 
      */
-    public static String signAndHttpPost(String url, Map<String, String> parasMap, TAppAndToken qqTAppAndToken) {
+    public static String signAndHttpPost(String url, Map<String, String> parasMap, TAppAndToken qqTAppAndToken) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (StringUtils.isEmpty(url) || MapUtils.isEmpty(parasMap) || qqTAppAndToken == null
             || !qqTAppAndToken.isValid()) {
             return null;
@@ -129,9 +138,12 @@ public class TSignAndHttpUtils {
      * @param parasMap key为参数名，value为参数值
      * @param qqTAppAndToken
      * @return
+     * @throws UnsupportedEncodingException 
+     * @throws NoSuchAlgorithmException 
+     * @throws InvalidKeyException 
      */
     public static String signAndHttpPostEncodeParas(String url, Map<String, String> parasMap,
-                                                    TAppAndToken qqTAppAndToken) {
+                                                    TAppAndToken qqTAppAndToken) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (StringUtils.isEmpty(url) || MapUtils.isEmpty(parasMap) || qqTAppAndToken == null
             || !qqTAppAndToken.isValid()) {
             return null;
@@ -143,6 +155,11 @@ public class TSignAndHttpUtils {
         qqTSign.setHttpMethod(HttpUtils.HTTP_POST_METHOD.toUpperCase());
         qqTSign.setAppSecret(qqTAppAndToken.getAppSecret());
         qqTSign.setTokenSecret(qqTAppAndToken.getTokenSecret());
+        //shuao add start
+        /*qqTSign.setAppKey(qqTAppAndToken.getAppKey());
+        qqTSign.setOpenid(qqTAppAndToken.getOpenid());
+        qqTSign.setAccessToken(qqTAppAndToken.getAccessToken());*/
+        //shuao add end
         qqTSign.setParasMap(parasMap);
         parasMap.put(TConstant.PARA_OAUTH_SIGNATURE, signature(qqTSign));
         System.out.println("7777 : "+HttpUtils.httpPostEncodeParas(qqTSign.getBaseUrl(), parasMap));
@@ -160,9 +177,12 @@ public class TSignAndHttpUtils {
      * @param parasMap key为参数名，value为参数值
      * @param qqTAppAndToken
      * @return
+     * @throws UnsupportedEncodingException 
+     * @throws NoSuchAlgorithmException 
+     * @throws InvalidKeyException 
      */
     public static String signAndHttpPostWithFile(String url, Map<String, String> filePathMap,
-                                                 Map<String, String> parasMap, TAppAndToken qqTAppAndToken) {
+                                                 Map<String, String> parasMap, TAppAndToken qqTAppAndToken) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (StringUtils.isEmpty(url) || MapUtils.isEmpty(parasMap) || qqTAppAndToken == null
             || !qqTAppAndToken.isValid()) {
             return null;

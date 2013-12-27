@@ -4,6 +4,8 @@ import im.shs.service.TctService;
 import im.shs.service.WeiBoService;
 
 import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.ResourceBundle;
@@ -32,6 +34,7 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
     private static final long serialVersionUID = 1L;
 
     private final Log logger = LogFactory.getLog(WeiboLoginAction.class);
+
     private HttpServletResponse response;
 
     private HttpServletRequest request;
@@ -50,17 +53,45 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
 
     @Resource(name = "weiboService")
     private WeiBoService weiboService;
+
     @Resource(name = "tctService")
     private TctService tctService;
 
+    @SuppressWarnings("rawtypes")
     public String tencentWeiboLoginInit() {
-        url = weiboService.tencentWeiboLoginInit();
-        /*try {
-        	response.sendRedirect(url);
-        } catch (IOException e) {
-        	e.printStackTrace();
-        }*/
-        return "tencentWeiboLoginInitRedirect";
+        Map map = new HashMap();
+        Cookie allCookie[] = request.getCookies();
+
+        if (allCookie != null && allCookie.length != 0) {
+            for (int i = 0; i < allCookie.length; i++) {
+                String keyname = allCookie[i].getName();
+                if ("accessToken".equals(keyname)) {
+                    if (!"".equals(allCookie[i].getValue())) {
+                        map.put("clientAccessToken", allCookie[i].getValue());
+                    }
+                    
+                }
+                /*if ("tctUserName".equals(keyname)) {
+                    map.put("tctUserName", allCookie[i].getValue());
+                }*/
+            }
+        }
+        if (!"".equals(map.get("clientAccessToken"))) {
+            if (weiboService.checkTencentLogin(map)) {
+                url = "";
+                return "tencentWeibo";
+            } else {
+                url = weiboService.tencentWeiboLoginInit();
+                return "tencentWeiboLoginInitRedirect";
+            }
+        } else {
+            url = weiboService.tencentWeiboLoginInit();
+            return "tencentWeiboLoginInitRedirect";
+        }
+        
+        
+       /* url = weiboService.tencentWeiboLoginInit();
+        return "tencentWeiboLoginInitRedirect";*/
     }
 
     public String tencentWeiboLogin() throws UnsupportedEncodingException {
@@ -68,36 +99,60 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
         logger.info("Code is : " + code_temp);
         Map<String, Object> map = weiboService.tencentWeiboLogin(code_temp);
         this.urlTokens = (String) map.get("urlTokens");
-        Cookie accessToken=new Cookie("accessToken",(String) map.get("accessToken"));
-        accessToken.setMaxAge(60*60*24*365);
+        logger.info("urlTokens is : " + urlTokens);
+        Cookie accessToken = new Cookie("accessToken", (String) map.get("accessToken"));
+        accessToken.setMaxAge(60 * 60 * 24 * 93);
+        Cookie tctUerName = new Cookie("tctUserName", (String) map.get("name"));
+        tctUerName.setMaxAge(60 * 60 * 24 * 93);
         response.addCookie(accessToken);
+        //response.addCookie(tctUerName);
         return "tencentWeiboLoginSuccess";
     }
 
     @SuppressWarnings({ "rawtypes", "unchecked" })
     public String tencentWeibo() {
         Map map = new HashMap();
-        Cookie allCookie[]= request.getCookies();
+        Cookie allCookie[] = request.getCookies();
 
-        if(allCookie!=null&&allCookie.length!=0)
-         {
-             for(int i=0;i<allCookie.length;i++)
-             {
-                 String keyname=  allCookie[i].getName();
-                 if ("accessToken".equals(keyname)) {
-                     map.put("clientAccessToken", allCookie[i].getValue());
-                 }
-                 
-              }
-         }
-        if (!"38fc777338dfb01ea1a23ab163c15e77".equals(map.get("clientAccessToken"))) {
-            return "failLogin";
+        if (allCookie != null && allCookie.length != 0) {
+            for (int i = 0; i < allCookie.length; i++) {
+                String keyname = allCookie[i].getName();
+                if ("accessToken".equals(keyname)) {
+                    map.put("clientAccessToken", allCookie[i].getValue());
+                }
+                /*if ("tctUserName".equals(keyname)) {
+                    map.put("tctUserName", allCookie[i].getValue());
+                }*/
+            }
         }
-        
-        return "tencentWeiboSuccess";
+        if (weiboService.checkTencentLogin(map)) {
+            request.getSession().setAttribute("clientAccessToken", map.get("clientAccessToken"));
+            return "tencentWeiboSuccess";
+        } else {
+            return "tencentWeiboFail";
+        }
+        //return "tencentWeiboSuccess";
+    }
+    
+    public String tencentWeiboLogout(){
+        request.getSession().removeAttribute("clientAccessToken");
+        request.getSession().removeAttribute("accessToken"); 
+        Cookie[] cookies=request.getCookies(); 
+        try 
+        { 
+             for(int i=0;i<cookies.length;i++)   
+             { 
+              Cookie cookie = new Cookie("accessToken",null); 
+              cookie.setMaxAge(0); 
+              response.addCookie(cookie); 
+             } 
+        }catch(Exception ex) 
+        { 
+        } 
+        return "tencentWeiboLogoutSucc";
     }
 
-    public String test() {
+    public String test() throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         tctService.addStatus();
         return "test";
     }

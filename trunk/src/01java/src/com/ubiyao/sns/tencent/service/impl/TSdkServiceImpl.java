@@ -1,5 +1,8 @@
 package com.ubiyao.sns.tencent.service.impl;
 
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
@@ -55,7 +58,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String getTimeLineCommonStr(String url, TTimelinePara qqTTimelinePara) {
+    public String getTimeLineCommonStr(String url, TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (StringUtils.isEmpty(url) || qqTTimelinePara == null || qqTAppAndToken == null || !qqTAppAndToken.isValid()) {
             return null;
         }
@@ -67,7 +70,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public List<TStatus> getTimeLineCommon(String url, TTimelinePara qqTTimelinePara) {
+    public List<TStatus> getTimeLineCommon(String url, TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (qqTTimelinePara == null) {
             return null;
         }
@@ -77,7 +80,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse getTimeLineCommonRes(String url, TTimelinePara qqTTimelinePara) {
+    public TResponse getTimeLineCommonRes(String url, TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (qqTTimelinePara == null) {
             return null;
         }
@@ -97,232 +100,232 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String getHomeTLStr(TTimelinePara qqTTimelinePara) {
+    public String getHomeTLStr(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonStr(TConstant.GET_HOME_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public List<TStatus> getHomeTL(TTimelinePara qqTTimelinePara) {
+    public List<TStatus> getHomeTL(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommon(TConstant.GET_HOME_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public TResponse getHomeTLRes(TTimelinePara qqTTimelinePara) {
+    public TResponse getHomeTLRes(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonRes(TConstant.GET_HOME_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public String getPublicTLStr(TTimelinePara qqTTimelinePara) {
+    public String getPublicTLStr(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonStr(TConstant.GET_PUBLIC_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public List<TStatus> getPublicTL(TTimelinePara qqTTimelinePara) {
+    public List<TStatus> getPublicTL(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommon(TConstant.GET_PUBLIC_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public TResponse getPublicTLRes(TTimelinePara qqTTimelinePara) {
+    public TResponse getPublicTLRes(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonRes(TConstant.GET_PUBLIC_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public String getUserTLStr(TTimelinePara qqTTimelinePara) {
+    public String getUserTLStr(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonStr(TConstant.GET_USER_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public List<TStatus> getUserTL(TTimelinePara qqTTimelinePara) {
+    public List<TStatus> getUserTL(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommon(TConstant.GET_USER_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public TResponse getUserTLRes(TTimelinePara qqTTimelinePara) {
+    public TResponse getUserTLRes(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonRes(TConstant.GET_USER_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public String getMentionsTLStr(TTimelinePara qqTTimelinePara) {
+    public String getMentionsTLStr(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonStr(TConstant.GET_MENTIONS_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public List<TStatus> getMentionsTL(TTimelinePara qqTTimelinePara) {
+    public List<TStatus> getMentionsTL(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommon(TConstant.GET_MENTIONS_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public TResponse getMentionsTLRes(TTimelinePara qqTTimelinePara) {
+    public TResponse getMentionsTLRes(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonRes(TConstant.GET_MENTIONS_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public String getTopicTLStr(TTimelinePara qqTTimelinePara) {
+    public String getTopicTLStr(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonStr(TConstant.GET_TOPIC_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public List<TStatus> getTopicTL(TTimelinePara qqTTimelinePara) {
+    public List<TStatus> getTopicTL(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommon(TConstant.GET_TOPIC_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public TResponse getTopicTLRes(TTimelinePara qqTTimelinePara) {
+    public TResponse getTopicTLRes(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonRes(TConstant.GET_TOPIC_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public String getBroadcastTLStr(TTimelinePara qqTTimelinePara) {
+    public String getBroadcastTLStr(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonStr(TConstant.GET_BROADCAST_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public List<TStatus> getBroadcastTL(TTimelinePara qqTTimelinePara) {
+    public List<TStatus> getBroadcastTL(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommon(TConstant.GET_BROADCAST_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public TResponse getBroadcastTLRes(TTimelinePara qqTTimelinePara) {
+    public TResponse getBroadcastTLRes(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonRes(TConstant.GET_BROADCAST_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public String getSpecialTLStr(TTimelinePara qqTTimelinePara) {
+    public String getSpecialTLStr(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonStr(TConstant.GET_SPECIAL_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public List<TStatus> getSpecialTL(TTimelinePara qqTTimelinePara) {
+    public List<TStatus> getSpecialTL(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommon(TConstant.GET_SPECIAL_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public TResponse getSpecialTLRes(TTimelinePara qqTTimelinePara) {
+    public TResponse getSpecialTLRes(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonRes(TConstant.GET_SPECIAL_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public String getAreaTLStr(TTimelinePara qqTTimelinePara) {
+    public String getAreaTLStr(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonStr(TConstant.GET_AREA_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public List<TStatus> getAreaTL(TTimelinePara qqTTimelinePara) {
+    public List<TStatus> getAreaTL(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommon(TConstant.GET_AREA_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public TResponse getAreaTLRes(TTimelinePara qqTTimelinePara) {
+    public TResponse getAreaTLRes(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonRes(TConstant.GET_AREA_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public String getHomeTLIdsStr(TTimelinePara qqTTimelinePara) {
+    public String getHomeTLIdsStr(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonStr(TConstant.GET_HOME_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public List<TStatus> getHomeTLIds(TTimelinePara qqTTimelinePara) {
+    public List<TStatus> getHomeTLIds(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommon(TConstant.GET_HOME_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public TResponse getHomeTLIdsRes(TTimelinePara qqTTimelinePara) {
+    public TResponse getHomeTLIdsRes(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonRes(TConstant.GET_HOME_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public String getUserTLIdsStr(TTimelinePara qqTTimelinePara) {
+    public String getUserTLIdsStr(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonStr(TConstant.GET_USERS_TL_IDS_URL, qqTTimelinePara);
     }
 
     @Override
-    public List<TStatus> getUserTLIds(TTimelinePara qqTTimelinePara) {
+    public List<TStatus> getUserTLIds(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommon(TConstant.GET_USERS_TL_IDS_URL, qqTTimelinePara);
     }
 
     @Override
-    public TResponse getUserTLIdsRes(TTimelinePara qqTTimelinePara) {
+    public TResponse getUserTLIdsRes(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonRes(TConstant.GET_USERS_TL_IDS_URL, qqTTimelinePara);
     }
 
     @Override
-    public String getBroadcastTLIdsStr(TTimelinePara qqTTimelinePara) {
+    public String getBroadcastTLIdsStr(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonStr(TConstant.GET_BROADCAST_TL_IDS_URL, qqTTimelinePara);
     }
 
     @Override
-    public List<TStatus> getBroadcastTLIds(TTimelinePara qqTTimelinePara) {
+    public List<TStatus> getBroadcastTLIds(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommon(TConstant.GET_BROADCAST_TL_IDS_URL, qqTTimelinePara);
     }
 
     @Override
-    public TResponse getBroadcastTLIdsRes(TTimelinePara qqTTimelinePara) {
+    public TResponse getBroadcastTLIdsRes(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonRes(TConstant.GET_BROADCAST_TL_IDS_URL, qqTTimelinePara);
     }
 
     @Override
-    public String getMentionsTLIdsStr(TTimelinePara qqTTimelinePara) {
+    public String getMentionsTLIdsStr(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonStr(TConstant.GET_MENTIONS_TL_IDS_URL, qqTTimelinePara);
     }
 
     @Override
-    public List<TStatus> getMentionsTLIds(TTimelinePara qqTTimelinePara) {
+    public List<TStatus> getMentionsTLIds(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommon(TConstant.GET_MENTIONS_TL_IDS_URL, qqTTimelinePara);
     }
 
     @Override
-    public TResponse getMentionsTLIdsRes(TTimelinePara qqTTimelinePara) {
+    public TResponse getMentionsTLIdsRes(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonRes(TConstant.GET_MENTIONS_TL_IDS_URL, qqTTimelinePara);
     }
 
     @Override
-    public String getUsersTLStr(TTimelinePara qqTTimelinePara) {
+    public String getUsersTLStr(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonStr(TConstant.GET_USERS_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public List<TStatus> getUsersTL(TTimelinePara qqTTimelinePara) {
+    public List<TStatus> getUsersTL(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommon(TConstant.GET_USERS_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public TResponse getUsersTLRes(TTimelinePara qqTTimelinePara) {
+    public TResponse getUsersTLRes(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonRes(TConstant.GET_USERS_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public String getUsersTLIdsStr(TTimelinePara qqTTimelinePara) {
+    public String getUsersTLIdsStr(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonStr(TConstant.GET_USERS_TL_IDS_URL, qqTTimelinePara);
     }
 
     @Override
-    public List<TStatus> getUsersTLIds(TTimelinePara qqTTimelinePara) {
+    public List<TStatus> getUsersTLIds(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommon(TConstant.GET_USERS_TL_IDS_URL, qqTTimelinePara);
     }
 
     @Override
-    public TResponse getUsersTLIdsRes(TTimelinePara qqTTimelinePara) {
+    public TResponse getUsersTLIdsRes(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonRes(TConstant.GET_USERS_TL_IDS_URL, qqTTimelinePara);
     }
 
     @Override
-    public String getVipStatusTLStr(TTimelinePara qqTTimelinePara) {
+    public String getVipStatusTLStr(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonStr(TConstant.GET_VIP_STATUS_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public List<TStatus> getVipStatusTL(TTimelinePara qqTTimelinePara) {
+    public List<TStatus> getVipStatusTL(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommon(TConstant.GET_VIP_STATUS_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public TResponse getVipStatusTLRes(TTimelinePara qqTTimelinePara) {
+    public TResponse getVipStatusTLRes(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonRes(TConstant.GET_VIP_STATUS_TL_URL, qqTTimelinePara);
     }
 
     @Override
-    public String getStatus(String format, long statusId) {
+    public String getStatus(String format, long statusId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (statusId < 0 || StringUtils.isEmpty(format) || qqTAppAndToken == null || !qqTAppAndToken.isValid()) {
             return null;
         }
@@ -339,7 +342,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TStatus getStatus(long statusId) {
+    public TStatus getStatus(long statusId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         String status = getStatus(TConstant.VALUE_FORMAT_JSON, statusId);
         if (!StringUtils.isEmpty(status) && TCheckAndTransUtils.checkModifyResult(status)) {
             return TTransformUtils.transStatus(JSONUtils.getJSONObject(status, "data", null));
@@ -348,7 +351,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse getStatusRes(long statusId) {
+    public TResponse getStatusRes(long statusId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         String response = getStatus(TConstant.VALUE_FORMAT_JSON, statusId);
         TResponse qqTResponse = TTransformUtils.transResponse(response);
         if (qqTResponse != null) {
@@ -358,7 +361,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String addStatusCommonStr(String addStatusUrl, TStatusInfoPara status) {
+    public String addStatusCommonStr(String addStatusUrl, TStatusInfoPara status) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (status == null || qqTAppAndToken == null || !qqTAppAndToken.isValid() || StringUtils.isEmpty(addStatusUrl)) {
             return null;
         }
@@ -380,7 +383,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public boolean addStatusCommon(String addStatusUrl, TStatusInfoPara status) {
+    public boolean addStatusCommon(String addStatusUrl, TStatusInfoPara status) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (status == null) {
             return false;
         }
@@ -390,7 +393,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse addStatusCommonRes(String addStatusUrl, TStatusInfoPara status) {
+    public TResponse addStatusCommonRes(String addStatusUrl, TStatusInfoPara status) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (status == null) {
             return null;
         }
@@ -405,7 +408,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String addStatusStr(TStatusInfoPara status) {
+    public String addStatusStr(TStatusInfoPara status) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (status == null) {
             return null;
         }
@@ -415,7 +418,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public boolean addStatus(TStatusInfoPara status) {
+    public boolean addStatus(TStatusInfoPara status) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (status == null) {
             return false;
         }
@@ -425,7 +428,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse addStatusRes(TStatusInfoPara status) {
+    public TResponse addStatusRes(TStatusInfoPara status) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (status == null) {
             return null;
         }
@@ -435,7 +438,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String addStatusStr(String content, String imagePath) {
+    public String addStatusStr(String content, String imagePath) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TStatusInfoPara status = new TStatusInfoPara();
         status.setStatusContent(content);
         if (StringUtils.isEmpty(imagePath)) {
@@ -445,7 +448,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public boolean addStatus(String content, String imagePath) {
+    public boolean addStatus(String content, String imagePath) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TStatusInfoPara status = new TStatusInfoPara();
         status.setStatusContent(content);
         if (!StringUtils.isEmpty(imagePath)) {
@@ -455,7 +458,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse addStatusRes(String content, String imagePath) {
+    public TResponse addStatusRes(String content, String imagePath) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TStatusInfoPara status = new TStatusInfoPara();
         status.setStatusContent(content);
         if (StringUtils.isEmpty(imagePath)) {
@@ -465,82 +468,82 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String repostStr(TStatusInfoPara status) {
+    public String repostStr(TStatusInfoPara status) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return addStatusCommonStr(TConstant.REPOST_STATUS_URL, status);
     }
 
     @Override
-    public boolean repost(TStatusInfoPara status) {
+    public boolean repost(TStatusInfoPara status) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return addStatusCommon(TConstant.REPOST_STATUS_URL, status);
     }
 
     @Override
-    public TResponse repostRes(TStatusInfoPara status) {
+    public TResponse repostRes(TStatusInfoPara status) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return addStatusCommonRes(TConstant.REPOST_STATUS_URL, status);
     }
 
     @Override
-    public String replyStr(TStatusInfoPara status) {
+    public String replyStr(TStatusInfoPara status) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return addStatusCommonStr(TConstant.REPLY_STATUS_URL, status);
     }
 
     @Override
-    public boolean reply(TStatusInfoPara status) {
+    public boolean reply(TStatusInfoPara status) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return addStatusCommon(TConstant.REPLY_STATUS_URL, status);
     }
 
     @Override
-    public TResponse replyRes(TStatusInfoPara status) {
+    public TResponse replyRes(TStatusInfoPara status) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return addStatusCommonRes(TConstant.REPLY_STATUS_URL, status);
     }
 
     @Override
-    public String commentStr(TStatusInfoPara status) {
+    public String commentStr(TStatusInfoPara status) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return addStatusCommonStr(TConstant.COMMENT_STATUS_URL, status);
     }
 
     @Override
-    public boolean comment(TStatusInfoPara status) {
+    public boolean comment(TStatusInfoPara status) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return addStatusCommon(TConstant.COMMENT_STATUS_URL, status);
     }
 
     @Override
-    public TResponse commentRes(TStatusInfoPara status) {
+    public TResponse commentRes(TStatusInfoPara status) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return addStatusCommonRes(TConstant.COMMENT_STATUS_URL, status);
     }
 
     @Override
-    public String addMusicStatusStr(TStatusInfoPara status) {
+    public String addMusicStatusStr(TStatusInfoPara status) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return addStatusCommonStr(TConstant.ADD_MUSIC_STATUS_URL, status);
     }
 
     @Override
-    public boolean addMusicStatus(TStatusInfoPara status) {
+    public boolean addMusicStatus(TStatusInfoPara status) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return addStatusCommon(TConstant.ADD_MUSIC_STATUS_URL, status);
     }
 
     @Override
-    public TResponse addMusicStatusRes(TStatusInfoPara status) {
+    public TResponse addMusicStatusRes(TStatusInfoPara status) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return addStatusCommonRes(TConstant.ADD_MUSIC_STATUS_URL, status);
     }
 
     @Override
-    public String addVideoStatusStr(TStatusInfoPara status) {
+    public String addVideoStatusStr(TStatusInfoPara status) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return addStatusCommonStr(TConstant.ADD_VIDEO_STATUS_URL, status);
     }
 
     @Override
-    public boolean addVideoStatus(TStatusInfoPara status) {
+    public boolean addVideoStatus(TStatusInfoPara status) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return addStatusCommon(TConstant.ADD_VIDEO_STATUS_URL, status);
     }
 
     @Override
-    public TResponse addVideoStatusRes(TStatusInfoPara status) {
+    public TResponse addVideoStatusRes(TStatusInfoPara status) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return addStatusCommonRes(TConstant.ADD_VIDEO_STATUS_URL, status);
     }
 
     @Override
-    public String getStatusCommentsCommonStr(int repostOrCommentFlag, TTimelinePara qqTTimelinePara) {
+    public String getStatusCommentsCommonStr(int repostOrCommentFlag, TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (qqTTimelinePara == null) {
             return null;
         }
@@ -550,7 +553,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public List<TStatus> getStatusCommentsCommon(int repostOrCommentFlag, TTimelinePara qqTTimelinePara) {
+    public List<TStatus> getStatusCommentsCommon(int repostOrCommentFlag, TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (qqTTimelinePara == null) {
             return null;
         }
@@ -561,7 +564,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse getStatusCommentsCommonRes(int repostOrCommentFlag, TTimelinePara qqTTimelinePara) {
+    public TResponse getStatusCommentsCommonRes(int repostOrCommentFlag, TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (qqTTimelinePara == null) {
             return null;
         }
@@ -572,52 +575,52 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String getStatusCommentsStr(TTimelinePara qqTTimelinePara) {
+    public String getStatusCommentsStr(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getStatusCommentsCommonStr(TConstant.VALUE_COMMENT_FLAG, qqTTimelinePara);
     }
 
     @Override
-    public List<TStatus> getStatusComments(TTimelinePara qqTTimelinePara) {
+    public List<TStatus> getStatusComments(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getStatusCommentsCommon(TConstant.VALUE_COMMENT_FLAG, qqTTimelinePara);
     }
 
     @Override
-    public TResponse getStatusCommentsRes(TTimelinePara qqTTimelinePara) {
+    public TResponse getStatusCommentsRes(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getStatusCommentsCommonRes(TConstant.VALUE_COMMENT_FLAG, qqTTimelinePara);
     }
 
     @Override
-    public String getStatusRepostsStr(TTimelinePara qqTTimelinePara) {
+    public String getStatusRepostsStr(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getStatusCommentsCommonStr(TConstant.VALUE_REPOST_FLAG, qqTTimelinePara);
     }
 
     @Override
-    public List<TStatus> getStatusReposts(TTimelinePara qqTTimelinePara) {
+    public List<TStatus> getStatusReposts(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getStatusCommentsCommon(TConstant.VALUE_REPOST_FLAG, qqTTimelinePara);
     }
 
     @Override
-    public TResponse getStatusRepostsRes(TTimelinePara qqTTimelinePara) {
+    public TResponse getStatusRepostsRes(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getStatusCommentsCommonRes(TConstant.VALUE_REPOST_FLAG, qqTTimelinePara);
     }
 
     @Override
-    public String getStatusCommentsAndRepostsStr(TTimelinePara qqTTimelinePara) {
+    public String getStatusCommentsAndRepostsStr(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getStatusCommentsCommonStr(TConstant.VALUE_REPOST_AND_COMMENT_FLAG, qqTTimelinePara);
     }
 
     @Override
-    public List<TStatus> getStatusCommentsAndReposts(TTimelinePara qqTTimelinePara) {
+    public List<TStatus> getStatusCommentsAndReposts(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getStatusCommentsCommon(TConstant.VALUE_REPOST_AND_COMMENT_FLAG, qqTTimelinePara);
     }
 
     @Override
-    public TResponse getStatusCommentsAndRepostsRes(TTimelinePara qqTTimelinePara) {
+    public TResponse getStatusCommentsAndRepostsRes(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getStatusCommentsCommonRes(TConstant.VALUE_REPOST_AND_COMMENT_FLAG, qqTTimelinePara);
     }
 
     @Override
-    public String getVideoInfo(String format, String videoUrl) {
+    public String getVideoInfo(String format, String videoUrl) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (StringUtils.isEmpty(format) || StringUtils.isEmpty(videoUrl) || qqTAppAndToken == null
                 || !qqTAppAndToken.isValid()) {
             return null;
@@ -632,7 +635,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TVideoInfo getVideoInfo(String videoUrl) {
+    public TVideoInfo getVideoInfo(String videoUrl) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         String videoInfo = getVideoInfo(TConstant.VALUE_FORMAT_JSON, videoUrl);
         if (StringUtils.isEmpty(videoInfo) || !TCheckAndTransUtils.checkModifyResult(videoInfo)) {
             return null;
@@ -641,7 +644,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse getVideoInfoRes(String videoUrl) {
+    public TResponse getVideoInfoRes(String videoUrl) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         String response = getVideoInfo(TConstant.VALUE_FORMAT_JSON, videoUrl);
         TResponse qqTResponse = TTransformUtils.transResponse(response);
         if (qqTResponse != null) {
@@ -651,7 +654,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String getStatusByIdsStr(String format, String ids) {
+    public String getStatusByIdsStr(String format, String ids) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (StringUtils.isEmpty(ids) || qqTAppAndToken == null || !qqTAppAndToken.isValid()) {
             return null;
         }
@@ -665,12 +668,12 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public List<TStatus> getStatusByIds(String ids) {
+    public List<TStatus> getStatusByIds(String ids) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return TCheckAndTransUtils.transStatusesToList(getStatusByIdsStr(TConstant.VALUE_FORMAT_JSON, ids));
     }
 
     @Override
-    public TResponse getStatusByIdsRes(String ids) {
+    public TResponse getStatusByIdsRes(String ids) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
 
         String response = getStatusByIdsStr(TConstant.VALUE_FORMAT_JSON, ids);
         TResponse qqTResponse = TTransformUtils.transResponse(response);
@@ -685,7 +688,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String getReRepostCountByIdsStr(String format, String ids) {
+    public String getReRepostCountByIdsStr(String format, String ids) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (StringUtils.isEmpty(ids) || qqTAppAndToken == null || !qqTAppAndToken.isValid()) {
             return null;
         }
@@ -699,12 +702,12 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public Map<Long, Integer> getReRepostCountByIds(String ids) {
+    public Map<Long, Integer> getReRepostCountByIds(String ids) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return TTransformUtils
                 .transStatusesReCountToMap(getReRepostCountByIdsStr(TConstant.VALUE_FORMAT_JSON, ids));
     }
 
-    public TResponse getReRepostCountByIdsRes(String ids) {
+    public TResponse getReRepostCountByIdsRes(String ids) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         String response = getReRepostCountByIdsStr(TConstant.VALUE_FORMAT_JSON, ids);
         TResponse qqTResponse = TTransformUtils.transResponse(response);
         if (qqTResponse != null) {
@@ -714,22 +717,22 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String addEmotionStr(TStatusInfoPara status) {
+    public String addEmotionStr(TStatusInfoPara status) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return addStatusCommonStr(TConstant.ADD_EMOTION_STATUS_URL, status);
     }
 
     @Override
-    public boolean addEmotion(TStatusInfoPara status) {
+    public boolean addEmotion(TStatusInfoPara status) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return addStatusCommon(TConstant.ADD_EMOTION_STATUS_URL, status);
     }
 
     @Override
-    public TResponse addEmotionRes(TStatusInfoPara status) {
+    public TResponse addEmotionRes(TStatusInfoPara status) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return addStatusCommonRes(TConstant.ADD_EMOTION_STATUS_URL, status);
     }
 
     @Override
-    public String operateStatusCommonStr(String url, String format, long statusId) {
+    public String operateStatusCommonStr(String url, String format, long statusId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (StringUtils.isEmpty(url) || StringUtils.isEmpty(format) || statusId < 0 || qqTAppAndToken == null
                 || !qqTAppAndToken.isValid()) {
             return null;
@@ -744,13 +747,13 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public boolean operateStatusCommon(String url, long statusId) {
+    public boolean operateStatusCommon(String url, long statusId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return TCheckAndTransUtils.checkModifyResult(operateStatusCommonStr(url, TConstant.VALUE_FORMAT_JSON,
                 statusId));
     }
 
     @Override
-    public TResponse operateStatusCommonRes(String url, long statusId) {
+    public TResponse operateStatusCommonRes(String url, long statusId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         String response = operateStatusCommonStr(url, TConstant.VALUE_FORMAT_JSON, statusId);
         TResponse qqTResponse = TTransformUtils.transResponse(response);
         if (qqTResponse != null) {
@@ -760,17 +763,17 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public boolean delete(long statusId) {
+    public boolean delete(long statusId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return operateStatusCommon(TConstant.DELETE_STATUS_URL, statusId);
     }
 
     @Override
-    public TResponse deleteRes(long statusId) {
+    public TResponse deleteRes(long statusId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return operateStatusCommonRes(TConstant.DELETE_STATUS_URL, statusId);
     }
 
     @Override
-    public String getRepostAndCommentCount(String format, String statusIds, int flag) {
+    public String getRepostAndCommentCount(String format, String statusIds, int flag) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (StringUtils.isEmpty(format) || StringUtils.isEmpty(statusIds) || qqTAppAndToken == null
                 || !qqTAppAndToken.isValid()) {
             return null;
@@ -790,7 +793,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public List<TStatus> getRepostAndCommentCount(String statusIds, int flag) {
+    public List<TStatus> getRepostAndCommentCount(String statusIds, int flag) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (TConstant.VALUE_RE_COUNT_FLAG_ALL == flag) {
             return getRepostAndCommentCount(statusIds);
         } else if (TConstant.VALUE_RE_COUNT_FLAG_REPOST == flag) {
@@ -802,7 +805,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse getRepostAndCommentCountRes(String statusIds, int flag) {
+    public TResponse getRepostAndCommentCountRes(String statusIds, int flag) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
 
         String response = getRepostAndCommentCount(TConstant.VALUE_FORMAT_JSON, statusIds, flag);
         TResponse qqTResponse = TTransformUtils.transResponse(response);
@@ -818,7 +821,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public List<TStatus> getRepostAndCommentCount(String statusIds) {
+    public List<TStatus> getRepostAndCommentCount(String statusIds) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         String reCount = getRepostAndCommentCount(TConstant.VALUE_FORMAT_JSON, statusIds,
                 TConstant.VALUE_RE_COUNT_FLAG_ALL);
         if (StringUtils.isEmpty(reCount) || !TCheckAndTransUtils.checkModifyResult(reCount)) {
@@ -829,7 +832,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse getRepostAndCommentCountRes(String statusIds) {
+    public TResponse getRepostAndCommentCountRes(String statusIds) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
 
         String response = getRepostAndCommentCount(TConstant.VALUE_FORMAT_JSON, statusIds,
                 TConstant.VALUE_RE_COUNT_FLAG_ALL);
@@ -841,7 +844,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public Map<Long, Integer> getRepostOrCommentCount(String statusIds, int flag) {
+    public Map<Long, Integer> getRepostOrCommentCount(String statusIds, int flag) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
 
         String reCount = getRepostAndCommentCount(TConstant.VALUE_FORMAT_JSON, statusIds, flag);
         if (StringUtils.isEmpty(reCount) || !TCheckAndTransUtils.checkModifyResult(reCount)) {
@@ -855,7 +858,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse getRepostOrCommentCountRes(String statusIds, int flag) {
+    public TResponse getRepostOrCommentCountRes(String statusIds, int flag) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
 
         String response = getRepostAndCommentCount(TConstant.VALUE_FORMAT_JSON, statusIds, flag);
         TResponse qqTResponse = TTransformUtils.transResponse(response);
@@ -868,7 +871,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String getSelfInfo(String format) {
+    public String getSelfInfo(String format) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (StringUtils.isEmpty(format) || qqTAppAndToken == null || !qqTAppAndToken.isValid()) {
             return null;
         }
@@ -884,7 +887,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TUser getSelfInfo() {
+    public TUser getSelfInfo() throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         String selfInfo = getSelfInfo(TConstant.VALUE_FORMAT_JSON);
         if (StringUtils.isEmpty(selfInfo) || !TCheckAndTransUtils.checkModifyResult(selfInfo)) {
             return null;
@@ -893,7 +896,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse getSelfInfoRes() {
+    public TResponse getSelfInfoRes() throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         String response = getSelfInfo(TConstant.VALUE_FORMAT_JSON);
         TResponse qqTResponse = TTransformUtils.transResponse(response);
         if (qqTResponse != null) {
@@ -903,7 +906,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String updateSelfInfoStr(TUserPara qqTUserPara) {
+    public String updateSelfInfoStr(TUserPara qqTUserPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (qqTUserPara == null || qqTAppAndToken == null || !qqTAppAndToken.isValid()) {
             return null;
         }
@@ -915,7 +918,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public boolean updateSelfInfo(TUserPara qqTUserPara) {
+    public boolean updateSelfInfo(TUserPara qqTUserPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (qqTUserPara != null) {
             qqTUserPara.setFormat(TConstant.VALUE_FORMAT_JSON);
         }
@@ -923,7 +926,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse updateSelfInfoRes(TUserPara qqTUserPara) {
+    public TResponse updateSelfInfoRes(TUserPara qqTUserPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (qqTUserPara != null) {
             qqTUserPara.setFormat(TConstant.VALUE_FORMAT_JSON);
         }
@@ -931,7 +934,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String updateSelfHeadStr(String format, String headImagePath) {
+    public String updateSelfHeadStr(String format, String headImagePath) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (StringUtils.isEmpty(headImagePath) || qqTAppAndToken == null || !qqTAppAndToken.isValid()) {
             return null;
         }
@@ -950,17 +953,17 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public boolean updateSelfHead(String headImagePath) {
+    public boolean updateSelfHead(String headImagePath) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return TCheckAndTransUtils.checkModifyResult(updateSelfHeadStr(TConstant.VALUE_FORMAT_JSON, headImagePath));
     }
 
     @Override
-    public TResponse updateSelfHeadRes(String headImagePath) {
+    public TResponse updateSelfHeadRes(String headImagePath) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return TTransformUtils.transResponse(updateSelfHeadStr(TConstant.VALUE_FORMAT_JSON, headImagePath));
     }
 
     @Override
-    public String updateSelfEduInfoStr(TUserEduPara qqTUserEduPara) {
+    public String updateSelfEduInfoStr(TUserEduPara qqTUserEduPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (qqTUserEduPara == null || qqTAppAndToken == null || !qqTAppAndToken.isValid()) {
             return null;
         }
@@ -971,7 +974,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public boolean updateSelfEduInfo(TUserEduPara qqTUserEduPara) {
+    public boolean updateSelfEduInfo(TUserEduPara qqTUserEduPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (qqTUserEduPara != null) {
             qqTUserEduPara.setFormat(TConstant.VALUE_FORMAT_JSON);
         }
@@ -979,7 +982,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse updateSelfEduInfoRes(TUserEduPara qqTUserEduPara) {
+    public TResponse updateSelfEduInfoRes(TUserEduPara qqTUserEduPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (qqTUserEduPara != null) {
             qqTUserEduPara.setFormat(TConstant.VALUE_FORMAT_JSON);
         }
@@ -987,7 +990,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String getOtherUserInfo(String format, String userName, String userOpenId) {
+    public String getOtherUserInfo(String format, String userName, String userOpenId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if ((StringUtils.isEmpty(userName) && StringUtils.isEmpty(userOpenId)) || StringUtils.isEmpty(format)
                 || qqTAppAndToken == null || !qqTAppAndToken.isValid()) {
             return null;
@@ -1006,7 +1009,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TUser getOtherUserInfo(String userName, String userOpenId) {
+    public TUser getOtherUserInfo(String userName, String userOpenId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         String selfInfo = getOtherUserInfo(TConstant.VALUE_FORMAT_JSON, userName, userOpenId);
         if (StringUtils.isEmpty(selfInfo) || !TCheckAndTransUtils.checkModifyResult(selfInfo)) {
             return null;
@@ -1015,7 +1018,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse getOtherUserInfoRes(String userName, String userOpenId) {
+    public TResponse getOtherUserInfoRes(String userName, String userOpenId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         String response = getOtherUserInfo(TConstant.VALUE_FORMAT_JSON, userName, userOpenId);
         TResponse qqTResponse = TTransformUtils.transResponse(response);
         if (qqTResponse != null) {
@@ -1025,7 +1028,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String getOtherUsersInfo(String format, String userNames, String userOpenIds) {
+    public String getOtherUsersInfo(String format, String userNames, String userOpenIds) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if ((StringUtils.isEmpty(userNames) && StringUtils.isEmpty(userOpenIds)) || qqTAppAndToken == null
                 || !qqTAppAndToken.isValid()) {
             return null;
@@ -1043,13 +1046,13 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public List<TUser> getOtherUsersInfo(String userNames, String userOpenIds) {
+    public List<TUser> getOtherUsersInfo(String userNames, String userOpenIds) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return TCheckAndTransUtils.transUsersToList(getOtherUsersInfo(TConstant.VALUE_FORMAT_JSON, userNames,
                 userOpenIds));
     }
 
     @Override
-    public TResponse getOtherUsersInfoRes(String userNames, String userOpenIds) {
+    public TResponse getOtherUsersInfoRes(String userNames, String userOpenIds) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         String response = getOtherUsersInfo(TConstant.VALUE_FORMAT_JSON, userNames, userOpenIds);
         TResponse qqTResponse = TTransformUtils.transResponse(response);
         if (qqTResponse != null) {
@@ -1063,7 +1066,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String verifyAccountStr(String format, String userName, String userId) {
+    public String verifyAccountStr(String format, String userName, String userId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if ((StringUtils.isEmpty(userName) && StringUtils.isEmpty(userId)) || qqTAppAndToken == null
                 || !qqTAppAndToken.isValid()) {
             return null;
@@ -1082,13 +1085,13 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public boolean verifyAccount(String userName, String userId) {
+    public boolean verifyAccount(String userName, String userId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TResponse qqTResponse = verifyAccountRes(userName, userId);
         return qqTResponse == null ? null : ((Boolean) qqTResponse.getData()).booleanValue();
     }
 
     @Override
-    public TResponse verifyAccountRes(String userName, String userId) {
+    public TResponse verifyAccountRes(String userName, String userId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         String response = verifyAccountStr(TConstant.VALUE_FORMAT_JSON, userName, userId);
         TResponse qqTResponse = TTransformUtils.transResponse(response);
 
@@ -1100,7 +1103,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String getUserRelationsCommonStr(String url, TUserRelationPara qqTUserRelationPara) {
+    public String getUserRelationsCommonStr(String url, TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (StringUtils.isEmpty(url) || qqTUserRelationPara == null || qqTAppAndToken == null
                 || !qqTAppAndToken.isValid()) {
             return null;
@@ -1112,7 +1115,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public List<TUser> getUserRelationsCommon(String url, TUserRelationPara qqTUserRelationPara) {
+    public List<TUser> getUserRelationsCommon(String url, TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (qqTUserRelationPara == null) {
             return null;
         }
@@ -1122,7 +1125,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse getUserRelationsCommonRes(String url, TUserRelationPara qqTUserRelationPara) {
+    public TResponse getUserRelationsCommonRes(String url, TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (qqTUserRelationPara == null) {
             return null;
         }
@@ -1141,7 +1144,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public List<String> getUserRelationsNameCommon(String url, TUserRelationPara qqTUserRelationPara) {
+    public List<String> getUserRelationsNameCommon(String url, TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (qqTUserRelationPara == null) {
             return null;
         }
@@ -1151,7 +1154,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse getUserRelationsNameCommonRes(String url, TUserRelationPara qqTUserRelationPara) {
+    public TResponse getUserRelationsNameCommonRes(String url, TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (qqTUserRelationPara == null) {
             return null;
         }
@@ -1170,22 +1173,22 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String getSelfFansStr(TUserRelationPara qqTUserRelationPara) {
+    public String getSelfFansStr(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsCommonStr(TConstant.GET_SELF_FANS_URL, qqTUserRelationPara);
     }
 
     @Override
-    public List<TUser> getSelfFans(TUserRelationPara qqTUserRelationPara) {
+    public List<TUser> getSelfFans(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsCommon(TConstant.GET_SELF_FANS_URL, qqTUserRelationPara);
     }
 
     @Override
-    public TResponse getSelfFansStrRes(TUserRelationPara qqTUserRelationPara) {
+    public TResponse getSelfFansStrRes(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsCommonRes(TConstant.GET_SELF_FANS_URL, qqTUserRelationPara);
     }
 
     @Override
-    public String getSelfFansStr(String format, int reqNumber, int startIndex) {
+    public String getSelfFansStr(String format, int reqNumber, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setFormat(format);
         qqTUserRelationPara.setReqNumber(reqNumber);
@@ -1194,7 +1197,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public List<TUser> getSelfFans(int reqNumber, int startIndex) {
+    public List<TUser> getSelfFans(int reqNumber, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setReqNumber(reqNumber);
         qqTUserRelationPara.setStartIndex(startIndex);
@@ -1202,7 +1205,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse getSelfFansRes(int reqNumber, int startIndex) {
+    public TResponse getSelfFansRes(int reqNumber, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setReqNumber(reqNumber);
         qqTUserRelationPara.setStartIndex(startIndex);
@@ -1210,22 +1213,22 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String getSelfFansNamesStr(TUserRelationPara qqTUserRelationPara) {
+    public String getSelfFansNamesStr(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsCommonStr(TConstant.GET_SELF_FANS_NAMES_URL, qqTUserRelationPara);
     }
 
     @Override
-    public List<String> getSelfFansNames(TUserRelationPara qqTUserRelationPara) {
+    public List<String> getSelfFansNames(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsNameCommon(TConstant.GET_SELF_FANS_NAMES_URL, qqTUserRelationPara);
     }
 
     @Override
-    public TResponse getSelfFansNamesRes(TUserRelationPara qqTUserRelationPara) {
+    public TResponse getSelfFansNamesRes(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsNameCommonRes(TConstant.GET_SELF_FANS_NAMES_URL, qqTUserRelationPara);
     }
 
     @Override
-    public String getSelfFansNamesStr(String format, int reqNumber, int startIndex) {
+    public String getSelfFansNamesStr(String format, int reqNumber, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setFormat(format);
         qqTUserRelationPara.setReqNumber(reqNumber);
@@ -1234,7 +1237,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public List<String> getSelfFansNames(int reqNumber, int startIndex) {
+    public List<String> getSelfFansNames(int reqNumber, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setReqNumber(reqNumber);
         qqTUserRelationPara.setStartIndex(startIndex);
@@ -1242,7 +1245,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse getSelfFansNamesRes(int reqNumber, int startIndex) {
+    public TResponse getSelfFansNamesRes(int reqNumber, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setReqNumber(reqNumber);
         qqTUserRelationPara.setStartIndex(startIndex);
@@ -1250,22 +1253,22 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String getSelfInterestedStr(TUserRelationPara qqTUserRelationPara) {
+    public String getSelfInterestedStr(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsCommonStr(TConstant.GET_SELF_INTERESTED_URL, qqTUserRelationPara);
     }
 
     @Override
-    public List<TUser> getSelfInterested(TUserRelationPara qqTUserRelationPara) {
+    public List<TUser> getSelfInterested(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsCommon(TConstant.GET_SELF_INTERESTED_URL, qqTUserRelationPara);
     }
 
     @Override
-    public TResponse getSelfInterestedRes(TUserRelationPara qqTUserRelationPara) {
+    public TResponse getSelfInterestedRes(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsCommonRes(TConstant.GET_SELF_INTERESTED_URL, qqTUserRelationPara);
     }
 
     @Override
-    public String getSelfInterestedStr(String format, int reqNumber, int startIndex) {
+    public String getSelfInterestedStr(String format, int reqNumber, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setFormat(format);
         qqTUserRelationPara.setReqNumber(reqNumber);
@@ -1274,7 +1277,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public List<TUser> getSelfInterested(int reqNumber, int startIndex) {
+    public List<TUser> getSelfInterested(int reqNumber, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setReqNumber(reqNumber);
         qqTUserRelationPara.setStartIndex(startIndex);
@@ -1282,7 +1285,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse getSelfInterestedRes(int reqNumber, int startIndex) {
+    public TResponse getSelfInterestedRes(int reqNumber, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setReqNumber(reqNumber);
         qqTUserRelationPara.setStartIndex(startIndex);
@@ -1290,22 +1293,22 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String getSelfInterestedNamesStr(TUserRelationPara qqTUserRelationPara) {
+    public String getSelfInterestedNamesStr(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsCommonStr(TConstant.GET_SELF_INTERESTED_NAMES_URL, qqTUserRelationPara);
     }
 
     @Override
-    public List<String> getSelfInterestedNames(TUserRelationPara qqTUserRelationPara) {
+    public List<String> getSelfInterestedNames(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsNameCommon(TConstant.GET_SELF_INTERESTED_NAMES_URL, qqTUserRelationPara);
     }
 
     @Override
-    public TResponse getSelfInterestedNamesRes(TUserRelationPara qqTUserRelationPara) {
+    public TResponse getSelfInterestedNamesRes(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsNameCommonRes(TConstant.GET_SELF_INTERESTED_NAMES_URL, qqTUserRelationPara);
     }
 
     @Override
-    public String getSelfInterestedNamesStr(String format, int reqNumber, int startIndex) {
+    public String getSelfInterestedNamesStr(String format, int reqNumber, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setFormat(format);
         qqTUserRelationPara.setReqNumber(reqNumber);
@@ -1314,7 +1317,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public List<String> getSelfInterestedNames(int reqNumber, int startIndex) {
+    public List<String> getSelfInterestedNames(int reqNumber, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setReqNumber(reqNumber);
         qqTUserRelationPara.setStartIndex(startIndex);
@@ -1322,7 +1325,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse getSelfInterestedNamesRes(int reqNumber, int startIndex) {
+    public TResponse getSelfInterestedNamesRes(int reqNumber, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setReqNumber(reqNumber);
         qqTUserRelationPara.setStartIndex(startIndex);
@@ -1330,22 +1333,22 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String getSelfBlackListStr(TUserRelationPara qqTUserRelationPara) {
+    public String getSelfBlackListStr(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsCommonStr(TConstant.GET_SELF_BLACK_LIST_URL, qqTUserRelationPara);
     }
 
     @Override
-    public List<TUser> getSelfBlackList(TUserRelationPara qqTUserRelationPara) {
+    public List<TUser> getSelfBlackList(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsCommon(TConstant.GET_SELF_BLACK_LIST_URL, qqTUserRelationPara);
     }
 
     @Override
-    public TResponse getSelfBlackListRes(TUserRelationPara qqTUserRelationPara) {
+    public TResponse getSelfBlackListRes(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsCommonRes(TConstant.GET_SELF_BLACK_LIST_URL, qqTUserRelationPara);
     }
 
     @Override
-    public String getSelfBlackListStr(String format, int reqNumber, int startIndex) {
+    public String getSelfBlackListStr(String format, int reqNumber, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setFormat(format);
         qqTUserRelationPara.setReqNumber(reqNumber);
@@ -1354,7 +1357,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public List<TUser> getSelfBlackList(int reqNumber, int startIndex) {
+    public List<TUser> getSelfBlackList(int reqNumber, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setReqNumber(reqNumber);
         qqTUserRelationPara.setStartIndex(startIndex);
@@ -1362,7 +1365,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse getSelfBlackListRes(int reqNumber, int startIndex) {
+    public TResponse getSelfBlackListRes(int reqNumber, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setReqNumber(reqNumber);
         qqTUserRelationPara.setStartIndex(startIndex);
@@ -1370,22 +1373,22 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String getSelfSpecialInterestedStr(TUserRelationPara qqTUserRelationPara) {
+    public String getSelfSpecialInterestedStr(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsCommonStr(TConstant.GET_SELF_SPECIAL_INTERESTED_URL, qqTUserRelationPara);
     }
 
     @Override
-    public List<TUser> getSelfSpecialInterested(TUserRelationPara qqTUserRelationPara) {
+    public List<TUser> getSelfSpecialInterested(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsCommon(TConstant.GET_SELF_SPECIAL_INTERESTED_URL, qqTUserRelationPara);
     }
 
     @Override
-    public TResponse getSelfSpecialInterestedRes(TUserRelationPara qqTUserRelationPara) {
+    public TResponse getSelfSpecialInterestedRes(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsCommonRes(TConstant.GET_SELF_SPECIAL_INTERESTED_URL, qqTUserRelationPara);
     }
 
     @Override
-    public String getSelfSpecialInterestedStr(String format, int reqNumber, int startIndex) {
+    public String getSelfSpecialInterestedStr(String format, int reqNumber, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setFormat(format);
         qqTUserRelationPara.setReqNumber(reqNumber);
@@ -1394,7 +1397,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public List<TUser> getSelfSpecialInterested(int reqNumber, int startIndex) {
+    public List<TUser> getSelfSpecialInterested(int reqNumber, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setReqNumber(reqNumber);
         qqTUserRelationPara.setStartIndex(startIndex);
@@ -1402,7 +1405,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse getSelfSpecialInterestedRes(int reqNumber, int startIndex) {
+    public TResponse getSelfSpecialInterestedRes(int reqNumber, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setReqNumber(reqNumber);
         qqTUserRelationPara.setStartIndex(startIndex);
@@ -1410,22 +1413,22 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String getOtherUserFansStr(TUserRelationPara qqTUserRelationPara) {
+    public String getOtherUserFansStr(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsCommonStr(TConstant.GET_OTHER_USER_FANS_URL, qqTUserRelationPara);
     }
 
     @Override
-    public List<TUser> getOtherUserFans(TUserRelationPara qqTUserRelationPara) {
+    public List<TUser> getOtherUserFans(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsCommon(TConstant.GET_OTHER_USER_FANS_URL, qqTUserRelationPara);
     }
 
     @Override
-    public TResponse getOtherUserFansRes(TUserRelationPara qqTUserRelationPara) {
+    public TResponse getOtherUserFansRes(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsCommonRes(TConstant.GET_OTHER_USER_FANS_URL, qqTUserRelationPara);
     }
 
     @Override
-    public String getOtherUserFansStr(String format, String userName, String userOpenId, int reqNumber, int startIndex) {
+    public String getOtherUserFansStr(String format, String userName, String userOpenId, int reqNumber, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setFormat(format);
         qqTUserRelationPara.setUserName(userName);
@@ -1436,7 +1439,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public List<TUser> getOtherUserFans(String userName, String userOpenId, int reqNumber, int startIndex) {
+    public List<TUser> getOtherUserFans(String userName, String userOpenId, int reqNumber, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setUserName(userName);
         qqTUserRelationPara.setUserOpenId(userOpenId);
@@ -1446,7 +1449,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse getOtherUserFansRes(String userName, String userOpenId, int reqNumber, int startIndex) {
+    public TResponse getOtherUserFansRes(String userName, String userOpenId, int reqNumber, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setUserName(userName);
         qqTUserRelationPara.setUserOpenId(userOpenId);
@@ -1456,23 +1459,23 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String getOtherUserInterestedStr(TUserRelationPara qqTUserRelationPara) {
+    public String getOtherUserInterestedStr(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsCommonStr(TConstant.GET_OTHER_USER_INTERESTED_URL, qqTUserRelationPara);
     }
 
     @Override
-    public List<TUser> getOtherUserInterested(TUserRelationPara qqTUserRelationPara) {
+    public List<TUser> getOtherUserInterested(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsCommon(TConstant.GET_OTHER_USER_INTERESTED_URL, qqTUserRelationPara);
     }
 
     @Override
-    public TResponse getOtherUserInterestedRes(TUserRelationPara qqTUserRelationPara) {
+    public TResponse getOtherUserInterestedRes(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsCommonRes(TConstant.GET_OTHER_USER_INTERESTED_URL, qqTUserRelationPara);
     }
 
     @Override
     public String getOtherUserInterestedStr(String format, String userName, String userOpenId, int reqNumber,
-            int startIndex) {
+            int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setFormat(format);
         qqTUserRelationPara.setUserName(userName);
@@ -1483,7 +1486,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public List<TUser> getOtherUserInterested(String userName, String userOpenId, int reqNumber, int startIndex) {
+    public List<TUser> getOtherUserInterested(String userName, String userOpenId, int reqNumber, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setUserName(userName);
         qqTUserRelationPara.setUserOpenId(userOpenId);
@@ -1493,7 +1496,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse getOtherUserInterestedRes(String userName, String userOpenId, int reqNumber, int startIndex) {
+    public TResponse getOtherUserInterestedRes(String userName, String userOpenId, int reqNumber, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setUserName(userName);
         qqTUserRelationPara.setUserOpenId(userOpenId);
@@ -1503,23 +1506,23 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String getOtherUserSpecialInterestedStr(TUserRelationPara qqTUserRelationPara) {
+    public String getOtherUserSpecialInterestedStr(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsCommonStr(TConstant.GET_OTHER_USER_SPECIAL_INTERESTED_URL, qqTUserRelationPara);
     }
 
     @Override
-    public List<TUser> getOtherUserSpecialInterested(TUserRelationPara qqTUserRelationPara) {
+    public List<TUser> getOtherUserSpecialInterested(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsCommon(TConstant.GET_OTHER_USER_SPECIAL_INTERESTED_URL, qqTUserRelationPara);
     }
 
     @Override
-    public TResponse getOtherUserSpecialInterestedRes(TUserRelationPara qqTUserRelationPara) {
+    public TResponse getOtherUserSpecialInterestedRes(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsCommonRes(TConstant.GET_OTHER_USER_SPECIAL_INTERESTED_URL, qqTUserRelationPara);
     }
 
     @Override
     public String getOtherUserSpecialInterestedStr(String format, String userName, String userOpenId, int reqNumber,
-            int startIndex) {
+            int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setFormat(format);
         qqTUserRelationPara.setUserName(userName);
@@ -1530,7 +1533,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public List<TUser> getOtherUserSpecialInterested(String userName, String userOpenId, int reqNumber, int startIndex) {
+    public List<TUser> getOtherUserSpecialInterested(String userName, String userOpenId, int reqNumber, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setUserName(userName);
         qqTUserRelationPara.setUserOpenId(userOpenId);
@@ -1541,7 +1544,7 @@ public class TSdkServiceImpl implements TSdkService {
 
     @Override
     public TResponse getOtherUserSpecialInterestedRes(String userName, String userOpenId, int reqNumber,
-            int startIndex) {
+            int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setUserName(userName);
         qqTUserRelationPara.setUserOpenId(userOpenId);
@@ -1551,22 +1554,22 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String getSelfFansSimpleInfoStr(TUserRelationPara qqTUserRelationPara) {
+    public String getSelfFansSimpleInfoStr(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsCommonStr(TConstant.GET_SELF_FANS_SIMPLE_URL, qqTUserRelationPara);
     }
 
     @Override
-    public List<TUser> getSelfFansSimpleInfo(TUserRelationPara qqTUserRelationPara) {
+    public List<TUser> getSelfFansSimpleInfo(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsCommon(TConstant.GET_SELF_FANS_SIMPLE_URL, qqTUserRelationPara);
     }
 
     @Override
-    public TResponse getSelfFansSimpleInfoRes(TUserRelationPara qqTUserRelationPara) {
+    public TResponse getSelfFansSimpleInfoRes(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsCommonRes(TConstant.GET_SELF_FANS_SIMPLE_URL, qqTUserRelationPara);
     }
 
     @Override
-    public String getSelfFansSimpleInfoStr(String format, int reqNumber, int startIndex) {
+    public String getSelfFansSimpleInfoStr(String format, int reqNumber, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setFormat(format);
         qqTUserRelationPara.setReqNumber(reqNumber);
@@ -1575,7 +1578,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public List<TUser> getSelfFansSimpleInfo(int reqNumber, int startIndex) {
+    public List<TUser> getSelfFansSimpleInfo(int reqNumber, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setReqNumber(reqNumber);
         qqTUserRelationPara.setStartIndex(startIndex);
@@ -1583,7 +1586,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse getSelfFansSimpleInfoRes(int reqNumber, int startIndex) {
+    public TResponse getSelfFansSimpleInfoRes(int reqNumber, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setReqNumber(reqNumber);
         qqTUserRelationPara.setStartIndex(startIndex);
@@ -1591,22 +1594,22 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String getSelfInterestedSimpleInfoStr(TUserRelationPara qqTUserRelationPara) {
+    public String getSelfInterestedSimpleInfoStr(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsCommonStr(TConstant.GET_SELF_INTERESTED_SIMPLE_URL, qqTUserRelationPara);
     }
 
     @Override
-    public List<TUser> getSelfInterestedSimpleInfo(TUserRelationPara qqTUserRelationPara) {
+    public List<TUser> getSelfInterestedSimpleInfo(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsCommon(TConstant.GET_SELF_INTERESTED_SIMPLE_URL, qqTUserRelationPara);
     }
 
     @Override
-    public TResponse getSelfInterestedSimpleInfoRes(TUserRelationPara qqTUserRelationPara) {
+    public TResponse getSelfInterestedSimpleInfoRes(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsCommonRes(TConstant.GET_SELF_INTERESTED_SIMPLE_URL, qqTUserRelationPara);
     }
 
     @Override
-    public String getSelfInterestedSimpleInfoStr(String format, int reqNumber, int startIndex) {
+    public String getSelfInterestedSimpleInfoStr(String format, int reqNumber, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setFormat(format);
         qqTUserRelationPara.setReqNumber(reqNumber);
@@ -1615,7 +1618,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public List<TUser> getSelfInterestedSimpleInfo(int reqNumber, int startIndex) {
+    public List<TUser> getSelfInterestedSimpleInfo(int reqNumber, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setReqNumber(reqNumber);
         qqTUserRelationPara.setStartIndex(startIndex);
@@ -1623,7 +1626,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse getSelfInterestedSimpleInfoRes(int reqNumber, int startIndex) {
+    public TResponse getSelfInterestedSimpleInfoRes(int reqNumber, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setReqNumber(reqNumber);
         qqTUserRelationPara.setStartIndex(startIndex);
@@ -1631,22 +1634,22 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String getMutualInterestedStr(TUserRelationPara qqTUserRelationPara) {
+    public String getMutualInterestedStr(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsCommonStr(TConstant.GET_Mutual_INTERESTED_URL, qqTUserRelationPara);
     }
 
     @Override
-    public List<TUser> getMutualInterested(TUserRelationPara qqTUserRelationPara) {
+    public List<TUser> getMutualInterested(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsCommon(TConstant.GET_Mutual_INTERESTED_URL, qqTUserRelationPara);
     }
 
     @Override
-    public TResponse getMutualInterestedRes(TUserRelationPara qqTUserRelationPara) {
+    public TResponse getMutualInterestedRes(TUserRelationPara qqTUserRelationPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getUserRelationsCommonRes(TConstant.GET_Mutual_INTERESTED_URL, qqTUserRelationPara);
     }
 
     @Override
-    public String getMutualInterestedStr(String format, String userName, int reqNumber, int startIndex) {
+    public String getMutualInterestedStr(String format, String userName, int reqNumber, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setFormat(format);
         qqTUserRelationPara.setUserName(userName);
@@ -1656,7 +1659,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public List<TUser> getMutualInterested(int reqNumber, String userName, int startIndex) {
+    public List<TUser> getMutualInterested(int reqNumber, String userName, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setUserName(userName);
         qqTUserRelationPara.setReqNumber(reqNumber);
@@ -1665,7 +1668,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse getMutualInterestedRes(int reqNumber, String userName, int startIndex) {
+    public TResponse getMutualInterestedRes(int reqNumber, String userName, int startIndex) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         TUserRelationPara qqTUserRelationPara = new TUserRelationPara();
         qqTUserRelationPara.setUserName(userName);
         qqTUserRelationPara.setReqNumber(reqNumber);
@@ -1674,7 +1677,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String relationWithOtherCommonStr(String format, String url, String userName, String userOpenId) {
+    public String relationWithOtherCommonStr(String format, String url, String userName, String userOpenId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (StringUtils.isEmpty(url) || (StringUtils.isEmpty(userName) && StringUtils.isEmpty(userOpenId))
                 || qqTAppAndToken == null || !qqTAppAndToken.isValid()) {
             return null;
@@ -1692,19 +1695,19 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public boolean relationWithOtherCommon(String url, String userName, String userOpenId) {
+    public boolean relationWithOtherCommon(String url, String userName, String userOpenId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return TCheckAndTransUtils.checkModifyResult(relationWithOtherCommonStr(TConstant.VALUE_FORMAT_JSON, url,
                 userName, userOpenId));
     }
 
     @Override
-    public TResponse relationWithOtherCommonRes(String url, String userName, String userOpenId) {
+    public TResponse relationWithOtherCommonRes(String url, String userName, String userOpenId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return TTransformUtils.transResponse(relationWithOtherCommonStr(TConstant.VALUE_FORMAT_JSON, url, userName,
                 userOpenId));
     }
 
     @Override
-    public String interestedInOther(String format, String userNames, String userOpenIds) {
+    public String interestedInOther(String format, String userNames, String userOpenIds) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if ((StringUtils.isEmpty(userNames) && StringUtils.isEmpty(userOpenIds)) || qqTAppAndToken == null
                 || !qqTAppAndToken.isValid()) {
             return null;
@@ -1722,94 +1725,94 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public boolean interestedInOther(String userNames, String userOpenIds) {
+    public boolean interestedInOther(String userNames, String userOpenIds) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return TCheckAndTransUtils.checkModifyResult(interestedInOther(TConstant.VALUE_FORMAT_JSON, userNames,
                 userOpenIds));
     }
 
     @Override
-    public TResponse interestedInOtherRes(String userNames, String userOpenIds) {
+    public TResponse interestedInOtherRes(String userNames, String userOpenIds) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return TTransformUtils
                 .transResponse(interestedInOther(TConstant.VALUE_FORMAT_JSON, userNames, userOpenIds));
     }
 
     @Override
-    public String cancelInterestedInOther(String format, String userName, String userOpenId) {
+    public String cancelInterestedInOther(String format, String userName, String userOpenId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return relationWithOtherCommonStr(format, TConstant.DELETE_FRIEND_URL, userName, userOpenId);
     }
 
     @Override
-    public boolean cancelInterestedInOther(String userName, String userOpenId) {
+    public boolean cancelInterestedInOther(String userName, String userOpenId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return relationWithOtherCommon(TConstant.DELETE_FRIEND_URL, userName, userOpenId);
     }
 
     @Override
-    public TResponse cancelInterestedInOtherRes(String userName, String userOpenId) {
+    public TResponse cancelInterestedInOtherRes(String userName, String userOpenId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return relationWithOtherCommonRes(TConstant.DELETE_FRIEND_URL, userName, userOpenId);
     }
 
     @Override
-    public String specialInterestedInOther(String format, String userName, String userOpenId) {
+    public String specialInterestedInOther(String format, String userName, String userOpenId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return relationWithOtherCommonStr(format, TConstant.ADD_SPECIAL_FRIEND_URL, userName, userOpenId);
     }
 
     @Override
-    public boolean specialInterestedInOther(String userName, String userOpenId) {
+    public boolean specialInterestedInOther(String userName, String userOpenId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return relationWithOtherCommon(TConstant.ADD_SPECIAL_FRIEND_URL, userName, userOpenId);
     }
 
     @Override
-    public TResponse specialInterestedInOtherRes(String userName, String userOpenId) {
+    public TResponse specialInterestedInOtherRes(String userName, String userOpenId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return relationWithOtherCommonRes(TConstant.ADD_SPECIAL_FRIEND_URL, userName, userOpenId);
     }
 
     @Override
-    public String cancelSpecialInterestedInOther(String format, String userName, String userOpenId) {
+    public String cancelSpecialInterestedInOther(String format, String userName, String userOpenId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return relationWithOtherCommonStr(format, TConstant.DELETE_SPECIAL_FRIEND_URL, userName, userOpenId);
     }
 
     @Override
-    public boolean cancelSpecialInterestedInOther(String userName, String userOpenId) {
+    public boolean cancelSpecialInterestedInOther(String userName, String userOpenId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return relationWithOtherCommon(TConstant.DELETE_SPECIAL_FRIEND_URL, userName, userOpenId);
     }
 
     @Override
-    public TResponse cancelSpecialInterestedInOtherRes(String userName, String userOpenId) {
+    public TResponse cancelSpecialInterestedInOtherRes(String userName, String userOpenId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return relationWithOtherCommonRes(TConstant.DELETE_SPECIAL_FRIEND_URL, userName, userOpenId);
     }
 
     @Override
-    public String addOtherToBlackList(String format, String userName, String userOpenId) {
+    public String addOtherToBlackList(String format, String userName, String userOpenId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return relationWithOtherCommonStr(format, TConstant.ADD_OTHER_TO_BLACK_LIST_URL, userName, userOpenId);
     }
 
     @Override
-    public boolean addOtherToBlackList(String userName, String userOpenId) {
+    public boolean addOtherToBlackList(String userName, String userOpenId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return relationWithOtherCommon(TConstant.ADD_OTHER_TO_BLACK_LIST_URL, userName, userOpenId);
     }
 
     @Override
-    public TResponse addOtherToBlackListRes(String userName, String userOpenId) {
+    public TResponse addOtherToBlackListRes(String userName, String userOpenId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return relationWithOtherCommonRes(TConstant.ADD_OTHER_TO_BLACK_LIST_URL, userName, userOpenId);
     }
 
     @Override
-    public String deleteFromBlackList(String format, String userName, String userOpenId) {
+    public String deleteFromBlackList(String format, String userName, String userOpenId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return relationWithOtherCommonStr(format, TConstant.DELETE_OTHER_FROM_BLACK_LIST_URL, userName, userOpenId);
     }
 
     @Override
-    public boolean deleteFromBlackList(String userName, String userOpenId) {
+    public boolean deleteFromBlackList(String userName, String userOpenId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return relationWithOtherCommon(TConstant.DELETE_OTHER_FROM_BLACK_LIST_URL, userName, userOpenId);
     }
 
     @Override
-    public TResponse deleteFromBlackListRes(String userName, String userOpenId) {
+    public TResponse deleteFromBlackListRes(String userName, String userOpenId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return relationWithOtherCommonRes(TConstant.DELETE_OTHER_FROM_BLACK_LIST_URL, userName, userOpenId);
     }
 
     @Override
-    public String checkRelationWithSelf(String format, String userNames, String userIds, int flag) {
+    public String checkRelationWithSelf(String format, String userNames, String userIds, int flag) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (StringUtils.isEmpty(format) || (StringUtils.isEmpty(userNames) && StringUtils.isEmpty(userIds))
                 || qqTAppAndToken == null || !qqTAppAndToken.isValid()) {
             return null;
@@ -1831,7 +1834,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public List<TUserRelation> getIsFanAndInterested(String userNames, String userIds) {
+    public List<TUserRelation> getIsFanAndInterested(String userNames, String userIds) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         String relationStr = checkRelationWithSelf(TConstant.VALUE_FORMAT_JSON, userNames, userIds,
                 TConstant.VALUE_BOTH_RELATION_FLAG);
         if (StringUtils.isEmpty(relationStr) || !TCheckAndTransUtils.checkModifyResult(relationStr)) {
@@ -1842,7 +1845,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse getIsFanAndInterestedRes(String userNames, String userIds) {
+    public TResponse getIsFanAndInterestedRes(String userNames, String userIds) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         String response = checkRelationWithSelf(TConstant.VALUE_FORMAT_JSON, userNames, userIds,
                 TConstant.VALUE_BOTH_RELATION_FLAG);
         TResponse qqTResponse = TTransformUtils.transResponse(response);
@@ -1853,7 +1856,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public Map<String, Boolean> getIsFanOrInterested(String userNames, String userIds, int flag) {
+    public Map<String, Boolean> getIsFanOrInterested(String userNames, String userIds, int flag) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
 
         String relationStr = checkRelationWithSelf(TConstant.VALUE_FORMAT_JSON, userNames, userIds, flag);
         if (StringUtils.isEmpty(relationStr) || !TCheckAndTransUtils.checkModifyResult(relationStr)) {
@@ -1867,7 +1870,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse getIsFanOrInterestedRes(String userNames, String userIds, int flag) {
+    public TResponse getIsFanOrInterestedRes(String userNames, String userIds, int flag) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         String response = checkRelationWithSelf(TConstant.VALUE_FORMAT_JSON, userNames, userIds, flag);
         TResponse qqTResponse = TTransformUtils.transResponse(response);
         if (qqTResponse != null) {
@@ -1877,62 +1880,62 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String sendMessageStr(TStatusInfoPara message) {
+    public String sendMessageStr(TStatusInfoPara message) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return addStatusCommonStr(TConstant.SEND_MESSAGE_URL, message);
     }
 
     @Override
-    public boolean sendMessage(TStatusInfoPara message) {
+    public boolean sendMessage(TStatusInfoPara message) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return addStatusCommon(TConstant.SEND_MESSAGE_URL, message);
     }
 
     @Override
-    public TResponse sendMessageRes(TStatusInfoPara message) {
+    public TResponse sendMessageRes(TStatusInfoPara message) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return addStatusCommonRes(TConstant.SEND_MESSAGE_URL, message);
     }
 
     @Override
-    public boolean deleteMessage(long messageId) {
+    public boolean deleteMessage(long messageId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return operateStatusCommon(TConstant.DELETE_MESSAGE_URL, messageId);
     }
 
     @Override
-    public TResponse deleteMessageRes(long messageId) {
+    public TResponse deleteMessageRes(long messageId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return operateStatusCommonRes(TConstant.DELETE_MESSAGE_URL, messageId);
     }
 
     @Override
-    public String getReceiveMessagesStr(TTimelinePara qqTTimelinePara) {
+    public String getReceiveMessagesStr(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonStr(TConstant.GET_RECEIVE_MESSAGES_URL, qqTTimelinePara);
     }
 
     @Override
-    public List<TStatus> getReceiveMessages(TTimelinePara qqTTimelinePara) {
+    public List<TStatus> getReceiveMessages(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommon(TConstant.GET_RECEIVE_MESSAGES_URL, qqTTimelinePara);
     }
 
     @Override
-    public TResponse getReceiveMessagesRes(TTimelinePara qqTTimelinePara) {
+    public TResponse getReceiveMessagesRes(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonRes(TConstant.GET_RECEIVE_MESSAGES_URL, qqTTimelinePara);
     }
 
     @Override
-    public String getSendMessagesStr(TTimelinePara qqTTimelinePara) {
+    public String getSendMessagesStr(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonStr(TConstant.GET_SEND_MESSAGES_URL, qqTTimelinePara);
     }
 
     @Override
-    public List<TStatus> getSendMessages(TTimelinePara qqTTimelinePara) {
+    public List<TStatus> getSendMessages(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommon(TConstant.GET_SEND_MESSAGES_URL, qqTTimelinePara);
     }
 
     @Override
-    public TResponse getSendMessagesRes(TTimelinePara qqTTimelinePara) {
+    public TResponse getSendMessagesRes(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonRes(TConstant.GET_SEND_MESSAGES_URL, qqTTimelinePara);
     }
 
     @Override
-    public String searchCommonStr(String url, TSearchPara qqTSearchPara) {
+    public String searchCommonStr(String url, TSearchPara qqTSearchPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (StringUtils.isEmpty(url) || qqTSearchPara == null || qqTAppAndToken == null || !qqTAppAndToken.isValid()) {
             return null;
         }
@@ -1943,7 +1946,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public List<TUser> searchUserCommon(String url, TSearchPara qqTSearchPara) {
+    public List<TUser> searchUserCommon(String url, TSearchPara qqTSearchPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (qqTSearchPara == null) {
             return null;
         }
@@ -1953,7 +1956,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse searchUserCommonRes(String url, TSearchPara qqTSearchPara) {
+    public TResponse searchUserCommonRes(String url, TSearchPara qqTSearchPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (qqTSearchPara == null) {
             return null;
         }
@@ -1972,27 +1975,27 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String searchUserStr(TSearchPara qqTSearchPara) {
+    public String searchUserStr(TSearchPara qqTSearchPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return searchCommonStr(TConstant.SEARCH_USER_URL, qqTSearchPara);
     }
 
     @Override
-    public List<TUser> searchUser(TSearchPara qqTSearchPara) {
+    public List<TUser> searchUser(TSearchPara qqTSearchPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return searchUserCommon(TConstant.SEARCH_USER_URL, qqTSearchPara);
     }
 
     @Override
-    public TResponse searchUserRes(TSearchPara qqTSearchPara) {
+    public TResponse searchUserRes(TSearchPara qqTSearchPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return searchUserCommonRes(TConstant.SEARCH_USER_URL, qqTSearchPara);
     }
 
     @Override
-    public String searchStatusStr(TSearchPara qqTSearchPara) {
+    public String searchStatusStr(TSearchPara qqTSearchPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return searchCommonStr(TConstant.SEARCH_STATUS_URL, qqTSearchPara);
     }
 
     @Override
-    public List<TStatus> searchStatus(TSearchPara qqTSearchPara) {
+    public List<TStatus> searchStatus(TSearchPara qqTSearchPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (qqTSearchPara == null) {
             return null;
         }
@@ -2002,7 +2005,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse searchStatusRes(TSearchPara qqTSearchPara) {
+    public TResponse searchStatusRes(TSearchPara qqTSearchPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (qqTSearchPara == null) {
             return null;
         }
@@ -2021,22 +2024,22 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String searchUserByTagStr(TSearchPara qqTSearchPara) {
+    public String searchUserByTagStr(TSearchPara qqTSearchPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return searchCommonStr(TConstant.SEARCH_USER_BY_TAG_URL, qqTSearchPara);
     }
 
     @Override
-    public List<TUser> searchUserByTag(TSearchPara qqTSearchPara) {
+    public List<TUser> searchUserByTag(TSearchPara qqTSearchPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return searchUserCommon(TConstant.SEARCH_USER_BY_TAG_URL, qqTSearchPara);
     }
 
     @Override
-    public TResponse searchUserByTagRes(TSearchPara qqTSearchPara) {
+    public TResponse searchUserByTagRes(TSearchPara qqTSearchPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return searchUserCommonRes(TConstant.SEARCH_USER_BY_TAG_URL, qqTSearchPara);
     }
 
     @Override
-    public String getHotCommonStr(String url, THotStatusPara qqTHotStatusPara) {
+    public String getHotCommonStr(String url, THotStatusPara qqTHotStatusPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (qqTHotStatusPara == null || qqTAppAndToken == null || !qqTAppAndToken.isValid()) {
             return null;
         }
@@ -2048,12 +2051,12 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String getHotTopicsStr(THotStatusPara qqTHotStatusPara) {
+    public String getHotTopicsStr(THotStatusPara qqTHotStatusPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getHotCommonStr(TConstant.GET_HOT_TOPICS_URL, qqTHotStatusPara);
     }
 
     @Override
-    public List<TTopicSimple> getHotTopics(THotStatusPara qqTHotStatusPara) {
+    public List<TTopicSimple> getHotTopics(THotStatusPara qqTHotStatusPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (qqTHotStatusPara == null) {
             return null;
         }
@@ -2063,7 +2066,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse getHotTopicsRes(THotStatusPara qqTHotStatusPara) {
+    public TResponse getHotTopicsRes(THotStatusPara qqTHotStatusPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (qqTHotStatusPara == null) {
             return null;
         }
@@ -2082,12 +2085,12 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String getHotRepostsStr(THotStatusPara qqTHotStatusPara) {
+    public String getHotRepostsStr(THotStatusPara qqTHotStatusPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getHotCommonStr(TConstant.GET_HOT_REPOSTS_URL, qqTHotStatusPara);
     }
 
     @Override
-    public List<TStatus> getHotReposts(THotStatusPara qqTHotStatusPara) {
+    public List<TStatus> getHotReposts(THotStatusPara qqTHotStatusPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (qqTHotStatusPara == null) {
             return null;
         }
@@ -2097,7 +2100,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse getHotRepostsRes(THotStatusPara qqTHotStatusPara) {
+    public TResponse getHotRepostsRes(THotStatusPara qqTHotStatusPara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (qqTHotStatusPara == null) {
             return null;
         }
@@ -2116,7 +2119,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String getUpdateInfoNumStr(String format, boolean isClear, int clearType) {
+    public String getUpdateInfoNumStr(String format, boolean isClear, int clearType) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (qqTAppAndToken == null || !qqTAppAndToken.isValid()) {
             return null;
         }
@@ -2131,13 +2134,13 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TUpdateNumInfo getUpdateInfoNum(boolean isClear, int clearType) {
+    public TUpdateNumInfo getUpdateInfoNum(boolean isClear, int clearType) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return TCheckAndTransUtils.transQqTUpdateNumInfo(getUpdateInfoNumStr(TConstant.VALUE_FORMAT_JSON, isClear,
                 clearType));
     }
 
     @Override
-    public TResponse getUpdateInfoNumRes(boolean isClear, int clearType) {
+    public TResponse getUpdateInfoNumRes(boolean isClear, int clearType) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         String response = getUpdateInfoNumStr(TConstant.VALUE_FORMAT_JSON, isClear, clearType);
         TResponse qqTResponse = TTransformUtils.transResponse(response);
         if (qqTResponse != null) {
@@ -2147,77 +2150,77 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public boolean collect(long statusId) {
+    public boolean collect(long statusId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return operateStatusCommon(TConstant.COLLECT_STATUS_URL, statusId);
     }
 
     @Override
-    public TResponse collectRes(long statusId) {
+    public TResponse collectRes(long statusId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return operateStatusCommonRes(TConstant.COLLECT_STATUS_URL, statusId);
     }
 
     @Override
-    public boolean unCollect(long statusId) {
+    public boolean unCollect(long statusId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return operateStatusCommon(TConstant.UNCOLLECT_STATUS_URL, statusId);
     }
 
     @Override
-    public TResponse unCollectRes(long statusId) {
+    public TResponse unCollectRes(long statusId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return operateStatusCommonRes(TConstant.UNCOLLECT_STATUS_URL, statusId);
     }
 
     @Override
-    public boolean subscribeTopic(long topicId) {
+    public boolean subscribeTopic(long topicId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return operateStatusCommon(TConstant.SUBSCRIBE_TOPIC_URL, topicId);
     }
 
     @Override
-    public TResponse subscribeTopicRes(long topicId) {
+    public TResponse subscribeTopicRes(long topicId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return operateStatusCommonRes(TConstant.SUBSCRIBE_TOPIC_URL, topicId);
     }
 
     @Override
-    public boolean unSubscribeTopic(long topicId) {
+    public boolean unSubscribeTopic(long topicId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return operateStatusCommon(TConstant.UNSUBSCRIBE_TOPIC_URL, topicId);
     }
 
     @Override
-    public TResponse unSubscribeTopicRes(long topicId) {
+    public TResponse unSubscribeTopicRes(long topicId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return operateStatusCommonRes(TConstant.UNSUBSCRIBE_TOPIC_URL, topicId);
     }
 
     @Override
-    public String getCollectStatusesStr(TTimelinePara qqTTimelinePara) {
+    public String getCollectStatusesStr(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonStr(TConstant.GET_COLLECT_STATUS_URL, qqTTimelinePara);
     }
 
     @Override
-    public List<TStatus> getCollectStatuses(TTimelinePara qqTTimelinePara) {
+    public List<TStatus> getCollectStatuses(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommon(TConstant.GET_COLLECT_STATUS_URL, qqTTimelinePara);
     }
 
     @Override
-    public TResponse getCollectStatusesRes(TTimelinePara qqTTimelinePara) {
+    public TResponse getCollectStatusesRes(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonRes(TConstant.GET_COLLECT_STATUS_URL, qqTTimelinePara);
     }
 
     @Override
-    public String getCollectTopicsStr(TTimelinePara qqTTimelinePara) {
+    public String getCollectTopicsStr(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonStr(TConstant.GET_SUBSCRIBE_TOPICS_URL, qqTTimelinePara);
     }
 
     @Override
-    public List<TStatus> getCollectTopics(TTimelinePara qqTTimelinePara) {
+    public List<TStatus> getCollectTopics(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommon(TConstant.GET_SUBSCRIBE_TOPICS_URL, qqTTimelinePara);
     }
 
     @Override
-    public TResponse getCollectTopicsRes(TTimelinePara qqTTimelinePara) {
+    public TResponse getCollectTopicsRes(TTimelinePara qqTTimelinePara) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return getTimeLineCommonRes(TConstant.GET_SUBSCRIBE_TOPICS_URL, qqTTimelinePara);
     }
 
     @Override
-    public String getTopicIdByNamesStr(String format, String names) {
+    public String getTopicIdByNamesStr(String format, String names) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (StringUtils.isEmpty(names) || qqTAppAndToken == null || !qqTAppAndToken.isValid()) {
             return null;
         }
@@ -2231,7 +2234,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public Map<String, String> getTopicIdByNames(String names) {
+    public Map<String, String> getTopicIdByNames(String names) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         String topicStr = getTopicIdByNamesStr(TConstant.VALUE_FORMAT_JSON, names);
         if (!TCheckAndTransUtils.checkModifyResult(topicStr)) {
             return null;
@@ -2240,7 +2243,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public TResponse getTopicIdByNamesRes(String names) {
+    public TResponse getTopicIdByNamesRes(String names) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
 
         String response = getTopicIdByNamesStr(TConstant.VALUE_FORMAT_JSON, names);
         TResponse qqTResponse = TTransformUtils.transResponse(response);
@@ -2251,7 +2254,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String getTopicInfoByIdsStr(String format, String ids) {
+    public String getTopicInfoByIdsStr(String format, String ids) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (StringUtils.isEmpty(ids) || qqTAppAndToken == null || !qqTAppAndToken.isValid()) {
             return null;
         }
@@ -2265,12 +2268,12 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public List<TStatus> getTopicInfoByIds(String ids) {
+    public List<TStatus> getTopicInfoByIds(String ids) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return TCheckAndTransUtils.transStatusesToList(getTopicInfoByIdsStr(TConstant.VALUE_FORMAT_JSON, ids));
     }
 
     @Override
-    public TResponse getTopicInfoByIdsRes(String ids) {
+    public TResponse getTopicInfoByIdsRes(String ids) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
 
         String response = getTopicInfoByIdsStr(TConstant.VALUE_FORMAT_JSON, ids);
         TResponse qqTResponse = TTransformUtils.transResponse(response);
@@ -2286,7 +2289,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String addTag(String format, String tagName) {
+    public String addTag(String format, String tagName) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (StringUtils.isEmpty(tagName) || qqTAppAndToken == null || !qqTAppAndToken.isValid()) {
             return null;
         }
@@ -2300,12 +2303,12 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public boolean addTag(String tagName) {
+    public boolean addTag(String tagName) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return TCheckAndTransUtils.checkModifyResult(addTag(TConstant.VALUE_FORMAT_JSON, tagName));
     }
 
     @Override
-    public TResponse addTagRes(String tagName) {
+    public TResponse addTagRes(String tagName) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         String response = addTag(TConstant.VALUE_FORMAT_JSON, tagName);
         TResponse qqTResponse = TTransformUtils.transResponse(response);
         if (qqTResponse != null) {
@@ -2315,7 +2318,7 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public String deleteTag(String format, String tagId) {
+    public String deleteTag(String format, String tagId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         if (StringUtils.isEmpty(tagId) || qqTAppAndToken == null || !qqTAppAndToken.isValid()) {
             return null;
         }
@@ -2329,12 +2332,12 @@ public class TSdkServiceImpl implements TSdkService {
     }
 
     @Override
-    public boolean deleteTag(String tagId) {
+    public boolean deleteTag(String tagId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return TCheckAndTransUtils.checkModifyResult(deleteTag(TConstant.VALUE_FORMAT_JSON, tagId));
     }
 
     @Override
-    public TResponse deleteTagRes(String tagId) {
+    public TResponse deleteTagRes(String tagId) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
         return TTransformUtils.transResponse(deleteTag(TConstant.VALUE_FORMAT_JSON, tagId));
     }
 
@@ -2346,7 +2349,7 @@ public class TSdkServiceImpl implements TSdkService {
         parasMap.put(TConstant.PARA_OAUTH_TIMESTAMP, Long.toString(((new Date()).getTime()) / 1000));
         //--parasMap.put(QqTConstant.PARA_OAUTH_NONCE, StringUtils.getRandomNumbersAndLetters(32));
         parasMap.put(TConstant.PARA_OAUTH_CALLBACK, callBackUrl);
-        parasMap.put(TConstant.PARA_OAUTH_VERSION, TConstant.VALUE_OAUTH_VERSION);
+        parasMap.put(TConstant.PARA_OAUTH_VERSION, TConstant.VALUE_OAUTH_VERSION_2_A);
 
         TSign qqTSign = new TSign();
         qqTSign.setBaseUrl(TConstant.GET_REQUEST_TOKEN_URL);

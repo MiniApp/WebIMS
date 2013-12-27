@@ -7,4 +7,7 @@ public interface WeiBoService {
     public String tencentWeiboLoginInit();
 
     public Map<String, Object> tencentWeiboLogin(String code_temp) throws UnsupportedEncodingException;
+
+    @SuppressWarnings("rawtypes")
+    public Boolean checkTencentLogin(Map map);
 }

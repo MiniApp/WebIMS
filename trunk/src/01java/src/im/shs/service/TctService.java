@@ -7,6 +7,10 @@
  */
 package im.shs.service;
 
+import java.io.UnsupportedEncodingException;
+import java.security.InvalidKeyException;
+import java.security.NoSuchAlgorithmException;
+
 /**    
  *         
  * Class Name：
@@ -19,5 +23,5 @@ package im.shs.service;
  *     
  */
 public interface TctService {
-    public void addStatus();
+    public void addStatus() throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException;
 }

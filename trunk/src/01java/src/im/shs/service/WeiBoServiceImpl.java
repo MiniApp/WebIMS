@@ -5,6 +5,7 @@ import im.shs.base.AbstractService;
 import im.shs.bean.WeiBoContentBean;
 import im.shs.model.TAuthInfo;
 import im.shs.model.TUser;
+import im.shs.model.TUserLginInfo;
 
 import java.io.UnsupportedEncodingException;
 import java.text.SimpleDateFormat;
@@ -102,13 +103,36 @@ public class WeiBoServiceImpl extends AbstractService implements WeiBoService {
                     }
 
                 }
-                urlTokens = redirect_uri_succ_temp;
-                logger.info("urlToken:" + urlTokens);
-                oAuth.setAccessToken((String) code_map.get("access_token"));
-                logger.info("====="+oAuth.getAccessToken());
+                
                 String s = (String) code_map.get("nick");
                 byte[] tmpByteArray = s.getBytes("iso-8859-1");
                 s = new String(tmpByteArray, "UTF-8");
+                
+                //持久化登陆信息
+                TUserLginInfo uinfo = new TUserLginInfo();
+                uinfo.setAccessToken((String)code_map.get("access_token"));
+                uinfo.setName((String)code_map.get("name"));
+                uinfo.setOpenid((String)code_map.get("openid"));
+                uinfo.setRefreshToken((String)code_map.get("refresh_token"));
+                uinfo.setNick(s);
+                uinfo.setState((String)code_map.get("state"));
+                String expin = (String) code_map.get("expires_in");
+                uinfo.setExpiresIn(Integer.parseInt(expin));
+                TUserLginInfo po = this.getPersist().findObjectByField(TUserLginInfo.class, "name", uinfo.getName());
+                if (null != po) {
+                    po.setAccessToken(uinfo.getAccessToken());
+                    po.setOpenid(uinfo.getOpenid());
+                    po.setRefreshToken(uinfo.getRefreshToken());
+                    this.getPersist().merge(po);
+                } else {
+                    this.getPersist().persist(uinfo);
+                }
+                
+                urlTokens = redirect_uri_succ_temp;
+                logger.info("urlToken:" + urlTokens);
+                oAuth.setAccessToken((String) code_map.get("access_token"));
+                logger.info("oAuth.getAccessToken()："+oAuth.getAccessToken());
+                
                 logger.info("Nick name: " + s);
                 oAuth.setOpenid((String) code_map.get("openid"));
                 String responseData = result;
@@ -254,5 +278,19 @@ public class WeiBoServiceImpl extends AbstractService implements WeiBoService {
 
         return "";
 
+    }
+    
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @Override
+    public Boolean checkTencentLogin(Map map){
+        Map params = new HashMap();
+        //params.put("name", map.get("tctUserName"));
+        params.put("access_token", map.get("clientAccessToken"));
+        TUserLginInfo po = (TUserLginInfo) this.getPersist().findObjectByField(TUserLginInfo.class, "access_token", map.get("clientAccessToken"));
+        if (null != po) {
+            return true;
+        } else {
+            return false;
+        }
     }
 }

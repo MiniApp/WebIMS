@@ -23,6 +23,11 @@ public class TSign implements Serializable {
     private String              appSecret;
     /** token 密码 ，可为空 **/
     private String              tokenSecret;
+    //shuao add start
+    private String              openid;
+    private String              appKey;
+    private String              accessToken;
+    //shuao add end
     /** 参数map **/
     private Map<String, String> parasMap;
 
@@ -73,6 +78,30 @@ public class TSign implements Serializable {
      */
     public boolean isValid() {
         return !(StringUtils.isEmpty(baseUrl) || StringUtils.isEmpty(httpMethod) || StringUtils.isEmpty(appSecret) || MapUtils.isEmpty(parasMap));
+    }
+
+    public String getOpenid() {
+        return openid;
+    }
+
+    public void setOpenid(String openid) {
+        this.openid = openid;
+    }
+
+    public String getAppKey() {
+        return appKey;
+    }
+
+    public void setAppKey(String appKey) {
+        this.appKey = appKey;
+    }
+
+    public String getAccessToken() {
+        return accessToken;
+    }
+
+    public void setAccessToken(String accessToken) {
+        this.accessToken = accessToken;
     }
 
 }

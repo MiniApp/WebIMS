@@ -12,9 +12,9 @@ public class TConstant {
     public static String       OPERATOR_FAIL_REASON                  = "";
 
     /** OAuth认证部分 **/
-    public final static String GET_REQUEST_TOKEN_URL                 = "http://open.t.qq.com/cgi-bin/request_token";
-    public final static String GET_AUTHORIZATION_URL                 = "http://open.t.qq.com/cgi-bin/authorize";
-    public final static String GET_ACCESS_TOKEN_URL                  = "http://open.t.qq.com/cgi-bin/access_token";
+    public final static String GET_REQUEST_TOKEN_URL                 = "https://open.t.qq.com/cgi-bin/request_token";
+    public final static String GET_AUTHORIZATION_URL                 = "https://open.t.qq.com/cgi-bin/oauth2/authorize";
+    public final static String GET_ACCESS_TOKEN_URL                  = "https://open.t.qq.com/cgi-bin/oauth2/access_token";
 
     /** 每页状态的个数 **/
     public static int          STATUS_COUNT_PER_PAGE                 = 20;
@@ -29,7 +29,7 @@ public class TConstant {
     public static String       PARA_OAUTH_VERSION                    = "oauth_version";
 
     /** api使用的部分标准参数值 **/
-    public static String       VALUE_OAUTH_VERSION                   = "1.0";
+    public static String       VALUE_OAUTH_VERSION_1_0               = "1.0";
     public static String	   VALUE_OAUTH_VERSION_2_A				 = "2.a";
     public static String       VALUE_OAUTH_SIGNATURE_METHOD          = "HMAC-SHA1";
 
@@ -41,38 +41,38 @@ public class TConstant {
 
     /**
      * 微博时间线有关api使用时的url
-     * http://wiki.open.t.qq.com/index.php/%E6%97%B6%E9%97%B4%E7%BA%BF
+     * https://wiki.open.t.qq.com/index.php/%E6%97%B6%E9%97%B4%E7%BA%BF
      **/
     /** 主页时间线 **/
-    public static String       GET_HOME_TL_URL                       = "http://open.t.qq.com/api/statuses/home_timeline";
+    public static String       GET_HOME_TL_URL                       = "https://open.t.qq.com/api/statuses/home_timeline";
     /** 广播大厅时间线 **/
-    public static String       GET_PUBLIC_TL_URL                     = "http://open.t.qq.com/api/statuses/public_timeline";
+    public static String       GET_PUBLIC_TL_URL                     = "https://open.t.qq.com/api/statuses/public_timeline";
     /** 其他用户发表时间线 **/
-    public static String       GET_USER_TL_URL                       = "http://open.t.qq.com/api/statuses/user_timeline";
+    public static String       GET_USER_TL_URL                       = "https://open.t.qq.com/api/statuses/user_timeline";
     /** 用户提及时间线 **/
-    public static String       GET_MENTIONS_TL_URL                   = "http://open.t.qq.com/api/statuses/mentions_timeline";
+    public static String       GET_MENTIONS_TL_URL                   = "https://open.t.qq.com/api/statuses/mentions_timeline";
     /** 话题时间线 **/
-    public static String       GET_TOPIC_TL_URL                      = "http://open.t.qq.com/api/statuses/ht_timeline";
+    public static String       GET_TOPIC_TL_URL                      = "https://open.t.qq.com/api/statuses/ht_timeline";
     /** 我发表时间线 **/
-    public static String       GET_BROADCAST_TL_URL                  = "http://open.t.qq.com/api/statuses/broadcast_timeline";
+    public static String       GET_BROADCAST_TL_URL                  = "https://open.t.qq.com/api/statuses/broadcast_timeline";
     /** 特别收听的人发表时间线 **/
-    public static String       GET_SPECIAL_TL_URL                    = "http://open.t.qq.com/api/statuses/special_timeline";
+    public static String       GET_SPECIAL_TL_URL                    = "https://open.t.qq.com/api/statuses/special_timeline";
     /** 地区发表时间线 **/
-    public static String       GET_AREA_TL_URL                       = "http://open.t.qq.com/api/statuses/area_timeline";
+    public static String       GET_AREA_TL_URL                       = "https://open.t.qq.com/api/statuses/area_timeline";
     /** 主页时间线索引 **/
-    public static String       GET_HOME_TL_IDS_URL                   = "http://open.t.qq.com/api/statuses/home_timeline_ids";
+    public static String       GET_HOME_TL_IDS_URL                   = "https://open.t.qq.com/api/statuses/home_timeline_ids";
     /** 其他用户发表时间线索引 **/
-    public static String       GET_USER_TL_IDS_URL                   = "http://open.t.qq.com/api/statuses/user_timeline_ids";
+    public static String       GET_USER_TL_IDS_URL                   = "https://open.t.qq.com/api/statuses/user_timeline_ids";
     /** 我发表时间线索引 **/
-    public static String       GET_BROADCAST_TL_IDS_URL              = "http://open.t.qq.com/api/statuses/broadcast_timeline_ids";
+    public static String       GET_BROADCAST_TL_IDS_URL              = "https://open.t.qq.com/api/statuses/broadcast_timeline_ids";
     /** 用户提及时间线索引 **/
-    public static String       GET_MENTIONS_TL_IDS_URL               = "http://open.t.qq.com/api/statuses/mentions_timeline_ids";
+    public static String       GET_MENTIONS_TL_IDS_URL               = "https://open.t.qq.com/api/statuses/mentions_timeline_ids";
     /** 多用户发表时间线 **/
-    public static String       GET_USERS_TL_URL                      = "http://open.t.qq.com/api/statuses/users_timeline";
+    public static String       GET_USERS_TL_URL                      = "https://open.t.qq.com/api/statuses/users_timeline";
     /** 多用户发表时间线索引 **/
-    public static String       GET_USERS_TL_IDS_URL                  = "http://open.t.qq.com/api/statuses/users_timeline_ids";
+    public static String       GET_USERS_TL_IDS_URL                  = "https://open.t.qq.com/api/statuses/users_timeline_ids";
     /** 拉取vip用户发表微博的消息 **/
-    public static String       GET_VIP_STATUS_TL_URL                 = "http://open.t.qq.com/api/status/home_timeline_vip";
+    public static String       GET_VIP_STATUS_TL_URL                 = "https://open.t.qq.com/api/status/home_timeline_vip";
 
     /**
      * 微博时间线有关api使用时的部分参数
@@ -162,42 +162,42 @@ public class TConstant {
 
     /**
      * 微博相关api使用时的url
-     * http://wiki.open.t.qq.com/index.php/%E5%BE%AE%E5%8D%9A%E7%9B%B8%E5%85%B3
+     * https://wiki.open.t.qq.com/index.php/%E5%BE%AE%E5%8D%9A%E7%9B%B8%E5%85%B3
      */
     /** 获取一条微博数据 **/
-    public static String       GET_STATUS_URL                        = "http://open.t.qq.com/api/t/show";
+    public static String       GET_STATUS_URL                        = "https://open.t.qq.com/api/t/show";
     /** 发表一条微博　 **/
-    public static String       ADD_STATUS_URL                        = "http://open.t.qq.com/api/t/add";
+    public static String       ADD_STATUS_URL                        = "https://open.t.qq.com/api/t/add";
     /** 删除一条微博 **/
-    public static String       DELETE_STATUS_URL                     = "http://open.t.qq.com/api/t/del";
+    public static String       DELETE_STATUS_URL                     = "https://open.t.qq.com/api/t/del";
     /** 转播一条微博 **/
-    public static String       REPOST_STATUS_URL                     = "http://open.t.qq.com/api/t/re_add";
+    public static String       REPOST_STATUS_URL                     = "https://open.t.qq.com/api/t/re_add";
     /** 回复一条微博 **/
-    public static String       REPLY_STATUS_URL                      = "http://open.t.qq.com/api/t/reply";
+    public static String       REPLY_STATUS_URL                      = "https://open.t.qq.com/api/t/reply";
     /** 发表一条带图片的微博 **/
-    public static String       ADD_STATUS_WITH_PIC_URL               = "http://open.t.qq.com/api/t/add_pic";
+    public static String       ADD_STATUS_WITH_PIC_URL               = "https://open.t.qq.com/api/t/add_pic";
     /** 转播数或点评数 **/
-    public static String       GET_REPOST_AND_COMMENT_COUNT_URL      = "http://open.t.qq.com/api/t/re_count";
+    public static String       GET_REPOST_AND_COMMENT_COUNT_URL      = "https://open.t.qq.com/api/t/re_count";
     /** 获取单条微博的转发或点评列表 **/
-    public static String       GET_COMMENTS_URL                      = "http://open.t.qq.com/api/t/re_list";
+    public static String       GET_COMMENTS_URL                      = "https://open.t.qq.com/api/t/re_list";
     /** 点评一条微博 **/
-    public static String       COMMENT_STATUS_URL                    = "http://open.t.qq.com/api/t/comment";
+    public static String       COMMENT_STATUS_URL                    = "https://open.t.qq.com/api/t/comment";
     /** 发表音乐微博 **/
     public static String       ADD_MUSIC_STATUS_URL                  = "https://open.t.qq.com/api/t/add_music";
     /** 发表视频微博 **/
-    public static String       ADD_VIDEO_STATUS_URL                  = "http://open.t.qq.com/api/t/add_video";
+    public static String       ADD_VIDEO_STATUS_URL                  = "https://open.t.qq.com/api/t/add_video";
     /** 获取视频信息 **/
-    public static String       GET_VIDEO_INFO_URL                    = "http://open.t.qq.com/api/t/getvideoinfo";
+    public static String       GET_VIDEO_INFO_URL                    = "https://open.t.qq.com/api/t/getvideoinfo";
     /** 根据微博id批量获取微博内容 **/
-    public static String       GET_STATUS_BY_IDS_URL                 = "http://open.t.qq.com/api/t/list";
+    public static String       GET_STATUS_BY_IDS_URL                 = "https://open.t.qq.com/api/t/list";
     /** 获取转播的再次转播数 **/
-    public static String       GET_RE_REPOST_COUNT_URL               = "http://open.t.qq.com/api/t/sub_re_count";
+    public static String       GET_RE_REPOST_COUNT_URL               = "https://open.t.qq.com/api/t/sub_re_count";
     /** 发表心情帖子 **/
-    public static String       ADD_EMOTION_STATUS_URL                = "http://open.t.qq.com/api/t/add_emotion";
+    public static String       ADD_EMOTION_STATUS_URL                = "https://open.t.qq.com/api/t/add_emotion";
 
     /**
      * 微博相关api使用时的部分参数
-     * http://wiki.open.t.qq.com/index.php/%E5%BE%AE%E5%8D%9A%E7%9B%B8%E5%85%B3
+     * https://wiki.open.t.qq.com/index.php/%E5%BE%AE%E5%8D%9A%E7%9B%B8%E5%85%B3
      */
     public static String       PARA_CONTENT                          = "content";
     public static String       PARA_LONGITUDE                        = "jing";
@@ -216,7 +216,7 @@ public class TConstant {
 
     /**
      * 微博相关api使用时的部分参数值
-     * http://wiki.open.t.qq.com/index.php/%E5%BE%AE%E5%8D%9A%E7%9B%B8%E5%85%B3
+     * https://wiki.open.t.qq.com/index.php/%E5%BE%AE%E5%8D%9A%E7%9B%B8%E5%85%B3
      */
     /** 转播数或点评数api,0获取转发计数，1点评计数, 2两者都取 **/
     public static int          VALUE_RE_COUNT_FLAG_REPOST            = 0;
@@ -241,24 +241,24 @@ public class TConstant {
 
     /**
      * 微博帐户相关api使用时的url
-     * http://wiki.open.t.qq.com/index.php/%E5%B8%90%E6%88%B7%E7%9B%B8%E5%85%B3
+     * https://wiki.open.t.qq.com/index.php/%E5%B8%90%E6%88%B7%E7%9B%B8%E5%85%B3
      */
     /** 获取自己的详细资料 **/
-    public static String       GET_SELF_INFO_URL                     = "http://open.t.qq.com/api/user/info";
+    public static String       GET_SELF_INFO_URL                     = "https://open.t.qq.com/api/user/info";
     /** 更新用户信息 **/
-    public static String       UPDATE_USER_INFO_URL                  = "http://open.t.qq.com/api/user/update";
+    public static String       UPDATE_USER_INFO_URL                  = "https://open.t.qq.com/api/user/update";
     /** 更新用户头像信息 **/
-    public static String       UPDATE_USER_HEAD_INFO_URL             = "http://open.t.qq.com/api/user/update_head";
+    public static String       UPDATE_USER_HEAD_INFO_URL             = "https://open.t.qq.com/api/user/update_head";
     /** 更新用户教育信息 **/
-    public static String       UPDATE_USER_EDU_INFO_URL              = "http://open.t.qq.com/api/user/update_edu";
+    public static String       UPDATE_USER_EDU_INFO_URL              = "https://open.t.qq.com/api/user/update_edu";
     /** 获取其他人资料 **/
-    public static String       GET_OTHER_USER_INFO_URL               = "http://open.t.qq.com/api/user/other_info";
+    public static String       GET_OTHER_USER_INFO_URL               = "https://open.t.qq.com/api/user/other_info";
     /** 获取一批人的简单资料 **/
-    public static String       GET_OTHER_USERS_INFO_URL              = "http://open.t.qq.com/api/user/infos";
+    public static String       GET_OTHER_USERS_INFO_URL              = "https://open.t.qq.com/api/user/infos";
     /** 获取一批人的简单资料 **/
-    public static String       GET_SEVERAL_USER_INFOS_URL            = "http://open.t.qq.com/api/user/infos";
+    public static String       GET_SEVERAL_USER_INFOS_URL            = "https://open.t.qq.com/api/user/infos";
     /** 验证账户是否合法 **/
-    public static String       VERIFY_ACCOUNT_URL                    = "http://open.t.qq.com/api/user/verify";
+    public static String       VERIFY_ACCOUNT_URL                    = "https://open.t.qq.com/api/user/verify";
 
     /** 微博帐户相关api使用时的部分参数 **/
     public static String       PARA_NICK                             = "nick";
@@ -281,46 +281,46 @@ public class TConstant {
 
     /**
      * 微博关系链相关api使用时的url
-     * http://wiki.open.t.qq.com/index.php/%E5%85%B3%E7%B3%BB%E9%93%BE%E7%9B%B8%E5%85%B3
+     * https://wiki.open.t.qq.com/index.php/%E5%85%B3%E7%B3%BB%E9%93%BE%E7%9B%B8%E5%85%B3
      */
     /** 我的听众列表 **/
-    public static String       GET_SELF_FANS_URL                     = "http://open.t.qq.com/api/friends/fanslist";
+    public static String       GET_SELF_FANS_URL                     = "https://open.t.qq.com/api/friends/fanslist";
     /** 我的听众姓名列表 **/
-    public static String       GET_SELF_FANS_NAMES_URL               = "http://open.t.qq.com/api/friends/fanslist_name";
+    public static String       GET_SELF_FANS_NAMES_URL               = "https://open.t.qq.com/api/friends/fanslist_name";
     /** 我收听的人列表 **/
-    public static String       GET_SELF_INTERESTED_URL               = "http://open.t.qq.com/api/friends/idollist";
+    public static String       GET_SELF_INTERESTED_URL               = "https://open.t.qq.com/api/friends/idollist";
     /** 我收听的人姓名列表 **/
-    public static String       GET_SELF_INTERESTED_NAMES_URL         = "http://open.t.qq.com/api/friends/idollist_name";
+    public static String       GET_SELF_INTERESTED_NAMES_URL         = "https://open.t.qq.com/api/friends/idollist_name";
     /** 黑名单列表 **/
-    public static String       GET_SELF_BLACK_LIST_URL               = "http://open.t.qq.com/api/friends/blacklist";
+    public static String       GET_SELF_BLACK_LIST_URL               = "https://open.t.qq.com/api/friends/blacklist";
     /** 我的听众列表，简单信息（200个） **/
-    public static String       GET_SELF_FANS_SIMPLE_URL              = "http://open.t.qq.com/api/friends/fanslist_s";
+    public static String       GET_SELF_FANS_SIMPLE_URL              = "https://open.t.qq.com/api/friends/fanslist_s";
     /** 我的收听列表，简单信息（200个） **/
-    public static String       GET_SELF_INTERESTED_SIMPLE_URL        = "http://open.t.qq.com/api/friends/idollist_s";
+    public static String       GET_SELF_INTERESTED_SIMPLE_URL        = "https://open.t.qq.com/api/friends/idollist_s";
     /** 特别收听列表 **/
-    public static String       GET_SELF_SPECIAL_INTERESTED_URL       = "http://open.t.qq.com/api/friends/speciallist";
+    public static String       GET_SELF_SPECIAL_INTERESTED_URL       = "https://open.t.qq.com/api/friends/speciallist";
     /** 收听某个用户 **/
-    public static String       ADD_FRIEND_URL                        = "http://open.t.qq.com/api/friends/add";
+    public static String       ADD_FRIEND_URL                        = "https://open.t.qq.com/api/friends/add";
     /** 取消收听某个用户 **/
-    public static String       DELETE_FRIEND_URL                     = "http://open.t.qq.com/api/friends/del";
+    public static String       DELETE_FRIEND_URL                     = "https://open.t.qq.com/api/friends/del";
     /** 特别收听某个用户 **/
-    public static String       ADD_SPECIAL_FRIEND_URL                = "http://open.t.qq.com/api/friends/addspecial";
+    public static String       ADD_SPECIAL_FRIEND_URL                = "https://open.t.qq.com/api/friends/addspecial";
     /** 取消特别收听某个用户 **/
-    public static String       DELETE_SPECIAL_FRIEND_URL             = "http://open.t.qq.com/api/friends/delspecial";
+    public static String       DELETE_SPECIAL_FRIEND_URL             = "https://open.t.qq.com/api/friends/delspecial";
     /** 添加某个用户到黑名单 **/
-    public static String       ADD_OTHER_TO_BLACK_LIST_URL           = "http://open.t.qq.com/api/friends/addblacklist";
+    public static String       ADD_OTHER_TO_BLACK_LIST_URL           = "https://open.t.qq.com/api/friends/addblacklist";
     /** 从黑名单中删除某个用户 **/
-    public static String       DELETE_OTHER_FROM_BLACK_LIST_URL      = "http://open.t.qq.com/api/friends/delblacklist";
+    public static String       DELETE_OTHER_FROM_BLACK_LIST_URL      = "https://open.t.qq.com/api/friends/delblacklist";
     /** 检测是否我的听众或收听的人 **/
-    public static String       CHECK_RELATION_WITH_SELF_URL          = "http://open.t.qq.com/api/friends/check";
+    public static String       CHECK_RELATION_WITH_SELF_URL          = "https://open.t.qq.com/api/friends/check";
     /** 其他帐户听众列表 **/
-    public static String       GET_OTHER_USER_FANS_URL               = "http://open.t.qq.com/api/friends/user_fanslist";
+    public static String       GET_OTHER_USER_FANS_URL               = "https://open.t.qq.com/api/friends/user_fanslist";
     /** 其他帐户收听的人列表 **/
-    public static String       GET_OTHER_USER_INTERESTED_URL         = "http://open.t.qq.com/api/friends/user_idollist";
+    public static String       GET_OTHER_USER_INTERESTED_URL         = "https://open.t.qq.com/api/friends/user_idollist";
     /** 其他帐户特别收听的人列表 **/
-    public static String       GET_OTHER_USER_SPECIAL_INTERESTED_URL = "http://open.t.qq.com/api/friends/user_speciallist";
+    public static String       GET_OTHER_USER_SPECIAL_INTERESTED_URL = "https://open.t.qq.com/api/friends/user_speciallist";
     /** 互听关系链列表 **/
-    public static String       GET_Mutual_INTERESTED_URL             = "http://open.t.qq.com/api/friends/mutual_list";
+    public static String       GET_Mutual_INTERESTED_URL             = "https://open.t.qq.com/api/friends/mutual_list";
 
     /** 微博关系链相关api使用时的部分参数 **/
     /** 请求个数 **/
@@ -346,27 +346,27 @@ public class TConstant {
 
     /**
      * 微博私信相关api使用时的url
-     * http://wiki.open.t.qq.com/index.php/%E7%A7%81%E4%BF%A1%E7%9B%B8%E5%85%B3
+     * https://wiki.open.t.qq.com/index.php/%E7%A7%81%E4%BF%A1%E7%9B%B8%E5%85%B3
      */
     /** 发私信 **/
-    public static String       SEND_MESSAGE_URL                      = "http://open.t.qq.com/api/private/add";
+    public static String       SEND_MESSAGE_URL                      = "https://open.t.qq.com/api/private/add";
     /** 删除一条私信 **/
-    public static String       DELETE_MESSAGE_URL                    = "http://open.t.qq.com/api/private/del";
+    public static String       DELETE_MESSAGE_URL                    = "https://open.t.qq.com/api/private/del";
     /** 收件箱 **/
-    public static String       GET_RECEIVE_MESSAGES_URL              = "http://open.t.qq.com/api/private/recv";
+    public static String       GET_RECEIVE_MESSAGES_URL              = "https://open.t.qq.com/api/private/recv";
     /** 发件箱 **/
-    public static String       GET_SEND_MESSAGES_URL                 = "http://open.t.qq.com/api/private/send";
+    public static String       GET_SEND_MESSAGES_URL                 = "https://open.t.qq.com/api/private/send";
 
     /**
      * 微博搜索相关api使用时的url
-     * http://wiki.open.t.qq.com/index.php/%E6%90%9C%E7%B4%A2%E7%9B%B8%E5%85%B3
+     * https://wiki.open.t.qq.com/index.php/%E6%90%9C%E7%B4%A2%E7%9B%B8%E5%85%B3
      */
     /** 搜索用户 **/
-    public static String       SEARCH_USER_URL                       = "http://open.t.qq.com/api/search/user";
+    public static String       SEARCH_USER_URL                       = "https://open.t.qq.com/api/search/user";
     /** 搜索微博 **/
-    public static String       SEARCH_STATUS_URL                     = "http://open.t.qq.com/api/search/t";
+    public static String       SEARCH_STATUS_URL                     = "https://open.t.qq.com/api/search/t";
     /** 通过标签搜索用户 **/
-    public static String       SEARCH_USER_BY_TAG_URL                = "http://open.t.qq.com/api/search/userbytag";
+    public static String       SEARCH_USER_BY_TAG_URL                = "https://open.t.qq.com/api/search/userbytag";
 
     /**
      * 微博搜索相关api使用时的部分参数
@@ -380,12 +380,12 @@ public class TConstant {
 
     /**
      * 微博热度，趋势相关api使用时的url
-     * http://wiki.open.t.qq.com/index.php/%E7%83%AD%E5%BA%A6%EF%BC%8C%E8%B6%8B%E5%8A%BF
+     * https://wiki.open.t.qq.com/index.php/%E7%83%AD%E5%BA%A6%EF%BC%8C%E8%B6%8B%E5%8A%BF
      */
     /** 话题热榜 **/
-    public static String       GET_HOT_TOPICS_URL                    = "http://open.t.qq.com/api/trends/ht";
+    public static String       GET_HOT_TOPICS_URL                    = "https://open.t.qq.com/api/trends/ht";
     /** 转播热榜 **/
-    public static String       GET_HOT_REPOSTS_URL                   = "http://open.t.qq.com/api/trends/t";
+    public static String       GET_HOT_REPOSTS_URL                   = "https://open.t.qq.com/api/trends/t";
 
     /**
      * 微博热度，趋势相关api使用时的部分参数
@@ -399,11 +399,11 @@ public class TConstant {
 
     /**
      * 微博数据更新相关api使用时的url
-     * http://wiki.open.t.qq.com/index.php/%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E7%9B%B8%E5%85%B3/%E6%9F%A5%E7%9C%8B%E6%
+     * https://wiki.open.t.qq.com/index.php/%E6%95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E7%9B%B8%E5%85%B3/%E6%9F%A5%E7%9C%8B%E6%
      * 95%B0%E6%8D%AE%E6%9B%B4%E6%96%B0%E6%9D%A1%E6%95%B0
      */
     /** 查看数据更新条数 **/
-    public static String       GET_UPDATE_INFO_NUM_URL               = "http://open.t.qq.com/api/info/update";
+    public static String       GET_UPDATE_INFO_NUM_URL               = "https://open.t.qq.com/api/info/update";
 
     /**
      * 微博数据更新相关api使用时的部分参数
@@ -430,29 +430,29 @@ public class TConstant {
 
     /**
      * 微博数据收藏相关api使用时的url
-     * http://wiki.open.t.qq.com/index.php/%E6%95%B0%E6%8D%AE%E6%94%B6%E8%97%8F
+     * https://wiki.open.t.qq.com/index.php/%E6%95%B0%E6%8D%AE%E6%94%B6%E8%97%8F
      */
     /** 收藏一条微博 **/
-    public static String       COLLECT_STATUS_URL                    = "http://open.t.qq.com/api/fav/addt";
+    public static String       COLLECT_STATUS_URL                    = "https://open.t.qq.com/api/fav/addt";
     /** 取消收藏一条微博 **/
-    public static String       UNCOLLECT_STATUS_URL                  = "http://open.t.qq.com/api/fav/delt";
+    public static String       UNCOLLECT_STATUS_URL                  = "https://open.t.qq.com/api/fav/delt";
     /** 收藏的微博列表 **/
-    public static String       GET_COLLECT_STATUS_URL                = "http://open.t.qq.com/api/fav/list_t";
+    public static String       GET_COLLECT_STATUS_URL                = "https://open.t.qq.com/api/fav/list_t";
     /** 订阅话题 **/
-    public static String       SUBSCRIBE_TOPIC_URL                   = "http://open.t.qq.com/api/fav/addht";
+    public static String       SUBSCRIBE_TOPIC_URL                   = "https://open.t.qq.com/api/fav/addht";
     /** 取消订阅话题 **/
-    public static String       UNSUBSCRIBE_TOPIC_URL                 = "http://open.t.qq.com/api/fav/delht";
+    public static String       UNSUBSCRIBE_TOPIC_URL                 = "https://open.t.qq.com/api/fav/delht";
     /** 获取已订阅话题列表 **/
-    public static String       GET_SUBSCRIBE_TOPICS_URL              = "http://open.t.qq.com/api/fav/list_ht";
+    public static String       GET_SUBSCRIBE_TOPICS_URL              = "https://open.t.qq.com/api/fav/list_ht";
 
     /**
      * 微博话题相关api使用时的url
-     * http://wiki.open.t.qq.com/index.php/%E8%AF%9D%E9%A2%98%E7%9B%B8%E5%85%B3
+     * https://wiki.open.t.qq.com/index.php/%E8%AF%9D%E9%A2%98%E7%9B%B8%E5%85%B3
      */
     /** 根据话题名称查询话题id **/
-    public static String       GET_TOPIC_ID_URL                      = "http://open.t.qq.com/api/ht/ids";
+    public static String       GET_TOPIC_ID_URL                      = "https://open.t.qq.com/api/ht/ids";
     /** 根据话题id获取话题相关信息 **/
-    public static String       GET_TOPIC_INFO_URL                    = "http://open.t.qq.com/api/ht/info";
+    public static String       GET_TOPIC_INFO_URL                    = "https://open.t.qq.com/api/ht/info";
 
     /**
      * 微博话题相关api使用时的部分参数
@@ -464,12 +464,12 @@ public class TConstant {
 
     /**
      * 微博标签相关api使用时的url
-     * http://wiki.open.t.qq.com/index.php/%E8%AF%9D%E9%A2%98%E7%9B%B8%E5%85%B3
+     * https://wiki.open.t.qq.com/index.php/%E8%AF%9D%E9%A2%98%E7%9B%B8%E5%85%B3
      */
     /** 添加标签 **/
-    public static String       ADD_TAG_URL                           = "http://open.t.qq.com/api/tag/add";
+    public static String       ADD_TAG_URL                           = "https://open.t.qq.com/api/tag/add";
     /** 删除标签 **/
-    public static String       DELETE_TAG_URL                        = "http://open.t.qq.com/api/tag/del";
+    public static String       DELETE_TAG_URL                        = "https://open.t.qq.com/api/tag/del";
 
     /**
      * 微博标签相关api使用时的部分参数
@@ -494,14 +494,14 @@ public class TConstant {
 
     /** api 返回的json传中的字段 **/
 
-    /** 返回头像图片大小限制， 包括20、30、40、50、100，见http://open.t.qq.com/resource.php?i=2,1#faq_common 第5条 **/
+    /** 返回头像图片大小限制， 包括20、30、40、50、100，见https://open.t.qq.com/resource.php?i=2,1#faq_common 第5条 **/
     public static int          HEAD_ICON_SIZE_20                     = 20;
     public static int          HEAD_ICON_SIZE_30                     = 30;
     public static int          HEAD_ICON_SIZE_40                     = 40;
     public static int          HEAD_ICON_SIZE_50                     = 50;
     public static int          HEAD_ICON_SIZE_100                    = 100;
 
-    /** 返回图片的大小限制，包括120、160、460、2000，见http://open.t.qq.com/resource.php?i=2,1#faq_common 第6条 **/
+    /** 返回图片的大小限制，包括120、160、460、2000，见https://open.t.qq.com/resource.php?i=2,1#faq_common 第6条 **/
     public static int          IMAGE_SIZE_60                         = 60;
     public static int          IMAGE_SIZE_120                        = 120;
     public static int          IMAGE_SIZE_240                        = 240;
