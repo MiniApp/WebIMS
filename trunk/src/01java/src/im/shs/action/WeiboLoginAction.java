@@ -95,9 +95,9 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
     }
 
     public String tencentWeiboLogin() throws UnsupportedEncodingException {
-        String code_temp = request.getParameter("code");// 访问授权链接后腾讯微博返回的一个随机code值
-        logger.info("Code is : " + code_temp);
-        Map<String, Object> map = weiboService.tencentWeiboLogin(code_temp);
+       /* String code_temp = request.getParameter("code");// 访问授权链接后腾讯微博返回的一个随机code值
+        logger.info("Code is : " + code_temp);*/
+        Map<String, Object> map = weiboService.tencentWeiboLogin();
         this.urlTokens = (String) map.get("urlTokens");
         logger.info("urlTokens is : " + urlTokens);
         Cookie accessToken = new Cookie("accessToken", (String) map.get("accessToken"));

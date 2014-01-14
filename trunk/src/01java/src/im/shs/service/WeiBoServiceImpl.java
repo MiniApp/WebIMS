@@ -48,7 +48,7 @@ public class WeiBoServiceImpl extends AbstractService implements WeiBoService {
         url.append(authorizeURL);
         url.append("?client_id=");
         url.append(client_ID);
-        url.append("&response_type=code&redirect_uri=");
+        url.append("&response_type=token&redirect_uri=");
         url.append(redirect_URI);
         url.append("&state=");
         url.append(state);
@@ -57,7 +57,7 @@ public class WeiBoServiceImpl extends AbstractService implements WeiBoService {
     }
 
     @Override
-	public Map<String, Object> tencentWeiboLogin(String code_temp) throws UnsupportedEncodingException {
+	public Map<String, Object> tencentWeiboLogin() throws UnsupportedEncodingException {
 	    init(oAuth);
 	    Map<String, Object> returnData= new HashMap<String, Object>();
 	    String urlTokens = "";
@@ -81,9 +81,9 @@ public class WeiBoServiceImpl extends AbstractService implements WeiBoService {
         NameValuePair client_secret = new NameValuePair("client_secret", client_secret_temp);
         NameValuePair redirect_uri = new NameValuePair("redirect_uri", redirect_uri_temp);
         NameValuePair grant_type = new NameValuePair("grant_type", grant_type_temp);
-        NameValuePair code = new NameValuePair("code", code_temp);
+        //NameValuePair code = new NameValuePair("code", code_temp);
         NameValuePair state = new NameValuePair("state", state_temp);
-        NameValuePair[] params = new NameValuePair[] { client_id, client_secret, redirect_uri, grant_type, code, state };
+        NameValuePair[] params = new NameValuePair[] { client_id, client_secret, redirect_uri, grant_type, state };
         String result = this.doHttpClient(url, params);
         logger.info("result:" + result);
         int isExist = result.indexOf("nick");//nick用户昵称
