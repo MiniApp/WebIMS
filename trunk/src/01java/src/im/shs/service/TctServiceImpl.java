@@ -100,12 +100,9 @@ public class TctServiceImpl extends AbstractService implements TctService {
     public void addStatus() throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
     	init();
     	TStatusInfoPara status = new TStatusInfoPara();
-        status.setStatusContent("发表音乐微博");
+        status.setStatusContent("Test");
         /** 设置音乐地址 **/
-        status.setMusicUrl("http://201112.wma.9ku.com/file2/183/182737.mp3");
-        status.setMusicAuthor("张芸京");
-        status.setMusicTitle("偏爱");
-        String s1 = tSdkService.addMusicStatusStr(status);
+        String s1 = tSdkService.addStatusStr(status);
 /*
         status.setStatusContent("发表视频微博");
         *//** 设置视频地址 **//*

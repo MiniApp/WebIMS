@@ -3,17 +3,20 @@ package com.ubiyao.sns.tencent.util;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Map;
 
 import javax.crypto.Mac;
 import javax.crypto.spec.SecretKeySpec;
 
+import org.apache.http.NameValuePair;
+
+import com.tencent.weibo.utils.QStrOperate;
 import com.ubiyao.base.tencent.util.HttpUtils;
 import com.ubiyao.base.tencent.util.MapUtils;
 import com.ubiyao.base.tencent.util.StringUtils;
 import com.ubiyao.sns.tencent.entity.TAppAndToken;
 import com.ubiyao.sns.tencent.entity.TSign;
-import com.ubiyao.sns.tencent.util.TConstant;
 
 /**
  * 腾讯微博签名和http请求
@@ -21,7 +24,7 @@ import com.ubiyao.sns.tencent.util.TConstant;
  * @author Trinea 2011-11-9 上午12:04:43
  */
 public class TSignAndHttpUtils {
-
+	
     /**
      * 创建签名，规则见<a href="http://wiki.open.t.qq.com/index.php/OAuth%E6%8E%88%E6%9D%83%E8%AF%B4%E6%98%8E">腾讯oauth api介绍</a>
      * 
@@ -138,12 +141,10 @@ public class TSignAndHttpUtils {
      * @param parasMap key为参数名，value为参数值
      * @param qqTAppAndToken
      * @return
-     * @throws UnsupportedEncodingException 
-     * @throws NoSuchAlgorithmException 
-     * @throws InvalidKeyException 
+     * @throws Exception 
      */
     public static String signAndHttpPostEncodeParas(String url, Map<String, String> parasMap,
-                                                    TAppAndToken qqTAppAndToken) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
+                                                    TAppAndToken qqTAppAndToken) {
         if (StringUtils.isEmpty(url) || MapUtils.isEmpty(parasMap) || qqTAppAndToken == null
             || !qqTAppAndToken.isValid()) {
             return null;
@@ -151,13 +152,22 @@ public class TSignAndHttpUtils {
 
         /** 对参数进行签名，加密参数然后发http post请求到固定url，返回内容 **/
         TSign qqTSign = new TSign();
-        qqTSign.setBaseUrl(url);
+        /*qqTSign.setBaseUrl(url);
         qqTSign.setHttpMethod(HttpUtils.HTTP_POST_METHOD.toUpperCase());
         qqTSign.setAppSecret(qqTAppAndToken.getAppSecret());
         qqTSign.setParasMap(parasMap);
-        parasMap.put(TConstant.PARA_OAUTH_SIGNATURE, signature(qqTSign));
-        System.out.println("7777 : "+HttpUtils.httpPostEncodeParas(qqTSign.getBaseUrl(), parasMap));
-        return HttpUtils.httpPostEncodeParas(qqTSign.getBaseUrl(), parasMap);
+        parasMap.put(TConstant.PARA_OAUTH_SIGNATURE, signature(qqTSign));*/
+        //System.out.println("7777 : "+HttpUtils.httpPostEncodeParas(qqTSign.getBaseUrl(), parasMap));
+        String queryString = TStrOperate.getQueryString(parasMap);
+        THttpClient qHttpClient = new THttpClient();
+        try {
+			return qHttpClient.httpPost(url, queryString);
+		} catch (Exception e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
+        return "";
+        //return HttpUtils.httpPostEncodeParas(qqTSign.getBaseUrl(), parasMap);
     }
 
     /**

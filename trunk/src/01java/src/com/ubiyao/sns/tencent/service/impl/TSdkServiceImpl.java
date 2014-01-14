@@ -63,8 +63,7 @@ public class TSdkServiceImpl implements TSdkService {
             return null;
         }
 
-        Map<String, String> parasMap = TParaMapUtils.getStdAndQqTTLParaMap(qqTAppAndToken.getAppKey(),
-                qqTAppAndToken.getAccessToken(), qqTTimelinePara);
+        Map<String, String> parasMap = TParaMapUtils.getStdAndQqTTLParaMap(qqTAppAndToken, qqTTimelinePara);
 
         return TSignAndHttpUtils.signAndHttpGet(url, parasMap, qqTAppAndToken);
     }
@@ -330,8 +329,7 @@ public class TSdkServiceImpl implements TSdkService {
             return null;
         }
 
-        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken.getAppKey(),
-                qqTAppAndToken.getAccessToken());
+        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken);
         if (MapUtils.isEmpty(parasMap)) {
             return null;
         }
@@ -366,8 +364,7 @@ public class TSdkServiceImpl implements TSdkService {
             return null;
         }
 
-        Map<String, String> parasMap = TParaMapUtils.getStdAndQqTSIParaMap(qqTAppAndToken.getAppKey(),
-                qqTAppAndToken.getAccessToken(), status);
+        Map<String, String> parasMap = TParaMapUtils.getStdAndQqTSIParaMap(qqTAppAndToken, status);
         if (MapUtils.isEmpty(parasMap)) {
             return null;
         }
@@ -626,8 +623,7 @@ public class TSdkServiceImpl implements TSdkService {
             return null;
         }
 
-        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken.getAppKey(),
-                qqTAppAndToken.getAccessToken());
+        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken);
         parasMap.put(TConstant.PARA_FORMAT, format);
         parasMap.put(TConstant.PARA_VIDEO_URL, videoUrl);
 
@@ -659,8 +655,7 @@ public class TSdkServiceImpl implements TSdkService {
             return null;
         }
 
-        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken.getAppKey(),
-                qqTAppAndToken.getAccessToken());
+        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken);
         parasMap.put(TConstant.PARA_FORMAT, format);
         parasMap.put(TConstant.PARA_STATUS_IDS, ids);
 
@@ -693,8 +688,7 @@ public class TSdkServiceImpl implements TSdkService {
             return null;
         }
 
-        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken.getAppKey(),
-                qqTAppAndToken.getAccessToken());
+        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken);
         parasMap.put(TConstant.PARA_FORMAT, format);
         parasMap.put(TConstant.PARA_STATUS_IDS, ids);
 
@@ -738,8 +732,7 @@ public class TSdkServiceImpl implements TSdkService {
             return null;
         }
 
-        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken.getAppKey(),
-                qqTAppAndToken.getAccessToken());
+        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken);
         parasMap.put(TConstant.PARA_FORMAT, TConstant.VALUE_FORMAT_JSON);
         parasMap.put(TConstant.PARA_STATUS_ID, Long.toString(statusId));
 
@@ -779,8 +772,7 @@ public class TSdkServiceImpl implements TSdkService {
             return null;
         }
 
-        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken.getAppKey(),
-                qqTAppAndToken.getAccessToken());
+        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken);
         if (MapUtils.isEmpty(parasMap)) {
             return null;
         }
@@ -876,8 +868,7 @@ public class TSdkServiceImpl implements TSdkService {
             return null;
         }
 
-        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken.getAppKey(),
-                qqTAppAndToken.getAccessToken());
+        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken);
         if (MapUtils.isEmpty(parasMap)) {
             return null;
         }
@@ -911,8 +902,7 @@ public class TSdkServiceImpl implements TSdkService {
             return null;
         }
 
-        Map<String, String> parasMap = TParaMapUtils.getStdAndQqTUserParaMap(qqTAppAndToken.getAppKey(),
-                qqTAppAndToken.getAccessToken(), qqTUserPara);
+        Map<String, String> parasMap = TParaMapUtils.getStdAndQqTUserParaMap(qqTAppAndToken, qqTUserPara);
         return TSignAndHttpUtils.signAndHttpPostEncodeParas(TConstant.UPDATE_USER_INFO_URL, parasMap,
                 qqTAppAndToken);
     }
@@ -939,8 +929,7 @@ public class TSdkServiceImpl implements TSdkService {
             return null;
         }
 
-        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken.getAppKey(),
-                qqTAppAndToken.getAccessToken());
+        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken);
         if (MapUtils.isEmpty(parasMap)) {
             return null;
         }
@@ -968,8 +957,7 @@ public class TSdkServiceImpl implements TSdkService {
             return null;
         }
 
-        Map<String, String> parasMap = TParaMapUtils.getStdAndQqTUEParaMap(qqTAppAndToken.getAppKey(),
-                qqTAppAndToken.getAccessToken(), qqTUserEduPara);
+        Map<String, String> parasMap = TParaMapUtils.getStdAndQqTUEParaMap(qqTAppAndToken, qqTUserEduPara);
         return TSignAndHttpUtils.signAndHttpPost(TConstant.UPDATE_USER_EDU_INFO_URL, parasMap, qqTAppAndToken);
     }
 
@@ -996,8 +984,7 @@ public class TSdkServiceImpl implements TSdkService {
             return null;
         }
 
-        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken.getAppKey(),
-                qqTAppAndToken.getAccessToken());
+        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken);
         if (parasMap == null) {
             return null;
         }
@@ -1034,8 +1021,7 @@ public class TSdkServiceImpl implements TSdkService {
             return null;
         }
 
-        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken.getAppKey(),
-                qqTAppAndToken.getAccessToken());
+        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken);
         if (MapUtils.isEmpty(parasMap)) {
             return null;
         }
@@ -1072,8 +1058,7 @@ public class TSdkServiceImpl implements TSdkService {
             return null;
         }
 
-        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken.getAppKey(),
-                qqTAppAndToken.getAccessToken());
+        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken);
         if (parasMap == null) {
             return null;
         }
@@ -1109,8 +1094,7 @@ public class TSdkServiceImpl implements TSdkService {
             return null;
         }
 
-        Map<String, String> parasMap = TParaMapUtils.getStdAndQqTURParaMap(qqTAppAndToken.getAppKey(),
-                qqTAppAndToken.getAccessToken(), qqTUserRelationPara);
+        Map<String, String> parasMap = TParaMapUtils.getStdAndQqTURParaMap(qqTAppAndToken, qqTUserRelationPara);
         return TSignAndHttpUtils.signAndHttpGet(url, parasMap, qqTAppAndToken);
     }
 
@@ -1683,8 +1667,7 @@ public class TSdkServiceImpl implements TSdkService {
             return null;
         }
 
-        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken.getAppKey(),
-                qqTAppAndToken.getAccessToken());
+        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken);
         if (MapUtils.isEmpty(parasMap)) {
             return null;
         }
@@ -1713,8 +1696,7 @@ public class TSdkServiceImpl implements TSdkService {
             return null;
         }
 
-        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken.getAppKey(),
-                qqTAppAndToken.getAccessToken());
+        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken);
         if (MapUtils.isEmpty(parasMap)) {
             return null;
         }
@@ -1818,8 +1800,7 @@ public class TSdkServiceImpl implements TSdkService {
             return null;
         }
 
-        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken.getAppKey(),
-                qqTAppAndToken.getAccessToken());
+        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken);
         if (MapUtils.isEmpty(parasMap)) {
             return null;
         }
@@ -1940,8 +1921,7 @@ public class TSdkServiceImpl implements TSdkService {
             return null;
         }
 
-        Map<String, String> parasMap = TParaMapUtils.getStdAndQqTSearchParaMap(qqTAppAndToken.getAppKey(),
-                qqTAppAndToken.getAccessToken(), qqTSearchPara);
+        Map<String, String> parasMap = TParaMapUtils.getStdAndQqTSearchParaMap(qqTAppAndToken, qqTSearchPara);
         return TSignAndHttpUtils.signAndHttpGet(url, parasMap, qqTAppAndToken);
     }
 
@@ -2044,8 +2024,7 @@ public class TSdkServiceImpl implements TSdkService {
             return null;
         }
 
-        Map<String, String> parasMap = TParaMapUtils.getStdAndQqTHSParaMap(qqTAppAndToken.getAppKey(),
-                qqTAppAndToken.getAccessToken(), qqTHotStatusPara);
+        Map<String, String> parasMap = TParaMapUtils.getStdAndQqTHSParaMap(qqTAppAndToken, qqTHotStatusPara);
         return TSignAndHttpUtils.signAndHttpGet(url, parasMap, qqTAppAndToken);
 
     }
@@ -2124,8 +2103,7 @@ public class TSdkServiceImpl implements TSdkService {
             return null;
         }
 
-        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken.getAppKey(),
-                qqTAppAndToken.getAccessToken());
+        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken);
         parasMap.put(TConstant.PARA_FORMAT, format);
         parasMap.put(TConstant.PARA_REQ_TYPE, Integer.toString((isClear ? 1 : 0)));
         parasMap.put(TConstant.PARA_CLEAR_TYPE, Integer.toString(clearType));
@@ -2225,8 +2203,7 @@ public class TSdkServiceImpl implements TSdkService {
             return null;
         }
 
-        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken.getAppKey(),
-                qqTAppAndToken.getAccessToken());
+        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken);
         parasMap.put(TConstant.PARA_FORMAT, format);
         parasMap.put(TConstant.PARA_TOPIC_NAMES, names);
 
@@ -2259,8 +2236,7 @@ public class TSdkServiceImpl implements TSdkService {
             return null;
         }
 
-        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken.getAppKey(),
-                qqTAppAndToken.getAccessToken());
+        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken);
         parasMap.put(TConstant.PARA_FORMAT, format);
         parasMap.put(TConstant.PARA_TOPIC_IDS, ids);
 
@@ -2294,8 +2270,7 @@ public class TSdkServiceImpl implements TSdkService {
             return null;
         }
 
-        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken.getAppKey(),
-                qqTAppAndToken.getAccessToken());
+        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken);
         parasMap.put(TConstant.PARA_FORMAT, format);
         parasMap.put(TConstant.PARA_TAG_NAME, tagName);
 
@@ -2323,8 +2298,7 @@ public class TSdkServiceImpl implements TSdkService {
             return null;
         }
 
-        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken.getAppKey(),
-                qqTAppAndToken.getAccessToken());
+        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken);
         parasMap.put(TConstant.PARA_FORMAT, format);
         parasMap.put(TConstant.PARA_TAG_ID, tagId);
 
@@ -2374,7 +2348,7 @@ public class TSdkServiceImpl implements TSdkService {
             return null;
         }
 
-        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken.getAppKey(), oauthToken);
+        Map<String, String> parasMap = TParaMapUtils.getStandardParaMap(qqTAppAndToken);
         parasMap.put(TConstant.PARA_OAUTH_VERIFIER, oauthVerifier);
         TSign qqTSign = new TSign();
         qqTSign.setBaseUrl(TConstant.GET_ACCESS_TOKEN_URL);

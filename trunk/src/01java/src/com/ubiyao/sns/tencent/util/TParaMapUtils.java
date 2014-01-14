@@ -9,6 +9,7 @@ import com.ubiyao.base.tencent.util.BaseString;
 import com.ubiyao.base.tencent.util.MapUtils;
 import com.ubiyao.base.tencent.util.SignatureUtils;
 import com.ubiyao.base.tencent.util.StringUtils;
+import com.ubiyao.sns.tencent.entity.TAppAndToken;
 import com.ubiyao.sns.tencent.entity.THotStatusPara;
 import com.ubiyao.sns.tencent.entity.TSearchPara;
 import com.ubiyao.sns.tencent.entity.TStatusInfoPara;
@@ -35,18 +36,21 @@ public class TParaMapUtils {
      *         <li>注意其中不包含oauth_signature参数，因为此参数需要根据传递的所有参数加密得到</li>
      *         </ul>
      */
-    public static Map<String, String> getStandardParaMap(String appKey, String accessToken) {
-        if (StringUtils.isEmpty(appKey) || StringUtils.isEmpty(accessToken)) {
+    public static Map<String, String> getStandardParaMap(TAppAndToken qqTAppAndToken) {
+        if (StringUtils.isEmpty(qqTAppAndToken.getAppKey()) || StringUtils.isEmpty(qqTAppAndToken.getAccessToken())) {
             return null;
         }
 
         Map<String, String> parasMap = new HashMap<String, String>();
-        parasMap.put(TConstant.PARA_OAUTH_CONSUMER_KEY, appKey);
-        parasMap.put(TConstant.PARA_OAUTH_TOKEN, accessToken);
+        parasMap.put(TConstant.PARA_OAUTH_CONSUMER_KEY, qqTAppAndToken.getAppKey());
+        parasMap.put(TConstant.PARA_OAUTH_TOKEN, qqTAppAndToken.getAccessToken());
+        parasMap.put(TConstant.PARA_OPEN_ID, qqTAppAndToken.getOpenid());
+        parasMap.put(TConstant.PARA_SCOPE, qqTAppAndToken.getScope());
+        parasMap.put(TConstant.PARA_CLIENT_IP, qqTAppAndToken.getClientip());
         
-        parasMap.put(TConstant.PARA_OAUTH_SIGNATURE_METHOD, TConstant.VALUE_OAUTH_SIGNATURE_METHOD);
+        /*parasMap.put(TConstant.PARA_OAUTH_SIGNATURE_METHOD, TConstant.VALUE_OAUTH_SIGNATURE_METHOD);
         parasMap.put(TConstant.PARA_OAUTH_TIMESTAMP, Long.toString(((new Date()).getTime()) / 1000));
-        parasMap.put(TConstant.PARA_OAUTH_NONCE, StringUtils.getRandomNumbersAndLetters(32));
+        parasMap.put(TConstant.PARA_OAUTH_NONCE, StringUtils.getRandomNumbersAndLetters(32));*/
         // parasMap.put(TConstant.PARA_OAUTH_TIMESTAMP, "1321153765");
         // parasMap.put(TConstant.PARA_OAUTH_NONCE, "9752880");
         parasMap.put(TConstant.PARA_OAUTH_VERSION, TConstant.VALUE_OAUTH_VERSION_2_A);
@@ -61,9 +65,9 @@ public class TParaMapUtils {
      * @param qqTTimelinePara
      * @return
      */
-    public static Map<String, String> getStdAndQqTTLParaMap(String appKey, String accessToken,
+    public static Map<String, String> getStdAndQqTTLParaMap(TAppAndToken qqTAppAndToken,
             TTimelinePara qqTTimelinePara) {
-        Map<String, String> parasMap = getStandardParaMap(appKey, accessToken);
+        Map<String, String> parasMap = getStandardParaMap(qqTAppAndToken);
         Map<String, String> qqTTimelineParaMap = null;
         if (qqTTimelinePara != null) {
             qqTTimelineParaMap = qqTTimelinePara.getParasMap();
@@ -86,9 +90,9 @@ public class TParaMapUtils {
      * @param updateStatusInfo
      * @return
      */
-    public static Map<String, String> getStdAndQqTSIParaMap(String appKey, String accessToken,
+    public static Map<String, String> getStdAndQqTSIParaMap(TAppAndToken qqTAppAndToken,
             TStatusInfoPara updateStatusInfo) {
-        Map<String, String> parasMap = getStandardParaMap(appKey, accessToken);
+        Map<String, String> parasMap = getStandardParaMap(qqTAppAndToken);
         Map<String, String> updateStatusInfoParaMap = null;
         if (updateStatusInfo != null) {
             updateStatusInfoParaMap = updateStatusInfo.getParasMap();
@@ -111,8 +115,8 @@ public class TParaMapUtils {
      * @param qqTUserPara
      * @return
      */
-    public static Map<String, String> getStdAndQqTUserParaMap(String appKey, String accessToken, TUserPara qqTUserPara) {
-        Map<String, String> parasMap = getStandardParaMap(appKey, accessToken);
+    public static Map<String, String> getStdAndQqTUserParaMap(TAppAndToken qqTAppAndToken, TUserPara qqTUserPara) {
+        Map<String, String> parasMap = getStandardParaMap(qqTAppAndToken);
         Map<String, String> qqTUserParaMap = null;
         if (qqTUserPara != null) {
             qqTUserParaMap = qqTUserPara.getParasMap();
@@ -135,9 +139,9 @@ public class TParaMapUtils {
      * @param qqTUserEduPara
      * @return
      */
-    public static Map<String, String> getStdAndQqTURParaMap(String appKey, String accessToken,
+    public static Map<String, String> getStdAndQqTURParaMap(TAppAndToken qqTAppAndToken,
             TUserRelationPara qqTUserRelationPara) {
-        Map<String, String> parasMap = getStandardParaMap(appKey, accessToken);
+        Map<String, String> parasMap = getStandardParaMap(qqTAppAndToken);
         Map<String, String> qqTUserRelationParaMap = null;
         if (qqTUserRelationPara != null) {
             qqTUserRelationParaMap = qqTUserRelationPara.getParasMap();
@@ -160,9 +164,9 @@ public class TParaMapUtils {
      * @param qqTUserRelationPara
      * @return
      */
-    public static Map<String, String> getStdAndQqTUEParaMap(String appKey, String accessToken,
+    public static Map<String, String> getStdAndQqTUEParaMap(TAppAndToken qqTAppAndToken,
             TUserEduPara qqTUserEduPara) {
-        Map<String, String> parasMap = getStandardParaMap(appKey, accessToken);
+        Map<String, String> parasMap = getStandardParaMap(qqTAppAndToken);
         Map<String, String> qqTUserEduParaMap = null;
         if (qqTUserEduPara != null) {
             qqTUserEduParaMap = qqTUserEduPara.getParasMap();
@@ -185,9 +189,9 @@ public class TParaMapUtils {
      * @param qqTSearchPara
      * @return
      */
-    public static Map<String, String> getStdAndQqTSearchParaMap(String appKey, String accessToken,
+    public static Map<String, String> getStdAndQqTSearchParaMap(TAppAndToken qqTAppAndToken,
             TSearchPara qqTSearchPara) {
-        Map<String, String> parasMap = getStandardParaMap(appKey, accessToken);
+        Map<String, String> parasMap = getStandardParaMap(qqTAppAndToken);
         Map<String, String> qqTSearchParaMap = null;
         if (qqTSearchPara != null) {
             qqTSearchParaMap = qqTSearchPara.getParasMap();
@@ -210,9 +214,9 @@ public class TParaMapUtils {
      * @param qqTHotStatusPara
      * @return
      */
-    public static Map<String, String> getStdAndQqTHSParaMap(String appKey, String accessToken,
+    public static Map<String, String> getStdAndQqTHSParaMap(TAppAndToken qqTAppAndToken,
             THotStatusPara qqTHotStatusPara) {
-        Map<String, String> parasMap = getStandardParaMap(appKey, accessToken);
+        Map<String, String> parasMap = getStandardParaMap(qqTAppAndToken);
         Map<String, String> qqTHotStatusParaMap = null;
         if (qqTHotStatusPara != null) {
             qqTHotStatusParaMap = qqTHotStatusPara.getParasMap();
