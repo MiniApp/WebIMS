@@ -74,10 +74,8 @@ public class TctServiceImpl extends AbstractService implements TctService {
     public void init() {
         qqTAppAndToken = new TAppAndToken();
         qqTAppAndToken.setAppKey(QQT_APP_KEY);
-        qqTAppAndToken.setAppSecret(QQT_APP_SECRET);
         qqTAppAndToken.setAccessToken(ACCESS_TOKEN);
         qqTAppAndToken.setOpenid(OPEN_ID);
-        qqTAppAndToken.setTokenSecret(TOKEN_SECRET);
 
         tSdkService = new TSdkServiceImpl();
         tSdkService.setQqTAppAndToken(qqTAppAndToken);
@@ -108,12 +106,12 @@ public class TctServiceImpl extends AbstractService implements TctService {
         status.setMusicAuthor("张芸京");
         status.setMusicTitle("偏爱");
         String s1 = tSdkService.addMusicStatusStr(status);
-
+/*
         status.setStatusContent("发表视频微博");
-        /** 设置视频地址 **/
-       /* status.setVideoUrl("http://v.youku.com/v_show/id_XMjUzOTg3MDY0.html");
-        String s2 = tSdkService.addVideoStatusStr(status);*/
-        System.out.println(s1 + "\n"/*+ s2*/);
+        *//** 设置视频地址 **//*
+        status.setVideoUrl("http://v.youku.com/v_show/id_XMjUzOTg3MDY0.html");
+        String s2 = tSdkService.addVideoStatusStr(status);
+        System.out.println(s1 + "\n"+ s2);
         
         ResourceBundle resource = ResourceBundle.getBundle("tencentWeiboConfig");// 这个配置文件是我自己创建的
         String client_id_temp = resource.getString("client_ID");
@@ -131,7 +129,7 @@ public class TctServiceImpl extends AbstractService implements TctService {
         NameValuePair state = new NameValuePair("state", state_temp);
         NameValuePair[] params = new NameValuePair[] { client_id, client_secret, redirect_uri, grant_type, code, state };
         String result = this.doHttpClient(url, params);
-        logger.info("result:" + result);
+        logger.info("result:" + result);*/
     }
     /**
      * 调用httpClient

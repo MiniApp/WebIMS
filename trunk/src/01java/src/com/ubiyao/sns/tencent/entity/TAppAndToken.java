@@ -18,16 +18,20 @@ public class TAppAndToken implements Serializable {
     private static final long serialVersionUID = 5951645915037611059L;
 
     /** 应用key **/
-    private String            appKey;
-    /** 应用密码 **/
-    private String            appSecret;
+    private String appKey;
+    
+    private String appSecret;
+
     /** access token **/
-    private String            accessToken;
-    private String			  openid;
-    private String 			  oauthVersion;
-    private String			  scope;
-    /** token 密码 ，可为空 **/
-    private String            tokenSecret;
+    private String accessToken;
+
+    private String openid;
+
+    private String clientip;
+
+    private String oauthVersion;
+
+    private String scope;
 
     /**
      * 检验是否合法
@@ -35,7 +39,7 @@ public class TAppAndToken implements Serializable {
      * @return
      */
     public boolean isValid() {
-        return !(StringUtils.isEmpty(appKey) || StringUtils.isEmpty(appSecret) || StringUtils.isEmpty(accessToken) || StringUtils.isEmpty(tokenSecret));
+        return !(StringUtils.isEmpty(appKey) || StringUtils.isEmpty(accessToken));
     }
 
     public String getAppKey() {
@@ -46,14 +50,6 @@ public class TAppAndToken implements Serializable {
         this.appKey = appKey;
     }
 
-    public String getAppSecret() {
-        return appSecret;
-    }
-
-    public void setAppSecret(String appSecret) {
-        this.appSecret = appSecret;
-    }
-
     public String getAccessToken() {
         return accessToken;
     }
@@ -62,36 +58,44 @@ public class TAppAndToken implements Serializable {
         this.accessToken = accessToken;
     }
 
-    public String getTokenSecret() {
-        return tokenSecret;
+    public String getOpenid() {
+        return openid;
     }
 
-    public void setTokenSecret(String tokenSecret) {
-        this.tokenSecret = tokenSecret;
+    public void setOpenid(String openid) {
+        this.openid = openid;
     }
 
-	public String getOpenid() {
-		return openid;
-	}
+    public String getOauthVersion() {
+        return oauthVersion;
+    }
 
-	public void setOpenid(String openid) {
-		this.openid = openid;
-	}
+    public void setOauthVersion(String oauthVersion) {
+        this.oauthVersion = oauthVersion;
+    }
 
-	public String getOauthVersion() {
-		return oauthVersion;
-	}
+    public String getScope() {
+        return scope;
+    }
 
-	public void setOauthVersion(String oauthVersion) {
-		this.oauthVersion = oauthVersion;
-	}
+    public void setScope(String scope) {
+        this.scope = scope;
+    }
 
-	public String getScope() {
-		return scope;
-	}
+    public String getClientip() {
+        return clientip;
+    }
 
-	public void setScope(String scope) {
-		this.scope = scope;
-	}
+    public void setClientip(String clientip) {
+        this.clientip = clientip;
+    }
+
+    public String getAppSecret() {
+        return appSecret;
+    }
+
+    public void setAppSecret(String appSecret) {
+        this.appSecret = appSecret;
+    }
 
 }

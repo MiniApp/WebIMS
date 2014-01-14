@@ -91,7 +91,7 @@ public class TSignAndHttpUtils {
         qqTSign.setBaseUrl(url);
         qqTSign.setHttpMethod(HttpUtils.HTTP_GET_METHOD.toUpperCase());
         qqTSign.setAppSecret(qqTAppAndToken.getAppSecret());
-        qqTSign.setTokenSecret(qqTAppAndToken.getTokenSecret());
+        //qqTSign.setTokenSecret(qqTAppAndToken.getTokenSecret());
         qqTSign.setParasMap(parasMap);
         parasMap.put(TConstant.PARA_OAUTH_SIGNATURE, signature(qqTSign));
         return HttpUtils.httpGetEncodeParas(qqTSign.getBaseUrl(), parasMap);
@@ -122,7 +122,7 @@ public class TSignAndHttpUtils {
         qqTSign.setBaseUrl(url);
         qqTSign.setHttpMethod(HttpUtils.HTTP_POST_METHOD.toUpperCase());
         qqTSign.setAppSecret(qqTAppAndToken.getAppSecret());
-        qqTSign.setTokenSecret(qqTAppAndToken.getTokenSecret());
+        //qqTSign.setTokenSecret(qqTAppAndToken.getTokenSecret());
         qqTSign.setParasMap(parasMap);
         parasMap.put(TConstant.PARA_OAUTH_SIGNATURE, signature(qqTSign));
         return HttpUtils.httpPost(qqTSign.getBaseUrl(), parasMap);
@@ -154,12 +154,6 @@ public class TSignAndHttpUtils {
         qqTSign.setBaseUrl(url);
         qqTSign.setHttpMethod(HttpUtils.HTTP_POST_METHOD.toUpperCase());
         qqTSign.setAppSecret(qqTAppAndToken.getAppSecret());
-        qqTSign.setTokenSecret(qqTAppAndToken.getTokenSecret());
-        //shuao add start
-        /*qqTSign.setAppKey(qqTAppAndToken.getAppKey());
-        qqTSign.setOpenid(qqTAppAndToken.getOpenid());
-        qqTSign.setAccessToken(qqTAppAndToken.getAccessToken());*/
-        //shuao add end
         qqTSign.setParasMap(parasMap);
         parasMap.put(TConstant.PARA_OAUTH_SIGNATURE, signature(qqTSign));
         System.out.println("7777 : "+HttpUtils.httpPostEncodeParas(qqTSign.getBaseUrl(), parasMap));
@@ -193,7 +187,6 @@ public class TSignAndHttpUtils {
         qqTSign.setBaseUrl(url);
         qqTSign.setHttpMethod(HttpUtils.HTTP_POST_METHOD.toUpperCase());
         qqTSign.setAppSecret(qqTAppAndToken.getAppSecret());
-        qqTSign.setTokenSecret(qqTAppAndToken.getTokenSecret());
         qqTSign.setParasMap(parasMap);
         parasMap.put(TConstant.PARA_OAUTH_SIGNATURE, signature(qqTSign));
 

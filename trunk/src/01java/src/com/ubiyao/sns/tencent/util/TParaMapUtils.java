@@ -50,18 +50,6 @@ public class TParaMapUtils {
         // parasMap.put(TConstant.PARA_OAUTH_TIMESTAMP, "1321153765");
         // parasMap.put(TConstant.PARA_OAUTH_NONCE, "9752880");
         parasMap.put(TConstant.PARA_OAUTH_VERSION, TConstant.VALUE_OAUTH_VERSION_2_A);
-        //suhao
-       /* BaseString bs=new BaseString();
-        bs.setHttpMethod("POST");
-        bs.setURL("https://open.t.qq.com/cgi-bin/request_token");
-        bs.addParams(TConstant.PARA_OAUTH_CONSUMER_KEY, appKey);
-        bs.addParams(TConstant.PARA_OAUTH_SIGNATURE_METHOD, TConstant.VALUE_OAUTH_SIGNATURE_METHOD);
-        bs.addParams(TConstant.PARA_OAUTH_CALLBACK, "https://open.t.qq.com/cgi-bin/oauth2/access_token");
-        bs.addParams(TConstant.PARA_OAUTH_VERSION, TConstant.VALUE_OAUTH_VERSION_2_A);
-        bs.addParams(TConstant.PARA_OAUTH_TIMESTAMP, Long.toString(((new Date()).getTime()) / 1000));
-        bs.addParams(TConstant.PARA_OAUTH_NONCE, StringUtils.getRandomNumbersAndLetters(32));
-        String signature = SignatureUtils.getSignature(bs.getBaseString(), appKey+"&");
-        parasMap.put(TConstant.PARA_OAUTH_SIGNATURE, signature);*/
         return parasMap;
     }
 

@@ -2354,7 +2354,6 @@ public class TSdkServiceImpl implements TSdkService {
         TSign qqTSign = new TSign();
         qqTSign.setBaseUrl(TConstant.GET_REQUEST_TOKEN_URL);
         qqTSign.setHttpMethod(HttpUtils.HTTP_GET_METHOD.toUpperCase());
-        qqTSign.setAppSecret(qqTAppAndToken.getAppSecret());
         qqTSign.setParasMap(parasMap);
         parasMap.put(TConstant.PARA_OAUTH_SIGNATURE, TSignAndHttpUtils.signature(qqTSign));
 
@@ -2380,7 +2379,6 @@ public class TSdkServiceImpl implements TSdkService {
         TSign qqTSign = new TSign();
         qqTSign.setBaseUrl(TConstant.GET_ACCESS_TOKEN_URL);
         qqTSign.setHttpMethod(HttpUtils.HTTP_GET_METHOD.toUpperCase());
-        qqTSign.setAppSecret(qqTAppAndToken.getAppSecret());
         qqTSign.setTokenSecret(requestTokenSecret);
         qqTSign.setParasMap(parasMap);
         parasMap.put(TConstant.PARA_OAUTH_SIGNATURE, TSignAndHttpUtils.signature(qqTSign));
