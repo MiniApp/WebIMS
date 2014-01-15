@@ -3,7 +3,7 @@
 "-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"  
 "http://struts.apache.org/dtds/struts-2.3.dtd">
 <struts>
-	<constant name="struts.devMode" value="true" />
+	<!-- <constant name="struts.devMode" value="true" /> -->
 	<constant name="struts.i18n.encoding" value="UTF-8"/>
 	<constant name="struts.objectFactory"
 		value="org.apache.struts2.spring.StrutsSpringObjectFactory" />
@@ -30,6 +30,15 @@
 		</action>
 		<action name="tencentWeiboLogout" class="weiBoLoginAction" method="tencentWeiboLogout">
 			<result name="tencentWeiboLogoutSucc">weiboIndex.jsp</result>
+		</action>
+		<action name="testTLoginInit" class="weiBoLoginAction" method="testTLoginInit">
+			<result name="tencentWeiboLoginInitRedirect" type="redirect">${url}</result>
+		</action>
+		<action name="testTLogin" class="weiBoLoginAction" method="testTLogin">
+			<result name="tencentWeiboLoginSuccess">weiboIndex.jsp</result>
+		</action>
+		<action name="testLoginCheck" class="weiBoLoginAction" method="testLoginCheck">
+			<result name="testLoginCheckSuccess">weibo.jsp</result>
 		</action>
 		<action name="test" class="weiBoLoginAction" method="test">
 			<result name="test">weibo.jsp</result>

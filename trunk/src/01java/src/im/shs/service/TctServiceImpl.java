@@ -183,4 +183,22 @@ public class TctServiceImpl extends AbstractService implements TctService {
         map.put("params", params);
         return map;
     } 
+    
+    @Override
+    public String tencentWeiboLoginInit() {
+        ResourceBundle resource = ResourceBundle.getBundle("tencentWeiboConfig");// 这个配置文件是我自己创建的
+        String client_ID = resource.getString("client_ID");
+        String redirect_URI = resource.getString("redirect_URI");
+        String authorizeURL = resource.getString("authorizeURL");
+        String state = resource.getString("state");
+
+        StringBuffer url = new StringBuffer();
+        url.append(authorizeURL);
+        url.append("?client_id=");
+        url.append(client_ID);
+        url.append("&response_type=token&redirect_uri=");
+        url.append(redirect_URI);
+        logger.info("Tencent Weibo address:" + url);
+        return url.toString();
+    }
 }

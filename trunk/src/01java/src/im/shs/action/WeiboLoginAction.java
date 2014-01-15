@@ -3,6 +3,8 @@ package im.shs.action;
 import im.shs.service.TctService;
 import im.shs.service.WeiBoService;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -27,6 +29,7 @@ import org.springframework.stereotype.Component;
 
 import com.opensymphony.xwork2.ActionSupport;
 import com.tencent.weibo.oauthv2.OAuthV2;
+import com.ubiyao.sns.tencent.util.THttpClient;
 
 @Component("weiBoLoginAction")
 @Scope("prototype")
@@ -41,15 +44,23 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
 
     private String url;
 
-    private String urlTokens;
+    private String access_token;
 
-    private String code;
+    private String expires_in;
+
+    private String urlTokens;
 
     private String openid;
 
     private String openkey;
 
+    private String refresh_token;
+
     private String state;
+
+    private String name;
+
+    private String nick;
 
     @Resource(name = "weiboService")
     private WeiBoService weiboService;
@@ -69,7 +80,7 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
                     if (!"".equals(allCookie[i].getValue())) {
                         map.put("clientAccessToken", allCookie[i].getValue());
                     }
-                    
+
                 }
                 /*if ("tctUserName".equals(keyname)) {
                     map.put("tctUserName", allCookie[i].getValue());
@@ -88,15 +99,14 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
             url = weiboService.tencentWeiboLoginInit();
             return "tencentWeiboLoginInitRedirect";
         }
-        
-        
-       /* url = weiboService.tencentWeiboLoginInit();
-        return "tencentWeiboLoginInitRedirect";*/
+
+        /* url = weiboService.tencentWeiboLoginInit();
+         return "tencentWeiboLoginInitRedirect";*/
     }
 
     public String tencentWeiboLogin() throws UnsupportedEncodingException {
-       /* String code_temp = request.getParameter("code");// 访问授权链接后腾讯微博返回的一个随机code值
-        logger.info("Code is : " + code_temp);*/
+        /* String code_temp = request.getParameter("code");// 访问授权链接后腾讯微博返回的一个随机code值
+         logger.info("Code is : " + code_temp);*/
         Map<String, Object> map = weiboService.tencentWeiboLogin();
         this.urlTokens = (String) map.get("urlTokens");
         logger.info("urlTokens is : " + urlTokens);
@@ -133,23 +143,57 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
         }
         //return "tencentWeiboSuccess";
     }
-    
-    public String tencentWeiboLogout(){
+
+    public String tencentWeiboLogout() {
         request.getSession().removeAttribute("clientAccessToken");
-        request.getSession().removeAttribute("accessToken"); 
-        Cookie[] cookies=request.getCookies(); 
-        try 
-        { 
-             for(int i=0;i<cookies.length;i++)   
-             { 
-              Cookie cookie = new Cookie("accessToken",null); 
-              cookie.setMaxAge(0); 
-              response.addCookie(cookie); 
-             } 
-        }catch(Exception ex) 
-        { 
-        } 
+        request.getSession().removeAttribute("accessToken");
+        Cookie[] cookies = request.getCookies();
+        try {
+            for (int i = 0; i < cookies.length; i++) {
+                Cookie cookie = new Cookie("accessToken", null);
+                cookie.setMaxAge(0);
+                response.addCookie(cookie);
+            }
+        } catch (Exception ex) {
+        }
         return "tencentWeiboLogoutSucc";
+    }
+
+    public String testTLoginInit() {
+        url = tctService.tencentWeiboLoginInit();
+         
+        /*NameValuePair client_id = new NameValuePair("client_id", "801456520");
+        NameValuePair response_type = new NameValuePair("response_type", "token");
+        NameValuePair redirect_uri = new NameValuePair("redirect_uri", "http://127.0.0.1:8080/web/testTLogin");
+        NameValuePair[] params = new NameValuePair[] { client_id, response_type, redirect_uri };
+        String sr = this.doHttpClient("https://open.t.qq.com/cgi-bin/oauth2/authorize", params);*/
+        return "tencentWeiboLoginInitRedirect";
+    }
+
+    public String testTLogin() {
+        this.access_token = request.getParameter("access_token");
+        this.expires_in = request.getParameter("expires_in");
+        this.openid = request.getParameter("openid");
+        this.openkey = request.getParameter("openkey");
+        this.refresh_token = request.getParameter("refresh_token");
+        this.name = request.getParameter("name");
+        System.out.println("accessToken:" + this.access_token + "\n");
+        urlTokens = "http://127.0.0.1:8080/web/testTLogin";
+        
+        return "tencentWeiboLoginSuccess";
+    }
+    
+    public String testLoginCheck() {
+        response.setContentType("application/json");
+        response.setCharacterEncoding("UTF-8");
+        System.out.println("Name:" + name);
+        try {
+            PrintWriter out = response.getWriter();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+        return "testLoginCheckSuccess";
     }
 
     public String test() throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
@@ -221,14 +265,6 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
         oAuth.setRedirectUri(redirect_uri_temp);
     }
 
-    public String getCode() {
-        return code;
-    }
-
-    public void setCode(String code) {
-        this.code = code;
-    }
-
     public String getOpenid() {
         return openid;
     }
@@ -259,5 +295,45 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
 
     public void setUrlTokens(String urlTokens) {
         this.urlTokens = urlTokens;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getNick() {
+        return nick;
+    }
+
+    public void setNick(String nick) {
+        this.nick = nick;
+    }
+
+    public String getAccess_token() {
+        return access_token;
+    }
+
+    public void setAccess_token(String access_token) {
+        this.access_token = access_token;
+    }
+
+    public String getExpires_in() {
+        return expires_in;
+    }
+
+    public void setExpires_in(String expires_in) {
+        this.expires_in = expires_in;
+    }
+
+    public String getRefresh_token() {
+        return refresh_token;
+    }
+
+    public void setRefresh_token(String refresh_token) {
+        this.refresh_token = refresh_token;
     }
 }

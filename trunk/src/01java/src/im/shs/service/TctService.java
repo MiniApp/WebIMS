@@ -24,4 +24,5 @@ import java.security.NoSuchAlgorithmException;
  */
 public interface TctService {
     public void addStatus() throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException;
+    public String tencentWeiboLoginInit();
 }
