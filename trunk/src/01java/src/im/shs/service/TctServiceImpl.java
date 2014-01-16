@@ -9,6 +9,8 @@ package im.shs.service;
 
 import im.shs.action.WeiboLoginAction;
 import im.shs.base.AbstractService;
+import im.shs.bean.TUserLoginBean;
+import im.shs.model.TUserLginInfo;
 
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
@@ -76,6 +78,7 @@ public class TctServiceImpl extends AbstractService implements TctService {
         qqTAppAndToken.setAppKey(QQT_APP_KEY);
         qqTAppAndToken.setAccessToken(ACCESS_TOKEN);
         qqTAppAndToken.setOpenid(OPEN_ID);
+        qqTAppAndToken.setScope("all");
 
         tSdkService = new TSdkServiceImpl();
         tSdkService.setQqTAppAndToken(qqTAppAndToken);
@@ -100,9 +103,10 @@ public class TctServiceImpl extends AbstractService implements TctService {
     public void addStatus() throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
     	init();
     	TStatusInfoPara status = new TStatusInfoPara();
-        status.setStatusContent("Test");
+    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
+        status.setStatusContent("呵呵");
         /** 设置音乐地址 **/
-        String s1 = tSdkService.addStatusStr(status);
+        tSdkService.addStatus(status);
 /*
         status.setStatusContent("发表视频微博");
         *//** 设置视频地址 **//*
@@ -201,4 +205,45 @@ public class TctServiceImpl extends AbstractService implements TctService {
         logger.info("Tencent Weibo address:" + url);
         return url.toString();
     }
+
+    /**    
+     * Method：	saveUserLoginInfo
+     *
+     * Description：	
+     *			描述
+     * @Param  	name
+     *			参数 
+     * @Return	String DOM对象    
+     * @Author	suhao 
+     * @Since   
+     */
+    @Override
+    public void saveUserLoginInfo(TUserLoginBean bean) {
+        TUserLginInfo po = this.getPersist().findObjectByField(TUserLginInfo.class, "name", bean.getName());
+        
+        if (null != po) {
+            po.setAccessToken(bean.getAccessToken());
+            po.setExpiresIn(bean.getExpiresIn());
+            po.setName(bean.getName());
+            po.setNick(bean.getNick());
+            po.setOpenid(bean.getOpenid());
+            po.setOpenkey(bean.getOpenkey());
+            po.setRefreshToken(bean.getRefreshToken());
+            //po.setExpiresDate(new Date());
+            this.getPersist().merge(po);
+        } else {
+            TUserLginInfo ponew = new TUserLginInfo();
+            ponew.setAccessToken(bean.getAccessToken());
+            ponew.setExpiresIn(bean.getExpiresIn());
+            ponew.setName(bean.getName());
+            ponew.setNick(bean.getNick());
+            ponew.setOpenid(bean.getOpenid());
+            ponew.setOpenkey(bean.getOpenkey());
+            ponew.setRefreshToken(bean.getRefreshToken());
+            ponew.setExpiresDate(new Date());
+            this.getPersist().persist(ponew);
+        }
+        
+    }
+    
 }

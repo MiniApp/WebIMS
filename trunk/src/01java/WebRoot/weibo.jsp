@@ -23,6 +23,6 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <h3><a href="tencentWeiboLoginInit">腾讯微博授权链接</a> || <a href="tencentWeiboLogout">退出登陆</a></h3>
+    <h3><a href="testTLoginInit">腾讯微博授权链接</a> || <a href="tencentWeiboLogout">退出登陆</a></h3>
   </body>
 </html>

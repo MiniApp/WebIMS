@@ -43,16 +43,11 @@ public class TParaMapUtils {
 
         Map<String, String> parasMap = new HashMap<String, String>();
         parasMap.put(TConstant.PARA_OAUTH_CONSUMER_KEY, qqTAppAndToken.getAppKey());
-        parasMap.put(TConstant.PARA_OAUTH_TOKEN, qqTAppAndToken.getAccessToken());
+        parasMap.put(TConstant.PARA_ACCESS_TOKEN, qqTAppAndToken.getAccessToken());
         parasMap.put(TConstant.PARA_OPEN_ID, qqTAppAndToken.getOpenid());
         parasMap.put(TConstant.PARA_SCOPE, qqTAppAndToken.getScope());
         parasMap.put(TConstant.PARA_CLIENT_IP, qqTAppAndToken.getClientip());
-        
-        /*parasMap.put(TConstant.PARA_OAUTH_SIGNATURE_METHOD, TConstant.VALUE_OAUTH_SIGNATURE_METHOD);
-        parasMap.put(TConstant.PARA_OAUTH_TIMESTAMP, Long.toString(((new Date()).getTime()) / 1000));
-        parasMap.put(TConstant.PARA_OAUTH_NONCE, StringUtils.getRandomNumbersAndLetters(32));*/
-        // parasMap.put(TConstant.PARA_OAUTH_TIMESTAMP, "1321153765");
-        // parasMap.put(TConstant.PARA_OAUTH_NONCE, "9752880");
+        //parasMap.put(TConstant.PARA_FORMAT, TConstant.VALUE_FORMAT_JSON);
         parasMap.put(TConstant.PARA_OAUTH_VERSION, TConstant.VALUE_OAUTH_VERSION_2_A);
         return parasMap;
     }

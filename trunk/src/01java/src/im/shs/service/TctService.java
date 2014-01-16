@@ -7,6 +7,8 @@
  */
 package im.shs.service;
 
+import im.shs.bean.TUserLoginBean;
+
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
@@ -25,4 +27,5 @@ import java.security.NoSuchAlgorithmException;
 public interface TctService {
     public void addStatus() throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException;
     public String tencentWeiboLoginInit();
+    public void saveUserLoginInfo(TUserLoginBean bean);
 }

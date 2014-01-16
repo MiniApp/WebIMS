@@ -26,6 +26,7 @@ public class TConstant {
     public static String       PARA_OAUTH_SIGNATURE_METHOD           = "oauth_signature_method";
     public static String       PARA_OAUTH_TIMESTAMP                  = "oauth_timestamp";
     public static String       PARA_OAUTH_TOKEN                      = "oauth_token";
+    public static String       PARA_ACCESS_TOKEN                     = "access_token";
     public static String       PARA_OPEN_ID                      	 = "openid";
     public static String       PARA_SCOPE                     	 	 = "scope";
     public static String       PARA_OAUTH_VERSION                    = "oauth_version";

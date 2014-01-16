@@ -26,6 +26,7 @@ public class TUserLginInfo implements Serializable {
     private Date expiresDate;
     private String refreshToken;
     private String openid;
+    private String openkey;
     private String nick;
     private String state;
 
@@ -111,6 +112,15 @@ public class TUserLginInfo implements Serializable {
 
     public void setState(String state) {
         this.state = state;
+    }
+
+    @Column(name = "openkey", length = 100) 
+    public String getOpenkey() {
+        return openkey;
+    }
+
+    public void setOpenkey(String openkey) {
+        this.openkey = openkey;
     }
 
 	

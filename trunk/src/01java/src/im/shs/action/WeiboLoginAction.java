@@ -1,5 +1,7 @@
 package im.shs.action;
 
+import im.shs.bean.TUserLoginBean;
+import im.shs.model.TUserLginInfo;
 import im.shs.service.TctService;
 import im.shs.service.WeiBoService;
 
@@ -171,29 +173,46 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
     }
 
     public String testTLogin() {
-        this.access_token = request.getParameter("access_token");
+        /*this.access_token = request.getParameter("access_token");
         this.expires_in = request.getParameter("expires_in");
         this.openid = request.getParameter("openid");
         this.openkey = request.getParameter("openkey");
         this.refresh_token = request.getParameter("refresh_token");
-        this.name = request.getParameter("name");
-        System.out.println("accessToken:" + this.access_token + "\n");
+        this.name = request.getParameter("name");*/
         urlTokens = "http://127.0.0.1:8080/web/testTLogin";
         
         return "tencentWeiboLoginSuccess";
     }
     
     public String testLoginCheck() {
-        response.setContentType("application/json");
-        response.setCharacterEncoding("UTF-8");
-        System.out.println("Name:" + name);
+        //response.setContentType("application/json");
+        //response.setCharacterEncoding("UTF-8");
+        System.out.println("access_token:" + access_token + "\nexpires_in:" + expires_in);
+        TUserLoginBean bean = new TUserLoginBean();
+        bean.setAccessToken(access_token);
+        bean.setExpiresIn(Integer.parseInt(expires_in));
+        bean.setName(name);
+        bean.setNick(nick);
+        bean.setOpenid(openid);
+        bean.setOpenkey(openkey);
+        bean.setRefreshToken(refresh_token);
+        
+        tctService.saveUserLoginInfo(bean);
         try {
-            PrintWriter out = response.getWriter();
-        } catch (IOException e) {
+            tctService.addStatus();
+        } catch (InvalidKeyException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-        return "testLoginCheckSuccess";
+        
+        
+        return null;
     }
 
     public String test() throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {

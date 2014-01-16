@@ -152,22 +152,17 @@ public class TSignAndHttpUtils {
 
         /** 对参数进行签名，加密参数然后发http post请求到固定url，返回内容 **/
         TSign qqTSign = new TSign();
-        /*qqTSign.setBaseUrl(url);
-        qqTSign.setHttpMethod(HttpUtils.HTTP_POST_METHOD.toUpperCase());
-        qqTSign.setAppSecret(qqTAppAndToken.getAppSecret());
-        qqTSign.setParasMap(parasMap);
-        parasMap.put(TConstant.PARA_OAUTH_SIGNATURE, signature(qqTSign));*/
-        //System.out.println("7777 : "+HttpUtils.httpPostEncodeParas(qqTSign.getBaseUrl(), parasMap));
         String queryString = TStrOperate.getQueryString(parasMap);
         THttpClient qHttpClient = new THttpClient();
         try {
+            queryString = queryString.replaceAll(" ", "%20");
+            //queryString = new String(queryString.getBytes("ISO-8859-1"),"UTF-8");
 			return qHttpClient.httpPost(url, queryString);
 		} catch (Exception e) {
 			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         return "";
-        //return HttpUtils.httpPostEncodeParas(qqTSign.getBaseUrl(), parasMap);
     }
 
     /**
