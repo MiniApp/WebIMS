@@ -39,7 +39,7 @@ public class TAppAndToken implements Serializable {
      * @return
      */
     public boolean isValid() {
-        return !(StringUtils.isEmpty(appKey) || StringUtils.isEmpty(accessToken));
+        return !(StringUtils.isEmpty(appKey) || StringUtils.isEmpty(accessToken) || StringUtils.isEmpty(openid));
     }
 
     public String getAppKey() {

@@ -10,10 +10,16 @@ import com.ubiyao.base.tencent.util.MapUtils;
 import com.ubiyao.base.tencent.util.StringUtils;
 import com.ubiyao.sns.tencent.util.TConstant;
 
-/**
- * 发布、转发、评论微博时的对象
- * 
- * @author Trinea 2011-9-23 上午01:37:07
+/**    
+ *         
+ * Class Name：
+ *			TStatusInfoPara    
+ * Description：    
+ *			发布、转发、评论微博时的对象
+ * @Author	suhao
+ * @Date	2014-1-17 下午1:52:08    
+ * @Version	
+ *     
  */
 public class TStatusInfoPara implements Serializable {
 

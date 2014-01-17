@@ -16,13 +16,12 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 	<meta http-equiv="expires" content="0">    
 	<meta http-equiv="keywords" content="keyword1,keyword2,keyword3">
 	<meta http-equiv="description" content="This is my page">
-	<!--
-	<link rel="stylesheet" type="text/css" href="styles.css">
-	-->
-
+	<script type="text/javascript" src="${ctx}/public/js/jquery-1.10.2.js"></script>
+	<script type="text/javascript" src="${ctx}/public/js/jquery-json.js"></script>
   </head>
   
   <body>
-    <h3><a href="testTLoginInit">腾讯微博授权链接</a> || <a href="tencentWeiboLogout">退出登陆</a></h3>
+    <h3><a href="tencentWeiboLoginInit">腾讯微博授权链接</a> || <a href="tencentWeiboLogout">退出登陆</a></h3>
+  	
   </body>
 </html>

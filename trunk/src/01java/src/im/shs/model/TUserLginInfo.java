@@ -29,6 +29,7 @@ public class TUserLginInfo implements Serializable {
     private String openkey;
     private String nick;
     private String state;
+    private Date updateTime;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)
@@ -41,7 +42,7 @@ public class TUserLginInfo implements Serializable {
 		this.id = id;
 	}
 
-	@Column(name = "name", length = 20)
+	@Column(name = "name", length = 100)
 	public String getName() {
 		return this.name;
 	}
@@ -121,6 +122,15 @@ public class TUserLginInfo implements Serializable {
 
     public void setOpenkey(String openkey) {
         this.openkey = openkey;
+    }
+
+    @Column(name = "update_time", length = 100) 
+    public Date getUpdateTime() {
+        return updateTime;
+    }
+
+    public void setUpdateTime(Date updateTime) {
+        this.updateTime = updateTime;
     }
 
 	

@@ -9,6 +9,7 @@ package im.shs.service;
 
 import im.shs.action.WeiboLoginAction;
 import im.shs.base.AbstractService;
+import im.shs.base.util.DateUtil;
 import im.shs.bean.TUserLoginBean;
 import im.shs.model.TUserLginInfo;
 
@@ -25,14 +26,10 @@ import java.util.ResourceBundle;
 
 import javax.annotation.Resource;
 
-import org.apache.commons.httpclient.HttpClient;
-import org.apache.commons.httpclient.NameValuePair;
-import org.apache.commons.httpclient.methods.PostMethod;
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.springframework.stereotype.Service;
 
-import com.ubiyao.base.tencent.util.HttpClientUtil;
 import com.ubiyao.sns.tencent.entity.TAppAndToken;
 import com.ubiyao.sns.tencent.entity.TStatus;
 import com.ubiyao.sns.tencent.entity.TStatusInfoPara;
@@ -52,32 +49,50 @@ import com.ubiyao.sns.tencent.service.impl.TSdkServiceImpl;
 @Service("tctService")
 public class TctServiceImpl extends AbstractService implements TctService {
     private final Log logger = LogFactory.getLog(WeiboLoginAction.class);
+
     ResourceBundle resource = ResourceBundle.getBundle("tencentWeiboConfig");// 这个配置文件是我自己创建的
 
     /** 应用key **/
     String QQT_APP_KEY = resource.getString("client_ID");
 
     /** 应用secret **/
-    String QQT_APP_SECRET = resource.getString("client_SERCRET");
+    public String QQT_APP_SECRET = resource.getString("client_SERCRET");
 
     /** 用户accesstoken **/
-    String ACCESS_TOKEN = "38fc777338dfb01ea1a23ab163c15e77";
-    String OPEN_ID = "3a813b88f49fd49170bb32190f96a6b7";
+    public static String ACCESS_TOKEN = "38fc777338dfb01ea1a23ab163c15e77";
 
-    /** 用户tokenSecret **/
-    String TOKEN_SECRET = "AfdQ24Hk";
+    public static String OPEN_ID = "3a813b88f49fd49170bb32190f96a6b7";
 
     TAppAndToken qqTAppAndToken;
-    @Resource(name="tSdkService")
+
+    @Resource(name = "tSdkService")
     private TSdkServiceImpl tSdkService;
 
     List<TStatus> statusList;
 
-    public void init() {
+    public void initInfoByLogin(TUserLoginBean bean) {
         qqTAppAndToken = new TAppAndToken();
         qqTAppAndToken.setAppKey(QQT_APP_KEY);
-        qqTAppAndToken.setAccessToken(ACCESS_TOKEN);
-        qqTAppAndToken.setOpenid(OPEN_ID);
+        qqTAppAndToken.setAccessToken(bean.getAccessToken());
+        qqTAppAndToken.setOpenid(bean.getOpenid());
+        qqTAppAndToken.setScope("all");
+
+        tSdkService = new TSdkServiceImpl();
+        tSdkService.setQqTAppAndToken(qqTAppAndToken);
+        statusList = new ArrayList<TStatus>();
+    }
+
+    public void initInfoBySave(TUserLoginBean bean) {
+        qqTAppAndToken = new TAppAndToken();
+        qqTAppAndToken.setAppKey(QQT_APP_KEY);
+        qqTAppAndToken.setAccessToken(bean.getAccessToken());
+        Map map = new HashMap();
+        map.put("name", bean.getName());
+        map.put("access_token", bean.getAccessToken());
+        TUserLginInfo po = this.getPersist().findObjectByFields(TUserLginInfo.class, map);
+        if (null != po) {
+            qqTAppAndToken.setOpenid(po.getOpenid()); 
+        }
         qqTAppAndToken.setScope("all");
 
         tSdkService = new TSdkServiceImpl();
@@ -100,82 +115,32 @@ public class TctServiceImpl extends AbstractService implements TctService {
      * @Since   
      */
     @Override
-    public void addStatus() throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
-    	init();
-    	TStatusInfoPara status = new TStatusInfoPara();
-    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+    public void addStatus(TUserLoginBean bean, Boolean isLogin) throws InvalidKeyException, NoSuchAlgorithmException,
+            UnsupportedEncodingException {
+        if (!isLogin) {
+            initInfoByLogin(bean);
+        } else {
+            initInfoBySave(bean);
+        }
+        TStatusInfoPara status = new TStatusInfoPara();
+        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         status.setStatusContent(sdf.format(new Date()));
         /** 设置音乐地址 **/
-        tSdkService.addStatus(status);
+        //tSdkService.addStatus(status);
 
         //** 设置视频地址 **//*
         //status.setVideoUrl("http://v.youku.com/v_show/id_XMjUzOTg3MDY0.html");
-        tSdkService.addVideoStatusStr(status);
-        
-    }
-    /**
-     * 调用httpClient
-     * @param url 要访问的地址
-     * @param params 要携带的参数
-     * @return
-     */
-    private String doHttpClient(String url, NameValuePair[] params) {
-        PostMethod post = new PostMethod(url);
-
-        post.setRequestBody(params);
-
-        HttpClient client = new HttpClient();
-
-        String str_result = ""; // 页面返回结果
-
-        try {
-            client.executeMethod(post); // 执行post方法
-            str_result = post.getResponseBodyAsString();
-            return str_result;
-        } catch (Exception e) {
-            e.printStackTrace();
-        } finally {
-            post.releaseConnection();
-        }
-
-        return "";
+        //tSdkService.addVideoStatusStr(status);
 
     }
-    private Map getUrl(){
-        
-        ResourceBundle resource = ResourceBundle.getBundle("tencentWeiboConfig");// 这个配置文件是我自己创建的
-        String client_ID = resource.getString("client_ID");
-        String redirect_URI = resource.getString("redirect_URI");
-        String authorizeURL = resource.getString("authorizeURL");
-        String state = resource.getString("state");
 
-        StringBuffer url = new StringBuffer();
-        url.append(authorizeURL);
-        url.append("?client_id=");
-        url.append(client_ID);
-        url.append("&response_type=code&redirect_uri=");
-        url.append(redirect_URI);
-        url.append("&state=");
-        url.append(state);
-        logger.info("Tencent Weibo address:" + url);
-        NameValuePair client_id_p = new NameValuePair("client_id", client_ID);
-        NameValuePair response_type_p = new NameValuePair("response_type", "code");
-        NameValuePair redirect_uri_p = new NameValuePair("redirect_uri", redirect_URI);
-        NameValuePair state_p = new NameValuePair("state", state);
-        NameValuePair[] params = new NameValuePair[] { client_id_p, response_type_p, redirect_uri_p, state_p };
-        Map map = new HashMap();
-        map.put("url", authorizeURL);
-        map.put("params", params);
-        return map;
-    } 
-    
     @Override
     public String tencentWeiboLoginInit() {
         ResourceBundle resource = ResourceBundle.getBundle("tencentWeiboConfig");// 这个配置文件是我自己创建的
         String client_ID = resource.getString("client_ID");
         String redirect_URI = resource.getString("redirect_URI");
         String authorizeURL = resource.getString("authorizeURL");
-        String state = resource.getString("state");
+        //String state = resource.getString("state");
 
         StringBuffer url = new StringBuffer();
         url.append(authorizeURL);
@@ -198,20 +163,29 @@ public class TctServiceImpl extends AbstractService implements TctService {
      * @Author	suhao 
      * @Since   
      */
+    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
     public void saveUserLoginInfo(TUserLoginBean bean) {
-        TUserLginInfo po = this.getPersist().findObjectByField(TUserLginInfo.class, "name", bean.getName());
-        
-        if (null != po) {
-            po.setAccessToken(bean.getAccessToken());
-            po.setExpiresIn(bean.getExpiresIn());
-            po.setName(bean.getName());
-            po.setNick(bean.getNick());
-            po.setOpenid(bean.getOpenid());
-            po.setOpenkey(bean.getOpenkey());
-            po.setRefreshToken(bean.getRefreshToken());
-            //po.setExpiresDate(new Date());
-            this.getPersist().merge(po);
+        TUserLginInfo pos = this.getPersist().findObjectByField(TUserLginInfo.class, "name", bean.getName());
+
+        if (null != pos) {
+            Map para = new HashMap();
+            para.put("name", bean.getName());
+            para.put("access_token", bean.getAccessToken());
+            TUserLginInfo po = this.getPersist().findObjectByFields(TUserLginInfo.class, para);
+            if (null == po) {
+                pos.setAccessToken(bean.getAccessToken());
+                pos.setExpiresIn(bean.getExpiresIn());
+                pos.setName(bean.getName());
+                pos.setNick(bean.getNick());
+                pos.setOpenid(bean.getOpenid());
+                pos.setOpenkey(bean.getOpenkey());
+                pos.setRefreshToken(bean.getRefreshToken());
+                pos.setUpdateTime(DateUtil.getNow());
+                //pos.setExpiresDate(new Date());
+                
+                this.getPersist().merge(pos);
+            }
         } else {
             TUserLginInfo ponew = new TUserLginInfo();
             ponew.setAccessToken(bean.getAccessToken());
@@ -224,7 +198,32 @@ public class TctServiceImpl extends AbstractService implements TctService {
             ponew.setExpiresDate(new Date());
             this.getPersist().persist(ponew);
         }
-        
+
     }
-    
+
+    /**    
+     * Method：	checkTencentLogin
+     *
+     * Description：	
+     *			描述
+     * @Param  	name
+     *			参数 
+     * @Return	String DOM对象    
+     * @Author	suhao 
+     * @Since   
+     */
+    @SuppressWarnings({ "rawtypes", "unchecked" })
+    @Override
+    public Boolean checkTencentLogin(Map map) {
+        Map params = new HashMap();
+        params.put("name", map.get("clientUerName"));
+        params.put("access_token", map.get("clientAccessToken"));
+        TUserLginInfo po = (TUserLginInfo) this.getPersist().findObjectByFields(TUserLginInfo.class, params);
+        if (null != po) {
+            return true;
+        } else {
+            return false;
+        }
+    }
+
 }
