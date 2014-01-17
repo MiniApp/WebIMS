@@ -103,34 +103,15 @@ public class TctServiceImpl extends AbstractService implements TctService {
     public void addStatus() throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
     	init();
     	TStatusInfoPara status = new TStatusInfoPara();
-    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy年MM月dd日 HH时mm分ss秒");
-        status.setStatusContent("呵呵");
+    	SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+        status.setStatusContent(sdf.format(new Date()));
         /** 设置音乐地址 **/
         tSdkService.addStatus(status);
-/*
-        status.setStatusContent("发表视频微博");
-        *//** 设置视频地址 **//*
-        status.setVideoUrl("http://v.youku.com/v_show/id_XMjUzOTg3MDY0.html");
-        String s2 = tSdkService.addVideoStatusStr(status);
-        System.out.println(s1 + "\n"+ s2);
+
+        //** 设置视频地址 **//*
+        //status.setVideoUrl("http://v.youku.com/v_show/id_XMjUzOTg3MDY0.html");
+        tSdkService.addVideoStatusStr(status);
         
-        ResourceBundle resource = ResourceBundle.getBundle("tencentWeiboConfig");// 这个配置文件是我自己创建的
-        String client_id_temp = resource.getString("client_ID");
-        String client_secret_temp = resource.getString("client_SERCRET");
-        String redirect_uri_temp = resource.getString("redirect_URI");
-        String redirect_uri_succ_temp = resource.getString("redirect_URI_SUCC");
-        String grant_type_temp = resource.getString("grant_TYPE");
-        String state_temp = resource.getString("state");
-        String url = resource.getString("accessTokenURL");
-        NameValuePair client_id = new NameValuePair("client_id", client_id_temp);
-        NameValuePair client_secret = new NameValuePair("client_secret", client_secret_temp);
-        NameValuePair redirect_uri = new NameValuePair("redirect_uri", redirect_uri_temp);
-        NameValuePair grant_type = new NameValuePair("grant_type", grant_type_temp);
-        NameValuePair code = new NameValuePair("code", "1c249a4d9ac5ad3ece1cfd1ad0c398b5");
-        NameValuePair state = new NameValuePair("state", state_temp);
-        NameValuePair[] params = new NameValuePair[] { client_id, client_secret, redirect_uri, grant_type, code, state };
-        String result = this.doHttpClient(url, params);
-        logger.info("result:" + result);*/
     }
     /**
      * 调用httpClient

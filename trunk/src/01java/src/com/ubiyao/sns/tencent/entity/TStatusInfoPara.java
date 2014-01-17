@@ -1,6 +1,8 @@
 package com.ubiyao.sns.tencent.entity;
 
 import java.io.Serializable;
+import java.io.UnsupportedEncodingException;
+import java.net.URLEncoder;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -103,6 +105,11 @@ public class TStatusInfoPara implements Serializable {
     public Map<String, String> getParasMap() {
         Map<String, String> parasMap = new HashMap<String, String>();
         MapUtils.putMapNotEmptyKey(parasMap, TConstant.PARA_FORMAT, format);
+        try {
+            statusContent = URLEncoder.encode(statusContent,"UTF-8");
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        }
         MapUtils.putMapNotEmptyKeyAndValue(parasMap, TConstant.PARA_CONTENT, statusContent, "");
         MapUtils.putMapNotEmptyKey(parasMap, TConstant.PARA_PICTURE, imageFilePath);
         if (longitude <= 180 && longitude >= -180) {
