@@ -53,7 +53,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		    if(secs == 0){  
 		        clearInterval(time);  
 		        $("#showDiv").html('正在载入...');  
-		        //window.location.href='/web/tencentWeibo';  
+		        window.location.href='/web/tencentWeibo';  
 		    }else{  
 		        $("#showDiv").html(secs+' 秒后自动跳转');  
 		    }  

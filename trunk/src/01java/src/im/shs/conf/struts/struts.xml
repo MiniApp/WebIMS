@@ -30,6 +30,7 @@
 			<result name="tencentWeiboLoginSuccess">weibogo.jsp</result>
 		</action>
 		<action name="tencentWeiboLoginCheck" class="weiBoLoginAction" method="tencentWeiboLoginCheck">
+			<result name="tencentWeiboLoginCheckFail" type="redirect">tencentWeiboInit</result>
 		</action>
 		<action name="tencentWeiboLogout" class="weiBoLoginAction" method="tencentWeiboLogout">
 			<result name="tencentWeiboLogoutSucc">weiboIndex.jsp</result>

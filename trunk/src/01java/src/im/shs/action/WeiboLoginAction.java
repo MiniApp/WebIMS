@@ -82,9 +82,8 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
             }
         }
         if (!"".equals(map.get("clientAccessToken"))) {
-            if (tctService.checkTencentLogin(map)) {
+            if (null != map.get("clientAccessToken") && null != map.get("clientUserName") && tctService.checkTencentLogin(map)) {
                 url = "";
-                
                 request.getSession().setAttribute("userName", map.get("clientUserName"));
                 request.getSession().setAttribute("accessToken", map.get("clientAccessToken"));
                 return "tencentWeibo";
@@ -120,7 +119,7 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
             bean.setOpenid(openid);
             bean.setOpenkey(openkey);
             bean.setRefreshToken(refresh_token);
-
+            
             if (Constants.RESULT_NEED_TO_ADD.equals(tctService.checkUserLoginInfo(bean))) {
                 tctService.addUserLoginInfo(bean);
             } else if (Constants.RESULT_NEED_TO_MERGE.equals(tctService.checkUserLoginInfo(bean))) {
@@ -134,7 +133,9 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
                 Map<String, String> map = new HashMap<String, String>();
                 map.put("clientUserName", userNameVal);
                 map.put("clientAccessToken", accessTokenVal);
-                isLogin = tctService.checkTencentLogin(map);
+                if (!"".equals(map.get("clientAccessToken"))) {
+                    isLogin = tctService.checkTencentLogin(map);
+                }
             }
 
             if (isLogin) {
@@ -168,7 +169,7 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
             response.addCookie(accessToken);
             response.addCookie(uerName);
 
-            out.println("{\"suhao\":\"succ\"}");
+            out.println("{\"welcome\":\"welcome\"}");
             //out.write("["+json.toString()+"]");
             out.flush();
             out.close();
@@ -214,9 +215,13 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
         Cookie[] cookies = request.getCookies();
         try {
             for (int i = 0; i < cookies.length; i++) {
-                Cookie cookie = new Cookie("accessToken", null);
-                cookie.setMaxAge(0);
-                response.addCookie(cookie);
+                Cookie accessToken = new Cookie("accessToken", null);
+                accessToken.setMaxAge(0);
+                response.addCookie(accessToken);
+                
+                Cookie userName = new Cookie("userName", null);
+                userName.setMaxAge(0);
+                response.addCookie(userName);
             }
         } catch (Exception ex) {
         }
