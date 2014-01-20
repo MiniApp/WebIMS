@@ -9,6 +9,7 @@ package im.shs.service;
 
 import im.shs.action.WeiboLoginAction;
 import im.shs.base.AbstractService;
+import im.shs.base.Constants;
 import im.shs.base.util.DateUtil;
 import im.shs.bean.TUserLoginBean;
 import im.shs.model.TUserLginInfo;
@@ -164,7 +165,35 @@ public class TctServiceImpl extends AbstractService implements TctService {
     }
 
     /**    
-     * Method：	saveUserLoginInfo
+     * Method：  checkUserLoginInfo
+     *
+     * Description： 
+     *          描述
+     * @Param   name
+     *          参数 
+     * @Return  String DOM对象    
+     * @Author  suhao 
+     * @Since   
+     */
+    @Override
+    public String checkUserLoginInfo(TUserLoginBean bean) {
+        TUserLginInfo po = this.getPersist().findObjectByField(TUserLginInfo.class, "name", bean.getName());
+        if (null == po) {
+            return Constants.RESULT_NEED_TO_ADD;
+        } else {
+            HashMap<String, String> para = new HashMap<String, String>();
+            para.put("name", bean.getName());
+            para.put("access_token", bean.getAccessToken());
+            TUserLginInfo pos = this.getPersist().findObjectByFields(TUserLginInfo.class, para);
+            if (null == pos) {
+                return Constants.RESULT_NEED_TO_MERGE;
+            }
+        }
+        return null;
+    }
+    
+    /**    
+     * Method：	addUserLoginInfo
      *
      * Description：	
      *			描述
@@ -174,10 +203,19 @@ public class TctServiceImpl extends AbstractService implements TctService {
      * @Author	suhao 
      * @Since   
      */
-    @SuppressWarnings({ "unchecked", "rawtypes" })
     @Override
-    public void saveUserLoginInfo(TUserLoginBean bean) {
-        TUserLginInfo pos = this.getPersist().findObjectByField(TUserLginInfo.class, "name", bean.getName());
+    public void addUserLoginInfo(TUserLoginBean bean) {
+        TUserLginInfo po = new TUserLginInfo();
+        po.setAccessToken(bean.getAccessToken());
+        po.setExpiresIn(bean.getExpiresIn());
+        po.setName(bean.getName());
+        po.setNick(bean.getNick());
+        po.setOpenid(bean.getOpenid());
+        po.setOpenkey(bean.getOpenkey());
+        po.setRefreshToken(bean.getRefreshToken());
+        po.setExpiresDate(new Date());
+        this.getPersist().persist(po);
+        /*TUserLginInfo pos = this.getPersist().findObjectByField(TUserLginInfo.class, "name", bean.getName());
 
         if (null != pos) {
             Map para = new HashMap();
@@ -208,8 +246,35 @@ public class TctServiceImpl extends AbstractService implements TctService {
             ponew.setRefreshToken(bean.getRefreshToken());
             ponew.setExpiresDate(new Date());
             this.getPersist().persist(ponew);
-        }
+        }*/
 
+    }
+    
+    /**    
+     * Method：  mergeUserLoginInfo
+     *
+     * Description： 
+     *          描述
+     * @Param   name
+     *          参数 
+     * @Return  String DOM对象    
+     * @Author  suhao 
+     * @Since   
+     */
+    @Override
+    public void mergeUserLoginInfo(TUserLoginBean bean) {
+        TUserLginInfo po = this.getPersist().findObjectByField(TUserLginInfo.class, "name", bean.getName());
+        po.setAccessToken(bean.getAccessToken());
+        po.setExpiresIn(bean.getExpiresIn());
+        po.setName(bean.getName());
+        po.setNick(bean.getNick());
+        po.setOpenid(bean.getOpenid());
+        po.setOpenkey(bean.getOpenkey());
+        po.setRefreshToken(bean.getRefreshToken());
+        po.setUpdateTime(DateUtil.getNow());
+        //pos.setExpiresDate(new Date());
+        
+        this.getPersist().merge(po);
     }
 
     /**    
@@ -260,7 +325,6 @@ public class TctServiceImpl extends AbstractService implements TctService {
 	        qqTAppAndToken.setOpenid(bean.getOpenid());
 	        qqTAppAndToken.setScope("all");
 
-	        //tSdkService = new TSdkServiceImpl();
 	        tSdkService.setQqTAppAndToken(qqTAppAndToken);
 	        
 	        TStatusInfoPara status = new TStatusInfoPara();

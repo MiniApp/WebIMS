@@ -1,14 +1,13 @@
 package im.shs.action;
 
+import im.shs.base.Constants;
 import im.shs.bean.TUserLoginBean;
 import im.shs.service.TctService;
-import im.shs.service.WeiBoService;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
-import java.net.URLEncoder;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
@@ -59,15 +58,11 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
 
     private String nick;
 
-    @Resource(name = "weiboService")
-    private WeiBoService weiboService;
-
     @Resource(name = "tctService")
     private TctService tctService;
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     public String tencentWeiboLoginInit() {
-        Map map = new HashMap();
+        Map<String, String> map = new HashMap<String, String>();
         Cookie cookie[] = request.getCookies();
 
         if (cookie != null && cookie.length != 0) {
@@ -89,8 +84,9 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
         if (!"".equals(map.get("clientAccessToken"))) {
             if (tctService.checkTencentLogin(map)) {
                 url = "";
-                request.setAttribute("accessToken", map.get("clientAccessToken"));
-                request.setAttribute("userName", map.get("clientUserName"));
+                
+                request.getSession().setAttribute("userName", map.get("clientUserName"));
+                request.getSession().setAttribute("accessToken", map.get("clientAccessToken"));
                 return "tencentWeibo";
             } else {
                 url = tctService.tencentWeiboLoginInit();
@@ -104,126 +100,93 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
     }
 
     public String tencentWeiboLogin() {
-        /*TUserLoginBean bean = new TUserLoginBean();
-        bean.setAccessToken(access_token);
-        bean.setExpiresIn(Integer.parseInt(expires_in));
-        bean.setName(name);
-        bean.setNick(nick);
-        bean.setOpenid(openid);
-        bean.setOpenkey(openkey);
-        bean.setRefreshToken(refresh_token);
-        
-        tctService.saveUserLoginInfo(bean);
-        try {
-            tctService.addStatus();
-        } catch (InvalidKeyException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        
-        Cookie accessToken = new Cookie("accessToken", bean.getAccessToken());
-        accessToken.setMaxAge(60 * 60 * 24 * 93);
-        Cookie tctUerName = new Cookie("tctUserName", bean.getName());
-        tctUerName.setMaxAge(60 * 60 * 24 * 93);
-        response.addCookie(accessToken);
-        response.addCookie(tctUerName);*/
-        
+
         return "tencentWeiboLoginSuccess";
     }
-    
+
     public String tencentWeiboLoginCheck() {
-		try {
-			response.setContentType("application/json");
-			response.setCharacterEncoding("UTF-8");
-			PrintWriter out = response.getWriter();
-			System.out.println("access_token:" + access_token + "\nexpires_in:"
-					+ expires_in);
-			TUserLoginBean bean = new TUserLoginBean();
-			bean.setAccessToken(access_token);
-			bean.setExpiresIn(Integer.parseInt(expires_in));
-			bean.setName(name);
+        try {
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            PrintWriter out = response.getWriter();
+            logger.info("access_token:" + access_token + "\nexpires_in:" + expires_in);
+            TUserLoginBean bean = new TUserLoginBean();
+            bean.setAccessToken(access_token);
+            bean.setExpiresIn(Integer.parseInt(expires_in));
+            bean.setName(name);
 
-			bean.setNick(URLDecoder.decode(nick, "UTF-8"));
+            bean.setNick(URLDecoder.decode(nick, "UTF-8"));
 
-			bean.setOpenid(openid);
-			bean.setOpenkey(openkey);
-			bean.setRefreshToken(refresh_token);
+            bean.setOpenid(openid);
+            bean.setOpenkey(openkey);
+            bean.setRefreshToken(refresh_token);
 
-			tctService.saveUserLoginInfo(bean);
+            if (Constants.RESULT_NEED_TO_ADD.equals(tctService.checkUserLoginInfo(bean))) {
+                tctService.addUserLoginInfo(bean);
+            } else if (Constants.RESULT_NEED_TO_MERGE.equals(tctService.checkUserLoginInfo(bean))) {
+                tctService.mergeUserLoginInfo(bean);
+            }
 
-			String accessTokenVal = (String) request
-					.getAttribute("accessToken");
-			String userNameVal = (String) request.getAttribute("userName");
-			Boolean isLogin = false;
-			if (!"".equals(accessTokenVal) && !"".equals(userNameVal)) {
-				Map map = new HashMap();
-				map.put("clientUserName", userNameVal);
-				map.put("clientAccessToken", accessTokenVal);
-				isLogin = tctService.checkTencentLogin(map);
-			}
+            String accessTokenVal = (String) request.getSession().getAttribute("accessToken");
+            String userNameVal = (String) request.getSession().getAttribute("userName");
+            Boolean isLogin = false;
+            if (!"".equals(accessTokenVal) && !"".equals(userNameVal)) {
+                Map<String, String> map = new HashMap<String, String>();
+                map.put("clientUserName", userNameVal);
+                map.put("clientAccessToken", accessTokenVal);
+                isLogin = tctService.checkTencentLogin(map);
+            }
 
-			if (isLogin) {
-				TUserLoginBean albean = new TUserLoginBean();
-				Cookie cookie[] = request.getCookies();
+            if (isLogin) {
+                TUserLoginBean albean = new TUserLoginBean();
+                Cookie cookie[] = request.getCookies();
 
-				if (cookie != null && cookie.length != 0) {
-					for (int i = 0; i < cookie.length; i++) {
-						String keyname = cookie[i].getName();
-						if ("accessToken".equals(keyname)) {
-							if (!"".equals(cookie[i].getValue())) {
-								albean.setAccessToken(cookie[i].getValue());
-							}
+                if (cookie != null && cookie.length != 0) {
+                    for (int i = 0; i < cookie.length; i++) {
+                        String keyname = cookie[i].getName();
+                        if ("accessToken".equals(keyname)) {
+                            if (!"".equals(cookie[i].getValue())) {
+                                albean.setAccessToken(cookie[i].getValue());
+                            }
 
-						}
-						if ("userName".equals(keyname)) {
-							if (!"".equals(cookie[i].getValue())) {
-								albean.setName(cookie[i].getValue());
-							}
-						}
-					}
-				}
-				tctService.addStatus(albean, false);
-			} else {
-				tctService.addStatus(bean, true);
-			}
-			Cookie accessToken = new Cookie("accessToken",
-					bean.getAccessToken());
-			accessToken.setMaxAge(60 * 60 * 24 * 93);
-			Cookie uerName = new Cookie("userName", bean.getName());
-			uerName.setMaxAge(60 * 60 * 24 * 93);
-			response.addCookie(accessToken);
-			response.addCookie(uerName);
-			
-			out.println("{\"suhao\":\"succ\"}");
-			//out.write("["+json.toString()+"]");
-			out.flush();
-			out.close();
-		} catch (InvalidKeyException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (NoSuchAlgorithmException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (UnsupportedEncodingException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-        
+                        }
+                        if ("userName".equals(keyname)) {
+                            if (!"".equals(cookie[i].getValue())) {
+                                albean.setName(cookie[i].getValue());
+                            }
+                        }
+                    }
+                }
+                tctService.addStatus(albean, false);
+            } else {
+                tctService.addStatus(bean, true);
+            }
+            Cookie accessToken = new Cookie("accessToken", bean.getAccessToken());
+            accessToken.setMaxAge(60 * 60 * 24 * 93);
+            Cookie uerName = new Cookie("userName", bean.getName());
+            uerName.setMaxAge(60 * 60 * 24 * 93);
+            response.addCookie(accessToken);
+            response.addCookie(uerName);
+
+            out.println("{\"suhao\":\"succ\"}");
+            //out.write("["+json.toString()+"]");
+            out.flush();
+            out.close();
+        } catch (InvalidKeyException e) {
+            e.printStackTrace();
+        } catch (NoSuchAlgorithmException e) {
+            e.printStackTrace();
+        } catch (UnsupportedEncodingException e) {
+            e.printStackTrace();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+
         return null;
     }
 
-    @SuppressWarnings({ "rawtypes", "unchecked" })
     public String tencentWeibo() {
-        Map map = new HashMap();
+        Map<String, String> map = new HashMap<String, String>();
         Cookie allCookie[] = request.getCookies();
 
         if (allCookie != null && allCookie.length != 0) {
@@ -259,70 +222,6 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
         }
         return "tencentWeiboLogoutSucc";
     }
-
-    public String testTLoginInit() {
-        url = tctService.tencentWeiboLoginInit();
-         
-        return "tencentWeiboLoginInitRedirect";
-    }
-
-    public String testTLogin() {
-        urlTokens = "http://127.0.0.1:8080/web/testTLogin";
-        
-        return "tencentWeiboLoginSuccess";
-    }
-    
-    public String testLoginCheck() {
-        System.out.println("access_token:" + access_token + "\nexpires_in:" + expires_in);
-        TUserLoginBean bean = new TUserLoginBean();
-        bean.setAccessToken(access_token);
-        bean.setExpiresIn(Integer.parseInt(expires_in));
-        /*String result = "";
-        int p = 0;
-        if (name != null && name.length() > 0) {
-            name = name.toLowerCase();
-            p = name.indexOf("%e");
-            if (p == -1)
-                return name;
-            while (p != -1) {
-                result += name.substring(0, p);
-                name = name.substring(p, name.length());
-                if (name == "" || name.length() < 9)
-                    return result;
-                result += CodeToWord(name.substring(0, 9));
-                name = name.substring(9, name.length());
-                p = name.indexOf("%e");
-            }
-        }
-        name = result + name;*/
-        try {
-            bean.setName(URLDecoder.decode(name, "UTF-8"));
-        } catch (UnsupportedEncodingException e1) {
-            e1.printStackTrace();
-        }
-        bean.setNick(nick);
-        bean.setOpenid(openid);
-        bean.setOpenkey(openkey);
-        bean.setRefreshToken(refresh_token);
-        
-        tctService.saveUserLoginInfo(bean);
-        try {
-            tctService.addStatus(bean, true);
-        } catch (InvalidKeyException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        
-        
-        return null;
-    }
-
 
     public String qqWeiBoShow() {
         //weiboService.showQQInfo();
@@ -418,5 +317,5 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
     public void setRefresh_token(String refresh_token) {
         this.refresh_token = refresh_token;
     }
-    
+
 }

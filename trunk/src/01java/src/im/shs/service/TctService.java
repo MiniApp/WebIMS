@@ -28,7 +28,9 @@ import java.util.Map;
 public interface TctService {
     public void addStatus(TUserLoginBean bean, Boolean isLogin) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException;
     public String tencentWeiboLoginInit();
-    public void saveUserLoginInfo(TUserLoginBean bean);
+    public String checkUserLoginInfo(TUserLoginBean bean);
+    public void addUserLoginInfo(TUserLoginBean bean);
+    public void mergeUserLoginInfo(TUserLoginBean bean);
     @SuppressWarnings("rawtypes")
     public Boolean checkTencentLogin(Map map);
     public void batchAddStatus();

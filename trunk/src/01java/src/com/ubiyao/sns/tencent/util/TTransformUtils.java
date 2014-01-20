@@ -227,15 +227,6 @@ public class TTransformUtils {
         }
 
         try {
-        	/*if (statusesJsonStr.contains("\"music\":null")) {
-        		statusesJsonStr = statusesJsonStr.replaceAll("\"music\":null", "\"music\":{}");
-        	}
-        	if (statusesJsonStr.contains("\"image\":null")) {
-        		statusesJsonStr = statusesJsonStr.replaceAll("\"image\":null", "\"image\":[]");
-        	}
-        	if (statusesJsonStr.contains(":null")) {
-        		statusesJsonStr = statusesJsonStr.replaceAll(":null", ":\"\"");
-        	}*/
             return transTLStatusesToList(new JSONObject(statusesJsonStr));
         } catch (JSONException e) {
             return null;
@@ -309,7 +300,7 @@ public class TTransformUtils {
 		qqTStatus.setCommentCount(JSONUtils.getInt(statusObj, "mcount", 0));
 		qqTStatus.setSourceType(JSONUtils.getString(statusObj, "from", "腾讯微博"));
 		qqTStatus.setRepostCount(JSONUtils.getInt(statusObj, "count", 0));
-		String[]  s = JSONUtils.getStringArray(statusObj, "image", null);
+		JSONUtils.getStringArray(statusObj, "image", null);
 		qqTStatus.setImageUrl(JSONUtils.getStringArray(statusObj, "image", null));
 		qqTStatus.setContainImageFromImageUrl();
         transVideoInfo(qqTStatus, statusObj);
@@ -321,7 +312,7 @@ public class TTransformUtils {
         
         qqTStatus.setUser(transUserInfo(statusObj));
         qqTStatus.setStatusType(JSONUtils.getInt(statusObj, "type", TConstant.VALUE_STATUS_TYPE_ORIGINAL));
-        //qqTStatus.setSourceStatus(transStatus(JSONUtils.getJSONObject(statusObj, "source", null)));
+        qqTStatus.setSourceStatus(transStatus(JSONUtils.getJSONObject(statusObj, "source", null)));
         qqTStatus.setContainSource((qqTStatus.getSourceStatus() != null));
         if (qqTStatus.getStatusType() == TConstant.VALUE_STATUS_TYPE_REPOST) {
             qqTStatus.setStatusOrigiContent("转播:" + qqTStatus.getStatusOrigiContent());
