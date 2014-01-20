@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <a href="tencentWeibo">跳转中……请稍后</a>
+    <div id="showDiv"></div>
   	<script type="text/javascript">
     	var url = window.location.href;
     	var paraString = url.substring(url.indexOf("#")+1,url.length).split("&"); 
@@ -38,12 +38,26 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					data : po,//{"access_token":"38fc777338dfb01e362df4b70dceb32e","expires_in":"8035200","openid":"3A813B88F49FD49170BB32190F96A6B7","openkey":"CD74287163B1A981C4AF0A8473E09ACE","refresh_token":"a078cce342c8e4a01df18637a8fcf508","state":"","name":"TagSue","nick":"%E8%8B%8F%E7%9A%93"},
 					dataType : "json",
 					success : function(data) {
-						alert("Success");
+						var value = 3;  
+					    $("body").append("<input type='hidden' id='init_value' value="+value+" />");  
+					    time = setInterval('auto_jump()',1000);  
 					},
 					error : function(data) {
-						//alert("Failed");
+						alert("Failed");
 					}
 				});
+		function auto_jump() {  
+		    secs = $("#init_value").val() - 1;  
+		    $("#init_value").val(secs);  
+		        if(secs < 0){return false;}  
+		    if(secs == 0){  
+		        clearInterval(time);  
+		        $("#showDiv").html('正在载入...');  
+		        //window.location.href='/web/tencentWeibo';  
+		    }else{  
+		        $("#showDiv").html(secs+' 秒后自动跳转');  
+		    }  
+		}  
     </script>
   </body>
 </html>

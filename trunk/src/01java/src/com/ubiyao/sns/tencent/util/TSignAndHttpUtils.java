@@ -93,12 +93,21 @@ public class TSignAndHttpUtils {
         /** 对参数进行签名，并且发http get请求到固定url，返回内容 **/
         TSign qqTSign = new TSign();
         qqTSign.setBaseUrl(url);
-        qqTSign.setHttpMethod(HttpUtils.HTTP_GET_METHOD.toUpperCase());
-        qqTSign.setAppSecret(qqTAppAndToken.getAppSecret());
+        //qqTSign.setHttpMethod(HttpUtils.HTTP_GET_METHOD.toUpperCase());
+        //qqTSign.setAppSecret(qqTAppAndToken.getAppSecret());
         //qqTSign.setTokenSecret(qqTAppAndToken.getTokenSecret());
-        qqTSign.setParasMap(parasMap);
-        parasMap.put(TConstant.PARA_OAUTH_SIGNATURE, signature(qqTSign));
-        return HttpUtils.httpGetEncodeParas(qqTSign.getBaseUrl(), parasMap);
+        //qqTSign.setParasMap(parasMap);
+        //parasMap.put(TConstant.PARA_OAUTH_SIGNATURE, signature(qqTSign));
+       /* THttpClient qHttpClient = new THttpClient();
+        String queryString = TStrOperate.getQueryString(parasMap);
+        String r = "";
+        try {
+			r = qHttpClient.httpGet(url, queryString);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}*/
+        String s = HttpUtils.httpGetEncodeParas(qqTSign.getBaseUrl(), parasMap);
+        return  HttpUtils.httpGetEncodeParas(qqTSign.getBaseUrl(), parasMap);
     }
 
     /**

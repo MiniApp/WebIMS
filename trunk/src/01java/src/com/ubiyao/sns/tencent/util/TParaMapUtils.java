@@ -48,6 +48,7 @@ public class TParaMapUtils {
         parasMap.put(TConstant.PARA_SCOPE, qqTAppAndToken.getScope());
         parasMap.put(TConstant.PARA_CLIENT_IP, qqTAppAndToken.getClientip());
         //parasMap.put(TConstant.PARA_FORMAT, TConstant.VALUE_FORMAT_JSON);
+        //parasMap.put("syncflag", "0");
         parasMap.put(TConstant.PARA_OAUTH_VERSION, TConstant.VALUE_OAUTH_VERSION_2_A);
         return parasMap;
     }

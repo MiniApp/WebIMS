@@ -31,4 +31,5 @@ public interface TctService {
     public void saveUserLoginInfo(TUserLoginBean bean);
     @SuppressWarnings("rawtypes")
     public Boolean checkTencentLogin(Map map);
+    public void batchAddStatus();
 }

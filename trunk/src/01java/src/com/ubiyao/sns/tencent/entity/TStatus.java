@@ -11,7 +11,7 @@ public class TStatus implements Serializable {
 
     private static final long serialVersionUID = -361015223160572717L;
 
-    private TUser           user;                                   // 发布人信息
+    private TUser             user;                                   // 发布人信息
     private long              time;                                   // 发布时间，以秒为单位
 
     private long              statusId;                               // 内容id
@@ -44,10 +44,12 @@ public class TStatus implements Serializable {
 
     private int               repostCount;                            // 转发数目
     private boolean           isContainSource;                        // 是否包含原微博，可能是评论、转发等
-    private TStatus         sourceStatus;                           // 如果isRepost为true，保存原status信息
+    private TStatus           sourceStatus;                           // 如果isRepost为true，保存原status信息
 
     private long              colloctNum;                             // 当表示话题时，指被收藏次数
     private long              tweetNum;                               // 当表示话题时，指该话题下微博总数
+    
+    
 
     public TUser getUser() {
         return user;

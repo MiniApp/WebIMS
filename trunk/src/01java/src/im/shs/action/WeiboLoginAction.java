@@ -4,6 +4,8 @@ import im.shs.bean.TUserLoginBean;
 import im.shs.service.TctService;
 import im.shs.service.WeiBoService;
 
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
 import java.net.URLDecoder;
 import java.net.URLEncoder;
@@ -136,75 +138,85 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
     }
     
     public String tencentWeiboLoginCheck() {
-        System.out.println("access_token:" + access_token + "\nexpires_in:" + expires_in);
-        TUserLoginBean bean = new TUserLoginBean();
-        bean.setAccessToken(access_token);
-        bean.setExpiresIn(Integer.parseInt(expires_in));
-        bean.setName(name);
-        try {
-            bean.setNick(URLDecoder.decode(nick, "UTF-8"));
-        } catch (UnsupportedEncodingException e1) {
-            e1.printStackTrace();
-        }
-        bean.setOpenid(openid);
-        bean.setOpenkey(openkey);
-        bean.setRefreshToken(refresh_token);
-        
-        tctService.saveUserLoginInfo(bean);
-        
-        String accessTokenVal = (String) request.getAttribute("accessToken");
-        String userNameVal = (String) request.getAttribute("userName");
-        Boolean isLogin = false;
-        if (!"".equals(accessTokenVal) && !"".equals(userNameVal)) {
-            Map map = new HashMap();
-            map.put("clientUerName", userNameVal);
-            map.put("clientAccessToken", accessTokenVal);
-            isLogin = tctService.checkTencentLogin(map);
-        }
-        
-        try {
-            if (isLogin) {
-                TUserLoginBean albean = new TUserLoginBean();
-                Cookie cookie[] = request.getCookies();
+		try {
+			response.setContentType("application/json");
+			response.setCharacterEncoding("UTF-8");
+			PrintWriter out = response.getWriter();
+			System.out.println("access_token:" + access_token + "\nexpires_in:"
+					+ expires_in);
+			TUserLoginBean bean = new TUserLoginBean();
+			bean.setAccessToken(access_token);
+			bean.setExpiresIn(Integer.parseInt(expires_in));
+			bean.setName(name);
 
-                if (cookie != null && cookie.length != 0) {
-                    for (int i = 0; i < cookie.length; i++) {
-                        String keyname = cookie[i].getName();
-                        if ("accessToken".equals(keyname)) {
-                            if (!"".equals(cookie[i].getValue())) {
-                                albean.setAccessToken(cookie[i].getValue());
-                            }
+			bean.setNick(URLDecoder.decode(nick, "UTF-8"));
 
-                        }
-                        if ("userName".equals(keyname)) {
-                            if (!"".equals(cookie[i].getValue())) {
-                                albean.setName(cookie[i].getValue());
-                            }
-                        }
-                    }
-                }
-                tctService.addStatus(albean, false);
-            } else {
-                tctService.addStatus(bean, true);
-            }
-           
-        } catch (InvalidKeyException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        
-        Cookie accessToken = new Cookie("accessToken", bean.getAccessToken());
-        accessToken.setMaxAge(60 * 60 * 24 * 93);
-        //Cookie uerName = new Cookie("userName", bean.getName());
-        //uerName.setMaxAge(60 * 60 * 24 * 93);
-        response.addCookie(accessToken);
-        //response.addCookie(uerName);
+			bean.setOpenid(openid);
+			bean.setOpenkey(openkey);
+			bean.setRefreshToken(refresh_token);
+
+			tctService.saveUserLoginInfo(bean);
+
+			String accessTokenVal = (String) request
+					.getAttribute("accessToken");
+			String userNameVal = (String) request.getAttribute("userName");
+			Boolean isLogin = false;
+			if (!"".equals(accessTokenVal) && !"".equals(userNameVal)) {
+				Map map = new HashMap();
+				map.put("clientUserName", userNameVal);
+				map.put("clientAccessToken", accessTokenVal);
+				isLogin = tctService.checkTencentLogin(map);
+			}
+
+			if (isLogin) {
+				TUserLoginBean albean = new TUserLoginBean();
+				Cookie cookie[] = request.getCookies();
+
+				if (cookie != null && cookie.length != 0) {
+					for (int i = 0; i < cookie.length; i++) {
+						String keyname = cookie[i].getName();
+						if ("accessToken".equals(keyname)) {
+							if (!"".equals(cookie[i].getValue())) {
+								albean.setAccessToken(cookie[i].getValue());
+							}
+
+						}
+						if ("userName".equals(keyname)) {
+							if (!"".equals(cookie[i].getValue())) {
+								albean.setName(cookie[i].getValue());
+							}
+						}
+					}
+				}
+				tctService.addStatus(albean, false);
+			} else {
+				tctService.addStatus(bean, true);
+			}
+			Cookie accessToken = new Cookie("accessToken",
+					bean.getAccessToken());
+			accessToken.setMaxAge(60 * 60 * 24 * 93);
+			Cookie uerName = new Cookie("userName", bean.getName());
+			uerName.setMaxAge(60 * 60 * 24 * 93);
+			response.addCookie(accessToken);
+			response.addCookie(uerName);
+			
+			out.println("{\"suhao\":\"succ\"}");
+			//out.write("["+json.toString()+"]");
+			out.flush();
+			out.close();
+		} catch (InvalidKeyException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (NoSuchAlgorithmException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (UnsupportedEncodingException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
         
         return null;
     }
@@ -221,7 +233,7 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
                     map.put("clientAccessToken", allCookie[i].getValue());
                 }
                 if ("userName".equals(keyname)) {
-                    map.put("clientUerName", allCookie[i].getValue());
+                    map.put("clientUserName", allCookie[i].getValue());
                 }
             }
         }

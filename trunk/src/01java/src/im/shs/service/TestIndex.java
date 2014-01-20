@@ -29,8 +29,8 @@ import com.opensymphony.xwork2.ActionContext;
  *     
  */
 public class TestIndex {
-    @Resource(name="weiboService")
-    private WeiBoService ws;
+    @Resource(name="tctService")
+    private TctService tc;
     static int i = 0;
     
    // @Scheduled(cron="0/5 * *  * * ? ")   //每5秒执行一次 
@@ -43,6 +43,7 @@ public class TestIndex {
         //  String CallResult = this.doHttpClient(url, params);
         //System.out.println(CallResult);
         //ws.tencentWeiboLogin("87b261e5f6b18077bc782e1083240d8f");
+        //tc.batchAddStatus();
         
         System.out.println("excute " + i++ + " time: " + dateStr);
     }

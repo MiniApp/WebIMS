@@ -227,6 +227,15 @@ public class TTransformUtils {
         }
 
         try {
+        	/*if (statusesJsonStr.contains("\"music\":null")) {
+        		statusesJsonStr = statusesJsonStr.replaceAll("\"music\":null", "\"music\":{}");
+        	}
+        	if (statusesJsonStr.contains("\"image\":null")) {
+        		statusesJsonStr = statusesJsonStr.replaceAll("\"image\":null", "\"image\":[]");
+        	}
+        	if (statusesJsonStr.contains(":null")) {
+        		statusesJsonStr = statusesJsonStr.replaceAll(":null", ":\"\"");
+        	}*/
             return transTLStatusesToList(new JSONObject(statusesJsonStr));
         } catch (JSONException e) {
             return null;
@@ -288,27 +297,37 @@ public class TTransformUtils {
         }
 
         TStatus qqTStatus = new TStatus();
-        qqTStatus.setTime(JSONUtils.getLong(statusObj, "timestamp", (new Date()).getTime() / 1000));
-        qqTStatus.setStatusId(JSONUtils.getLong(statusObj, "id", 0));
-        qqTStatus.setStatusContent(StringUtils.htmlEscapeCharsToString(JSONUtils.getString(statusObj, "text", "")));
-        qqTStatus.setStatusOrigiContent(StringUtils.htmlEscapeCharsToString(JSONUtils.getString(statusObj, "origtext",
-                                                                                                "")));
-        qqTStatus.setCommentCount(JSONUtils.getInt(statusObj, "mcount", 0));
-        qqTStatus.setSourceType(JSONUtils.getString(statusObj, "from", "腾讯微博"));
-        qqTStatus.setRepostCount(JSONUtils.getInt(statusObj, "count", 0));
-        qqTStatus.setImageUrl(JSONUtils.getStringArray(statusObj, "image", null));
-        qqTStatus.setContainImageFromImageUrl();
+		qqTStatus.setTime(JSONUtils.getLong(statusObj, "timestamp",
+				(new Date()).getTime() / 1000));
+		qqTStatus.setStatusId(JSONUtils.getLong(statusObj, "id", 0));
+		qqTStatus.setStatusContent(StringUtils
+				.htmlEscapeCharsToString(JSONUtils.getString(statusObj, "text",
+						"")));
+		qqTStatus.setStatusOrigiContent(StringUtils
+				.htmlEscapeCharsToString(JSONUtils.getString(statusObj,
+						"origtext", "")));
+		qqTStatus.setCommentCount(JSONUtils.getInt(statusObj, "mcount", 0));
+		qqTStatus.setSourceType(JSONUtils.getString(statusObj, "from", "腾讯微博"));
+		qqTStatus.setRepostCount(JSONUtils.getInt(statusObj, "count", 0));
+		String[]  s = JSONUtils.getStringArray(statusObj, "image", null);
+		qqTStatus.setImageUrl(JSONUtils.getStringArray(statusObj, "image", null));
+		qqTStatus.setContainImageFromImageUrl();
         transVideoInfo(qqTStatus, statusObj);
-        transMucisInfo(qqTStatus, statusObj);
+		JSONObject musicJsonObj = JSONUtils.getJSONObject(statusObj, "music", null);
+		
+		if (null != musicJsonObj) {
+			transMusicInfo(qqTStatus, statusObj);
+		}
+        
         qqTStatus.setUser(transUserInfo(statusObj));
         qqTStatus.setStatusType(JSONUtils.getInt(statusObj, "type", TConstant.VALUE_STATUS_TYPE_ORIGINAL));
-        qqTStatus.setSourceStatus(transStatus(JSONUtils.getJSONObject(statusObj, "source", null)));
+        //qqTStatus.setSourceStatus(transStatus(JSONUtils.getJSONObject(statusObj, "source", null)));
         qqTStatus.setContainSource((qqTStatus.getSourceStatus() != null));
         if (qqTStatus.getStatusType() == TConstant.VALUE_STATUS_TYPE_REPOST) {
             qqTStatus.setStatusOrigiContent("转播:" + qqTStatus.getStatusOrigiContent());
         }
-        qqTStatus.setColloctNum(JSONUtils.getLong(statusObj, "favnum", 0));
-        qqTStatus.setTweetNum(JSONUtils.getLong(statusObj, "tweetnum", 0));
+        //qqTStatus.setColloctNum(JSONUtils.getLong(statusObj, "favnum", 0));
+        //qqTStatus.setTweetNum(JSONUtils.getLong(statusObj, "tweetnum", 0));
         return qqTStatus;
     }
 
@@ -363,7 +382,7 @@ public class TTransformUtils {
      * @param musicInfoObj
      * @return
      */
-    public static boolean transMucisInfo(TStatus qqTStatus, JSONObject musicInfoObj) {
+    public static boolean transMusicInfo(TStatus qqTStatus, JSONObject musicInfoObj) {
         JSONObject music = JSONUtils.getJSONObject(musicInfoObj, "music", null);
         if (music != null) {
             qqTStatus.setMusicAuthor(JSONUtils.getString(music, "author", ""));
@@ -499,7 +518,7 @@ public class TTransformUtils {
         TUser user = new TUser();
         user.setUserName(JSONUtils.getString(userInfoObj, "name", ""));
         user.setUserScreenName(JSONUtils.getString(userInfoObj, "nick", ""));
-        user.setUserId(JSONUtils.getLong(userInfoObj, "openid", -1));
+        user.setUserId(JSONUtils.getString(userInfoObj, "openid", ""));
         /**
          * 头像图片地址先 从head中找，不存在则从url中找
          * 对于头像图片需要在得到的url后加上/size拼接成完整路径，腾讯规定

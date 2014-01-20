@@ -33,6 +33,7 @@ import org.springframework.stereotype.Service;
 import com.ubiyao.sns.tencent.entity.TAppAndToken;
 import com.ubiyao.sns.tencent.entity.TStatus;
 import com.ubiyao.sns.tencent.entity.TStatusInfoPara;
+import com.ubiyao.sns.tencent.entity.TTimelinePara;
 import com.ubiyao.sns.tencent.service.impl.TSdkServiceImpl;
 
 /**    
@@ -77,12 +78,13 @@ public class TctServiceImpl extends AbstractService implements TctService {
         qqTAppAndToken.setOpenid(bean.getOpenid());
         qqTAppAndToken.setScope("all");
 
-        tSdkService = new TSdkServiceImpl();
+        //tSdkService = new TSdkServiceImpl();
         tSdkService.setQqTAppAndToken(qqTAppAndToken);
         statusList = new ArrayList<TStatus>();
     }
 
-    public void initInfoBySave(TUserLoginBean bean) {
+    @SuppressWarnings({ "unchecked", "rawtypes" })
+	public void initInfoBySave(TUserLoginBean bean) {
         qqTAppAndToken = new TAppAndToken();
         qqTAppAndToken.setAppKey(QQT_APP_KEY);
         qqTAppAndToken.setAccessToken(bean.getAccessToken());
@@ -127,7 +129,16 @@ public class TctServiceImpl extends AbstractService implements TctService {
         status.setStatusContent(sdf.format(new Date()));
         /** 设置音乐地址 **/
         //tSdkService.addStatus(status);
-
+        TTimelinePara qqTTimelinePara = new TTimelinePara();
+        qqTTimelinePara.setFormat("json");
+        qqTTimelinePara.setPageFlag(0);
+        qqTTimelinePara.setPageTime(0);
+        qqTTimelinePara.setPageReqNum(3);
+        qqTTimelinePara.setLastId(0);
+        qqTTimelinePara.setStatusType(0x1);
+        qqTTimelinePara.setContentType(0);
+        
+        tSdkService.getBroadcastTL(qqTTimelinePara);
         //** 设置视频地址 **//*
         //status.setVideoUrl("http://v.youku.com/v_show/id_XMjUzOTg3MDY0.html");
         //tSdkService.addVideoStatusStr(status);
@@ -216,7 +227,7 @@ public class TctServiceImpl extends AbstractService implements TctService {
     @Override
     public Boolean checkTencentLogin(Map map) {
         Map params = new HashMap();
-        params.put("name", map.get("clientUerName"));
+        params.put("name", map.get("clientUserName"));
         params.put("access_token", map.get("clientAccessToken"));
         TUserLginInfo po = (TUserLginInfo) this.getPersist().findObjectByFields(TUserLginInfo.class, params);
         if (null != po) {
@@ -225,5 +236,46 @@ public class TctServiceImpl extends AbstractService implements TctService {
             return false;
         }
     }
+
+	/**    
+	 * Method：	batchAddStatus
+	 *
+	 * Description：	
+	 *			描述
+	 * @Param  	name
+	 *			参数 
+	 * @Return	String DOM对象    
+	 * @Author	suhao 
+	 * @Since   
+	 */
+	@SuppressWarnings("unchecked")
+	@Override
+	public void batchAddStatus() {
+		List<TUserLoginBean> ul = (List<TUserLoginBean>) this.getPersist().findListBySqlMap("tencent.getUserList", null);
+		
+		for (TUserLoginBean bean : ul) {
+			qqTAppAndToken = new TAppAndToken();
+	        qqTAppAndToken.setAppKey(QQT_APP_KEY);
+	        qqTAppAndToken.setAccessToken(bean.getAccessToken());
+	        qqTAppAndToken.setOpenid(bean.getOpenid());
+	        qqTAppAndToken.setScope("all");
+
+	        //tSdkService = new TSdkServiceImpl();
+	        tSdkService.setQqTAppAndToken(qqTAppAndToken);
+	        
+	        TStatusInfoPara status = new TStatusInfoPara();
+	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
+	        status.setStatusContent(sdf.format(new Date()));
+	        try {
+				tSdkService.addStatus(status);
+			} catch (InvalidKeyException e) {
+				e.printStackTrace();
+			} catch (NoSuchAlgorithmException e) {
+				e.printStackTrace();
+			} catch (UnsupportedEncodingException e) {
+				e.printStackTrace();
+			}
+		}
+	}
 
 }

@@ -14,7 +14,7 @@ public class TUser implements Serializable {
 
     private static final long    serialVersionUID = 3298635316340763420L;
 
-    private long                 userId;                                 // 用户id
+    private String               userId;                                 // 用户id
     private String               userName;                               // 用户名
     private String               userScreenName;                         // 用户昵称
     private String               userDescription;                        // 个人介绍
@@ -45,11 +45,11 @@ public class TUser implements Serializable {
 
     private List<TStatus>      latestStatusList;                       // 用户最近微博列表
 
-    public long getUserId() {
+    public String getUserId() {
         return userId;
     }
 
-    public void setUserId(long userId) {
+    public void setUserId(String userId) {
         this.userId = userId;
     }
 

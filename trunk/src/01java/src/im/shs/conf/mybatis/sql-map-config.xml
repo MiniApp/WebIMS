@@ -3,5 +3,6 @@
 <configuration>
 	<mappers>
 		<mapper resource="im/shs/conf/mybatis/userMapper.xml" />
+		<mapper resource="im/shs/conf/mybatis/tencentUser.xml" />
 	</mappers>
 </configuration> 
