@@ -32,7 +32,8 @@ import com.opensymphony.xwork2.ActionSupport;
 public class WeiboLoginAction extends ActionSupport implements ServletResponseAware, ServletRequestAware {
     private static final long serialVersionUID = 1L;
 
-    private final Log logger = LogFactory.getLog(WeiboLoginAction.class);
+    @SuppressWarnings("unused")
+	private final Log logger = LogFactory.getLog(WeiboLoginAction.class);
 
     private HttpServletResponse response;
 
@@ -108,7 +109,6 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
             PrintWriter out = response.getWriter();
-            logger.info("access_token:" + access_token + "\nexpires_in:" + expires_in);
             TUserLoginBean bean = new TUserLoginBean();
             bean.setAccessToken(access_token);
             bean.setExpiresIn(Integer.parseInt(expires_in));
@@ -133,7 +133,7 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
                 Map<String, String> map = new HashMap<String, String>();
                 map.put("clientUserName", userNameVal);
                 map.put("clientAccessToken", accessTokenVal);
-                if (!"".equals(map.get("clientAccessToken"))) {
+                if (null != map.get("clientAccessToken")) {
                     isLogin = tctService.checkTencentLogin(map);
                 }
             }

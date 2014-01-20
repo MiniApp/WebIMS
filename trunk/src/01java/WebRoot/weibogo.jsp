@@ -21,7 +21,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
   </head>
   
   <body>
-    <div id="showDiv"></div>
+    <div id="showDiv">正在登陆中……</div>
   	<script type="text/javascript">
     	var url = window.location.href;
     	var paraString = url.substring(url.indexOf("#")+1,url.length).split("&"); 
