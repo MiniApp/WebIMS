@@ -79,7 +79,6 @@ public class TctServiceImpl extends AbstractService implements TctService {
         qqTAppAndToken.setOpenid(bean.getOpenid());
         qqTAppAndToken.setScope("all");
 
-        //tSdkService = new TSdkServiceImpl();
         tSdkService.setQqTAppAndToken(qqTAppAndToken);
         statusList = new ArrayList<TStatus>();
     }
@@ -129,21 +128,7 @@ public class TctServiceImpl extends AbstractService implements TctService {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         status.setStatusContent(sdf.format(new Date()));
         /** 设置音乐地址 **/
-        //tSdkService.addStatus(status);
-        TTimelinePara qqTTimelinePara = new TTimelinePara();
-        qqTTimelinePara.setFormat("json");
-        qqTTimelinePara.setPageFlag(0);
-        qqTTimelinePara.setPageTime(0);
-        qqTTimelinePara.setPageReqNum(3);
-        qqTTimelinePara.setLastId(0);
-        qqTTimelinePara.setStatusType(0x1);
-        qqTTimelinePara.setContentType(0);
-        
-        tSdkService.getBroadcastTL(qqTTimelinePara);
-        //** 设置视频地址 **//*
-        //status.setVideoUrl("http://v.youku.com/v_show/id_XMjUzOTg3MDY0.html");
-        //tSdkService.addVideoStatusStr(status);
-
+        tSdkService.addStatus(status);
     }
 
     @Override
@@ -340,6 +325,31 @@ public class TctServiceImpl extends AbstractService implements TctService {
 				e.printStackTrace();
 			}
 		}
+	}
+
+	/**    
+	 * Method：	getBroadcastTL
+	 *
+	 * Description：	
+	 *			描述
+	 * @Param  	name
+	 *			参数 
+	 * @Return	String DOM对象    
+	 * @Author	suhao 
+	 * @Since   
+	 */
+	@Override
+	public List<TStatus> getBroadcastTL() throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException {
+		TTimelinePara qqTTimelinePara = new TTimelinePara();
+        qqTTimelinePara.setFormat("json");
+        qqTTimelinePara.setPageFlag(0);
+        qqTTimelinePara.setPageTime(0);
+        qqTTimelinePara.setPageReqNum(3);
+        qqTTimelinePara.setLastId(0);
+        qqTTimelinePara.setStatusType(0x1);
+        qqTTimelinePara.setContentType(0);
+        List<TStatus> broadcastTL = tSdkService.getBroadcastTL(qqTTimelinePara);
+		return broadcastTL;
 	}
 
 }

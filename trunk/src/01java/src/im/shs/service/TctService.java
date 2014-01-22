@@ -12,7 +12,10 @@ import im.shs.bean.TUserLoginBean;
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
+import java.util.List;
 import java.util.Map;
+
+import com.ubiyao.sns.tencent.entity.TStatus;
 
 /**    
  *         
@@ -27,6 +30,7 @@ import java.util.Map;
  */
 public interface TctService {
     public void addStatus(TUserLoginBean bean, Boolean isLogin) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException;
+	public List<TStatus> getBroadcastTL()throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException;
     public String tencentWeiboLoginInit();
     public String checkUserLoginInfo(TUserLoginBean bean);
     public void addUserLoginInfo(TUserLoginBean bean);

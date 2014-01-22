@@ -201,7 +201,7 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
                 }
             }
         }
-        if (tctService.checkTencentLogin(map)) {
+        if (null != map.get("clientAccessToken") && null != map.get("clientUserName") && tctService.checkTencentLogin(map)) {
             request.getSession().setAttribute("clientAccessToken", map.get("clientAccessToken"));
             return "tencentWeiboSuccess";
         } else {
