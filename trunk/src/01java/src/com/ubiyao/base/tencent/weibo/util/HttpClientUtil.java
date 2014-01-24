@@ -53,7 +53,8 @@ public class HttpClientUtil {
 		return getContent(response, encoding);
 	}
 
-	public static String getContent(HttpResponse res, String encoding) throws Exception {
+	@SuppressWarnings("deprecation")
+    public static String getContent(HttpResponse res, String encoding) throws Exception {
 		HttpEntity ent = res.getEntity();
 		String result = IOUtils.toString(ent.getContent(), encoding);
 		ent.consumeContent();

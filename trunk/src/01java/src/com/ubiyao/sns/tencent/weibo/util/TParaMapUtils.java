@@ -1,13 +1,9 @@
 package com.ubiyao.sns.tencent.weibo.util;
 
-import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
 
-import com.sun.org.apache.bcel.internal.classfile.Signature;
-import com.ubiyao.base.tencent.weibo.util.BaseString;
 import com.ubiyao.base.tencent.weibo.util.MapUtils;
-import com.ubiyao.base.tencent.weibo.util.SignatureUtils;
 import com.ubiyao.base.tencent.weibo.util.StringUtils;
 import com.ubiyao.sns.tencent.weibo.entity.TAppAndToken;
 import com.ubiyao.sns.tencent.weibo.entity.THotStatusPara;
@@ -17,7 +13,6 @@ import com.ubiyao.sns.tencent.weibo.entity.TTimelinePara;
 import com.ubiyao.sns.tencent.weibo.entity.TUserEduPara;
 import com.ubiyao.sns.tencent.weibo.entity.TUserPara;
 import com.ubiyao.sns.tencent.weibo.entity.TUserRelationPara;
-import com.ubiyao.sns.tencent.weibo.util.TConstant;
 
 /**
  * 腾讯微博api需要的参数map

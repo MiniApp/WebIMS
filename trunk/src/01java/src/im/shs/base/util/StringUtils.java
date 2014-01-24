@@ -279,8 +279,7 @@ public class StringUtils {
 							if (methods[j].getName().equalsIgnoreCase(
 									"get" + fields[i].getName())) {
 								try {
-									result.append(toString(methods[j].invoke(
-											obj, null)));
+									result.append(toString(methods[j].invoke(obj, null)));
 								} catch (IllegalAccessException iae) {
 									iae.printStackTrace();
 								} catch (InvocationTargetException ite) {

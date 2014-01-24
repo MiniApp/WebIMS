@@ -44,6 +44,7 @@ import com.tencent.weibo.beans.RouteCfg;
  * 提供httpGet，httpPost两种传送消息的方式<br>
  * 提供httpPost上传文件的方式
  */
+@SuppressWarnings("deprecation")
 public class THttpClient {
 
     // SDK默认参数设置

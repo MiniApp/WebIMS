@@ -3,7 +3,6 @@ package com.ubiyao.sns.tencent.weibo.entity;
 import java.io.Serializable;
 
 import org.springframework.stereotype.Component;
-import org.springframework.stereotype.Repository;
 
 import com.ubiyao.base.tencent.weibo.util.StringUtils;
 

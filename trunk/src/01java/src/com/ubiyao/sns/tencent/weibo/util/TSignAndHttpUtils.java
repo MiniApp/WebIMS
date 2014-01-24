@@ -101,7 +101,6 @@ public class TSignAndHttpUtils {
 		} catch (Exception e) {
 			e.printStackTrace();
 		}*/
-        String s = HttpUtils.httpGetEncodeParas(qqTSign.getBaseUrl(), parasMap);
         return  HttpUtils.httpGetEncodeParas(qqTSign.getBaseUrl(), parasMap);
     }
 
@@ -156,15 +155,12 @@ public class TSignAndHttpUtils {
         }
 
         /** 对参数进行签名，加密参数然后发http post请求到固定url，返回内容 **/
-        TSign qqTSign = new TSign();
         String queryString = TStrOperate.getQueryString(parasMap);
         THttpClient qHttpClient = new THttpClient();
         try {
             queryString = queryString.replaceAll(" ", "%20");
-            //queryString = new String(queryString.getBytes("ISO-8859-1"),"UTF-8");
 			return qHttpClient.httpPost(url, queryString);
 		} catch (Exception e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
         return "";
