@@ -43,7 +43,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 					    time = setInterval('auto_jump()',1000);  
 					},
 					error : function(data) {
-						alert("Failed");
+						$("#showDiv").html('登陆失败！');
 					}
 				});
 		function auto_jump() {  
@@ -55,7 +55,7 @@ String basePath = request.getScheme()+"://"+request.getServerName()+":"+request.
 		        $("#showDiv").html('正在载入...');  
 		        window.location.href='/web/tencentWeibo';  
 		    }else{  
-		        $("#showDiv").html(secs+' 秒后自动跳转');  
+		         $("#showDiv").html('正在登陆... <span style="color:red;">' + secs + '</span> 秒后自动跳转');  
 		    }  
 		}  
     </script>

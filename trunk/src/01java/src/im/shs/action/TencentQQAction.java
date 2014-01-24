@@ -22,17 +22,19 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
+import org.json.JSONObject;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
 import com.opensymphony.xwork2.ActionSupport;
+import com.ubiyao.sns.tencent.qq.util.QConstant;
+import com.ubiyao.sns.tencent.weibo.util.THttpClient;
 
 @Component("tencentQQAction")
 @Scope("prototype")
 public class TencentQQAction extends ActionSupport implements ServletResponseAware, ServletRequestAware {
     private static final long serialVersionUID = 1L;
 
-    @SuppressWarnings("unused")
 	private final Log logger = LogFactory.getLog(TencentQQAction.class);
 
     private HttpServletResponse response;
@@ -71,6 +73,28 @@ public class TencentQQAction extends ActionSupport implements ServletResponseAwa
     public String tencentQQLogin() {
 
         return "tencentQQLoginSuccess";
+    }
+    
+    public String tencentQQOpenID() throws Exception {
+        
+        try {
+            response.setContentType("application/json");
+            response.setCharacterEncoding("UTF-8");
+            PrintWriter out = response.getWriter();
+            StringBuffer queryString = new StringBuffer();
+            queryString.append("access_token=");
+            queryString.append(access_token);
+            THttpClient hc = new THttpClient();
+            String s = hc.simpleHttpGet(QConstant.GET_OPENID_URL, queryString.toString());
+            String c = s.substring(s.indexOf("{"), s.lastIndexOf("}")+1);
+            out.println(c);
+            out.flush();
+            out.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        
+        return null;
     }
 
     public String tencentQQLoginCheck() {

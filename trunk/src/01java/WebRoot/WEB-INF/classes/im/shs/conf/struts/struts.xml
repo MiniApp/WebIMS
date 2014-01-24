@@ -43,6 +43,8 @@
 			<result name="tencentQQLoginInitRedirect" type="redirect">${url}</result>
 			<result name="tencentQQLoginSuccess">qqIndex.jsp</result>
 		</action>
+		<action name="tencentQQOpenID" class="tencentQQAction" method="tencentQQOpenID">
+		</action>
 		<action name="*User*" class="userAction" method="{1}User{2}">
 			<result name="success">success.jsp</result>
 			<result name="list">list.jsp</result>
