@@ -28,7 +28,7 @@ import com.tencent.weibo.api.TAPI;
 import com.tencent.weibo.api.UserAPI;
 import com.tencent.weibo.oauthv2.OAuthV2;
 import com.tencent.weibo.oauthv2.OAuthV2Client;
-import com.ubiyao.base.tencent.util.HttpUtils;
+import com.ubiyao.base.tencent.weibo.util.HttpUtils;
 
 @Service("weiboService")
 public class WeiBoServiceImpl extends AbstractService implements WeiBoService {

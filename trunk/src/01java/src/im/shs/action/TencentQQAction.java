@@ -2,7 +2,7 @@ package im.shs.action;
 
 import im.shs.base.Constants;
 import im.shs.bean.TUserLoginBean;
-import im.shs.service.TencentWeiBoService;
+import im.shs.service.TencentQQService;
 
 import java.io.IOException;
 import java.io.PrintWriter;
@@ -27,13 +27,13 @@ import org.springframework.stereotype.Component;
 
 import com.opensymphony.xwork2.ActionSupport;
 
-@Component("weiBoLoginAction")
+@Component("tencentQQAction")
 @Scope("prototype")
-public class WeiboLoginAction extends ActionSupport implements ServletResponseAware, ServletRequestAware {
+public class TencentQQAction extends ActionSupport implements ServletResponseAware, ServletRequestAware {
     private static final long serialVersionUID = 1L;
 
     @SuppressWarnings("unused")
-	private final Log logger = LogFactory.getLog(WeiboLoginAction.class);
+	private final Log logger = LogFactory.getLog(TencentQQAction.class);
 
     private HttpServletResponse response;
 
@@ -59,52 +59,21 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
 
     private String nick;
 
-    @Resource(name = "tctWeiBoService")
-    private TencentWeiBoService tctWeiBoService;
+    @Resource(name = "tctQQService")
+    private TencentQQService tctQQService;
 
-    public String tencentWeiboLoginInit() {
-        Map<String, String> map = new HashMap<String, String>();
-        Cookie cookie[] = request.getCookies();
-
-        if (cookie != null && cookie.length != 0) {
-            for (int i = 0; i < cookie.length; i++) {
-                String keyname = cookie[i].getName();
-                if ("accessToken".equals(keyname)) {
-                    if (!"".equals(cookie[i].getValue())) {
-                        map.put("clientAccessToken", cookie[i].getValue());
-                    }
-
-                }
-                if ("userName".equals(keyname)) {
-                    if (!"".equals(cookie[i].getValue())) {
-                        map.put("clientUserName", cookie[i].getValue());
-                    }
-                }
-            }
-        }
-        if (!"".equals(map.get("clientAccessToken"))) {
-            if (null != map.get("clientAccessToken") && null != map.get("clientUserName") && tctWeiBoService.checkTencentLogin(map)) {
-                url = "";
-                request.getSession().setAttribute("userName", map.get("clientUserName"));
-                request.getSession().setAttribute("accessToken", map.get("clientAccessToken"));
-                return "tencentWeibo";
-            } else {
-                url = tctWeiBoService.tencentWeiboLoginInit();
-                return "tencentWeiboLoginInitRedirect";
-            }
-        } else {
-            url = tctWeiBoService.tencentWeiboLoginInit();
-            return "tencentWeiboLoginInitRedirect";
-        }
-
+    public String tencentQQLoginInit() {
+        url = tctQQService.tencentQQLoginInit();
+        return "tencentQQLoginInitRedirect";
+        
     }
 
-    public String tencentWeiboLogin() {
+    public String tencentQQLogin() {
 
-        return "tencentWeiboLoginSuccess";
+        return "tencentQQLoginSuccess";
     }
 
-    public String tencentWeiboLoginCheck() {
+    public String tencentQQLoginCheck() {
         try {
             response.setContentType("application/json");
             response.setCharacterEncoding("UTF-8");
@@ -120,10 +89,10 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
             bean.setOpenkey(openkey);
             bean.setRefreshToken(refresh_token);
             
-            if (Constants.RESULT_NEED_TO_ADD.equals(tctWeiBoService.checkUserLoginInfo(bean))) {
-                tctWeiBoService.addUserLoginInfo(bean);
-            } else if (Constants.RESULT_NEED_TO_MERGE.equals(tctWeiBoService.checkUserLoginInfo(bean))) {
-                tctWeiBoService.mergeUserLoginInfo(bean);
+            if (Constants.RESULT_NEED_TO_ADD.equals(tctQQService.checkUserLoginInfo(bean))) {
+                tctQQService.addUserLoginInfo(bean);
+            } else if (Constants.RESULT_NEED_TO_MERGE.equals(tctQQService.checkUserLoginInfo(bean))) {
+                tctQQService.mergeUserLoginInfo(bean);
             }
 
             String accessTokenVal = (String) request.getSession().getAttribute("accessToken");
@@ -134,7 +103,7 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
                 map.put("clientUserName", userNameVal);
                 map.put("clientAccessToken", accessTokenVal);
                 if (null != map.get("clientAccessToken")) {
-                    isLogin = tctWeiBoService.checkTencentLogin(map);
+                    isLogin = tctQQService.checkTencentLogin(map);
                 }
             }
 
@@ -158,9 +127,9 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
                         }
                     }
                 }
-                tctWeiBoService.addStatus(albean, false);
+                tctQQService.addStatus(albean, false);
             } else {
-                tctWeiBoService.addStatus(bean, true);
+                tctQQService.addStatus(bean, true);
             }
             Cookie accessToken = new Cookie("accessToken", bean.getAccessToken());
             accessToken.setMaxAge(60 * 60 * 24 * 93);
@@ -186,7 +155,7 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
         return null;
     }
 
-    public String tencentWeibo() {
+    public String tencentQQShow() {
         Map<String, String> map = new HashMap<String, String>();
         Cookie allCookie[] = request.getCookies();
 
@@ -201,7 +170,7 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
                 }
             }
         }
-        if (null != map.get("clientAccessToken") && null != map.get("clientUserName") && tctWeiBoService.checkTencentLogin(map)) {
+        if (null != map.get("clientAccessToken") && null != map.get("clientUserName") && tctQQService.checkTencentLogin(map)) {
             request.getSession().setAttribute("clientAccessToken", map.get("clientAccessToken"));
             return "tencentWeiboSuccess";
         } else {
@@ -209,7 +178,7 @@ public class WeiboLoginAction extends ActionSupport implements ServletResponseAw
         }
     }
 
-    public String tencentWeiboLogout() {
+    public String tencentQQLogout() {
         request.getSession().removeAttribute("clientAccessToken");
         request.getSession().removeAttribute("accessToken");
         Cookie[] cookies = request.getCookies();
