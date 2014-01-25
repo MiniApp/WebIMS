@@ -1,17 +1,12 @@
 package im.shs.action;
 
-import im.shs.base.Constants;
-import im.shs.bean.TUserLoginBean;
 import im.shs.service.TencentQQService;
 
 import java.io.IOException;
 import java.io.PrintWriter;
 import java.io.UnsupportedEncodingException;
-import java.net.URLDecoder;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.HashMap;
-import java.util.Map;
 
 import javax.annotation.Resource;
 import javax.servlet.http.Cookie;
@@ -22,7 +17,7 @@ import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
 import org.apache.struts2.interceptor.ServletRequestAware;
 import org.apache.struts2.interceptor.ServletResponseAware;
-import org.json.JSONObject;
+import org.json.JSONException;
 import org.springframework.context.annotation.Scope;
 import org.springframework.stereotype.Component;
 
@@ -65,6 +60,7 @@ public class TencentQQAction extends ActionSupport implements ServletResponseAwa
     private TencentQQService tctQQService;
 
     public String tencentQQLoginInit() {
+    	logger.info("tencentQQLoginInit start");
         url = tctQQService.tencentQQLoginInit();
         return "tencentQQLoginInitRedirect";
         
@@ -97,109 +93,15 @@ public class TencentQQAction extends ActionSupport implements ServletResponseAwa
         return null;
     }
 
-    public String tencentQQLoginCheck() {
-        try {
-            response.setContentType("application/json");
-            response.setCharacterEncoding("UTF-8");
-            PrintWriter out = response.getWriter();
-            TUserLoginBean bean = new TUserLoginBean();
-            bean.setAccessToken(access_token);
-            bean.setExpiresIn(Integer.parseInt(expires_in));
-            bean.setName(name);
+    
 
-            bean.setNick(URLDecoder.decode(nick, "UTF-8"));
-
-            bean.setOpenid(openid);
-            bean.setOpenkey(openkey);
-            bean.setRefreshToken(refresh_token);
-            
-            if (Constants.RESULT_NEED_TO_ADD.equals(tctQQService.checkUserLoginInfo(bean))) {
-                tctQQService.addUserLoginInfo(bean);
-            } else if (Constants.RESULT_NEED_TO_MERGE.equals(tctQQService.checkUserLoginInfo(bean))) {
-                tctQQService.mergeUserLoginInfo(bean);
-            }
-
-            String accessTokenVal = (String) request.getSession().getAttribute("accessToken");
-            String userNameVal = (String) request.getSession().getAttribute("userName");
-            Boolean isLogin = false;
-            if (!"".equals(accessTokenVal) && !"".equals(userNameVal)) {
-                Map<String, String> map = new HashMap<String, String>();
-                map.put("clientUserName", userNameVal);
-                map.put("clientAccessToken", accessTokenVal);
-                if (null != map.get("clientAccessToken")) {
-                    isLogin = tctQQService.checkTencentLogin(map);
-                }
-            }
-
-            if (isLogin) {
-                TUserLoginBean albean = new TUserLoginBean();
-                Cookie cookie[] = request.getCookies();
-
-                if (cookie != null && cookie.length != 0) {
-                    for (int i = 0; i < cookie.length; i++) {
-                        String keyname = cookie[i].getName();
-                        if ("accessToken".equals(keyname)) {
-                            if (!"".equals(cookie[i].getValue())) {
-                                albean.setAccessToken(cookie[i].getValue());
-                            }
-
-                        }
-                        if ("userName".equals(keyname)) {
-                            if (!"".equals(cookie[i].getValue())) {
-                                albean.setName(cookie[i].getValue());
-                            }
-                        }
-                    }
-                }
-                tctQQService.addStatus(albean, false);
-            } else {
-                tctQQService.addStatus(bean, true);
-            }
-            Cookie accessToken = new Cookie("accessToken", bean.getAccessToken());
-            accessToken.setMaxAge(60 * 60 * 24 * 93);
-            Cookie uerName = new Cookie("userName", bean.getName());
-            uerName.setMaxAge(60 * 60 * 24 * 93);
-            response.addCookie(accessToken);
-            response.addCookie(uerName);
-
-            out.println("{\"welcome\":\"welcome\"}");
-            //out.write("["+json.toString()+"]");
-            out.flush();
-            out.close();
-        } catch (InvalidKeyException e) {
-            e.printStackTrace();
-        } catch (NoSuchAlgorithmException e) {
-            e.printStackTrace();
-        } catch (UnsupportedEncodingException e) {
-            e.printStackTrace();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-
-        return null;
-    }
-
-    public String tencentQQShow() {
-        Map<String, String> map = new HashMap<String, String>();
-        Cookie allCookie[] = request.getCookies();
-
-        if (allCookie != null && allCookie.length != 0) {
-            for (int i = 0; i < allCookie.length; i++) {
-                String keyname = allCookie[i].getName();
-                if ("accessToken".equals(keyname)) {
-                    map.put("clientAccessToken", allCookie[i].getValue());
-                }
-                if ("userName".equals(keyname)) {
-                    map.put("clientUserName", allCookie[i].getValue());
-                }
-            }
-        }
-        if (null != map.get("clientAccessToken") && null != map.get("clientUserName") && tctQQService.checkTencentLogin(map)) {
-            request.getSession().setAttribute("clientAccessToken", map.get("clientAccessToken"));
-            return "tencentWeiboSuccess";
-        } else {
-            return "tencentWeiboFail";
-        }
+    public String tencentQQShow() throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException, JSONException {
+        //String s = tctQQService.getUserInfo();
+        
+        //logger.info("UserInfo:" + s);
+        String a = tctQQService.addShare();
+        logger.info("AddShare:" + a);
+        return "tencentQQShow";
     }
 
     public String tencentQQLogout() {

@@ -413,6 +413,20 @@ public class JSONUtils {
         }
     }
 
+    public static JSONObject getJSONObject(String jsonData, JSONObject defaultValue) {
+        if (StringUtils.isEmpty(jsonData)) {
+            return defaultValue;
+        }
+
+        try {
+            JSONObject jsonObject = new JSONObject(jsonData);
+            return jsonObject;
+        } catch (JSONException e) {
+            e.printStackTrace();
+            return defaultValue;
+        }
+    }
+    
     /**
      * get JSONArray from jsonObject
      * 

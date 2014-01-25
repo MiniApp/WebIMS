@@ -41,7 +41,8 @@
 		</action>
 		<action name="tencentQQ*" class="tencentQQAction" method="tencentQQ{1}">
 			<result name="tencentQQLoginInitRedirect" type="redirect">${url}</result>
-			<result name="tencentQQLoginSuccess">qqIndex.jsp</result>
+			<result name="tencentQQLoginSuccess">qqLoginGo.jsp</result>
+			<result name="tencentQQShow">qqIndex.jsp</result>
 		</action>
 		<action name="tencentQQOpenID" class="tencentQQAction" method="tencentQQOpenID">
 		</action>

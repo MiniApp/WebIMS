@@ -1,4 +1,4 @@
-package com.ubiyao.sns.tencent.weibo.service.impl;
+package com.ubiyao.sns.tencent.weibo.service;
 
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;

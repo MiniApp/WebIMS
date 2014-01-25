@@ -2,17 +2,14 @@ package im.shs.service;
 
 import im.shs.action.WeiboLoginAction;
 import im.shs.base.AbstractService;
-import im.shs.base.Constants;
-import im.shs.base.util.DateUtil;
+import im.shs.base.util.StringUtils;
 import im.shs.bean.TUserLoginBean;
 import im.shs.model.TUserLginInfo;
 
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.text.SimpleDateFormat;
 import java.util.ArrayList;
-import java.util.Date;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -22,12 +19,14 @@ import javax.annotation.Resource;
 
 import org.apache.commons.logging.Log;
 import org.apache.commons.logging.LogFactory;
+import org.json.JSONException;
 import org.springframework.stereotype.Service;
 
-import com.ubiyao.sns.tencent.weibo.entity.TAppAndToken;
+import com.ubiyao.sns.tencent.qq.entity.QAddSharePara;
+import com.ubiyao.sns.tencent.qq.entity.QAppAndToken;
+import com.ubiyao.sns.tencent.qq.service.TQQSdkServiceImpl;
+import com.ubiyao.sns.tencent.qq.util.QConstant;
 import com.ubiyao.sns.tencent.weibo.entity.TStatus;
-import com.ubiyao.sns.tencent.weibo.entity.TStatusInfoPara;
-import com.ubiyao.sns.tencent.weibo.service.impl.TSdkServiceImpl;
 
 /**    
  *         
@@ -52,72 +51,41 @@ public class TencentQQServiceImpl extends AbstractService implements TencentQQSe
     /** 应用secret **/
     public String QQT_APP_SECRET = resource.getString("client_SERCRET");
 
-    TAppAndToken qqTAppAndToken;
+    QAppAndToken qAppAndToken;
 
-    @Resource(name = "tSdkService")
-    private TSdkServiceImpl tSdkService;
+    @Resource(name = "qqSdkService")
+    private TQQSdkServiceImpl qqSdkService;
 
     List<TStatus> statusList;
 
     public void initInfoByLogin(TUserLoginBean bean) {
-        qqTAppAndToken = new TAppAndToken();
-        qqTAppAndToken.setAppKey(QQT_APP_KEY);
-        qqTAppAndToken.setAccessToken(bean.getAccessToken());
-        qqTAppAndToken.setOpenid(bean.getOpenid());
-        qqTAppAndToken.setScope("all");
+        qAppAndToken = new QAppAndToken();
+        qAppAndToken.setAppKey(QQT_APP_KEY);
+        qAppAndToken.setAccessToken(bean.getAccessToken());
+        qAppAndToken.setOpenid(bean.getOpenid());
 
-        tSdkService.setQqTAppAndToken(qqTAppAndToken);
+        qqSdkService.setQAppAndToken(qAppAndToken);
         statusList = new ArrayList<TStatus>();
     }
 
     @SuppressWarnings({ "unchecked", "rawtypes" })
 	public void initInfoBySave(TUserLoginBean bean) {
-        qqTAppAndToken = new TAppAndToken();
-        qqTAppAndToken.setAppKey(QQT_APP_KEY);
-        qqTAppAndToken.setAccessToken(bean.getAccessToken());
+        qAppAndToken = new QAppAndToken();
+        qAppAndToken.setAppKey(QQT_APP_KEY);
+        qAppAndToken.setAccessToken(bean.getAccessToken());
         Map map = new HashMap();
         map.put("name", bean.getName());
         map.put("access_token", bean.getAccessToken());
         TUserLginInfo po = this.getPersist().findObjectByFields(TUserLginInfo.class, map);
         if (null != po) {
-            qqTAppAndToken.setOpenid(po.getOpenid()); 
+            qAppAndToken.setOpenid(po.getOpenid()); 
         }
-        qqTAppAndToken.setScope("all");
 
-        tSdkService = new TSdkServiceImpl();
-        tSdkService.setQqTAppAndToken(qqTAppAndToken);
+        qqSdkService.setQAppAndToken(qAppAndToken);
         statusList = new ArrayList<TStatus>();
     }
 
-    /**    
-     * Method：	addStatus
-     *
-     * Description：	
-     *			描述
-     * @throws UnsupportedEncodingException 
-     * @throws NoSuchAlgorithmException 
-     * @throws InvalidKeyException 
-     * @Param  	name
-     *			参数 
-     * @Return	String DOM对象    
-     * @Author	suhao 
-     * @Since   
-     */
-    @Override
-    public void addStatus(TUserLoginBean bean, Boolean isLogin) throws InvalidKeyException, NoSuchAlgorithmException,
-            UnsupportedEncodingException {
-        if (!isLogin) {
-            initInfoByLogin(bean);
-        } else {
-            initInfoBySave(bean);
-        }
-        TStatusInfoPara status = new TStatusInfoPara();
-        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-        status.setStatusContent(sdf.format(new Date()));
-        /** 设置音乐地址 **/
-        tSdkService.addStatus(status);
-    }
-
+    
     @Override
     public String tencentQQLoginInit() {
         //ResourceBundle resource = ResourceBundle.getBundle("tencentQQConfig");// 这个配置文件是我自己创建的
@@ -136,113 +104,36 @@ public class TencentQQServiceImpl extends AbstractService implements TencentQQSe
         return url.toString();
     }
 
-    /**    
-     * Method：  checkUserLoginInfo
-     *
-     * Description： 
-     *          描述
-     * @Param   name
-     *          参数 
-     * @Return  String DOM对象    
-     * @Author  suhao 
-     * @Since   
-     */
-    @Override
-    public String checkUserLoginInfo(TUserLoginBean bean) {
-        TUserLginInfo po = this.getPersist().findObjectByField(TUserLginInfo.class, "name", bean.getName());
-        if (null == po) {
-            return Constants.RESULT_NEED_TO_ADD;
-        } else {
-            HashMap<String, String> para = new HashMap<String, String>();
-            para.put("name", bean.getName());
-            para.put("access_token", bean.getAccessToken());
-            TUserLginInfo pos = this.getPersist().findObjectByFields(TUserLginInfo.class, para);
-            if (null == pos) {
-                return Constants.RESULT_NEED_TO_MERGE;
-            }
-        }
-        return null;
-    }
-    
-    /**    
-     * Method：	addUserLoginInfo
-     *
-     * Description：	
-     *			描述
-     * @Param  	name
-     *			参数 
-     * @Return	String DOM对象    
-     * @Author	suhao 
-     * @Since   
-     */
-    @Override
-    public void addUserLoginInfo(TUserLoginBean bean) {
-        TUserLginInfo po = new TUserLginInfo();
-        po.setAccessToken(bean.getAccessToken());
-        po.setExpiresIn(bean.getExpiresIn());
-        po.setName(bean.getName());
-        po.setNick(bean.getNick());
-        po.setOpenid(bean.getOpenid());
-        po.setOpenkey(bean.getOpenkey());
-        po.setRefreshToken(bean.getRefreshToken());
-        po.setExpiresDate(new Date());
-        this.getPersist().persist(po);
-    }
-    
-    /**    
-     * Method：  mergeUserLoginInfo
-     *
-     * Description： 
-     *          描述
-     * @Param   name
-     *          参数 
-     * @Return  String DOM对象    
-     * @Author  suhao 
-     * @Since   
-     */
-    @Override
-    public void mergeUserLoginInfo(TUserLoginBean bean) {
-        TUserLginInfo po = this.getPersist().findObjectByField(TUserLginInfo.class, "name", bean.getName());
-        po.setAccessToken(bean.getAccessToken());
-        po.setExpiresIn(bean.getExpiresIn());
-        po.setName(bean.getName());
-        po.setNick(bean.getNick());
-        po.setOpenid(bean.getOpenid());
-        po.setOpenkey(bean.getOpenkey());
-        po.setRefreshToken(bean.getRefreshToken());
-        po.setUpdateTime(DateUtil.getNow());
-        //pos.setExpiresDate(new Date());
-        
-        this.getPersist().merge(po);
-    }
-
-    /**    
-     * Method：	checkTencentLogin
-     *
-     * Description：	
-     *			描述
-     * @Param  	name
-     *			参数 
-     * @Return	String DOM对象    
-     * @Author	suhao 
-     * @Since   
-     */
-    @SuppressWarnings({ "rawtypes", "unchecked" })
-    @Override
-    public Boolean checkTencentLogin(Map map) {
-        Map params = new HashMap();
-        params.put("name", map.get("clientUserName"));
-        params.put("access_token", map.get("clientAccessToken"));
-        TUserLginInfo po = (TUserLginInfo) this.getPersist().findObjectByFields(TUserLginInfo.class, params);
-        if (null != po) {
-            return true;
-        } else {
-            return false;
-        }
-    }
 
 	/**    
-	 * Method：	batchAddStatus
+	 * Method：	getUserInfo
+	 *
+	 * Description：	
+	 *			描述
+	 * @throws UnsupportedEncodingException 
+	 * @throws NoSuchAlgorithmException 
+	 * @throws InvalidKeyException 
+	 * @throws JSONException 
+	 * @Param  	name
+	 *			参数 
+	 * @Return	String DOM对象    
+	 * @Author	suhao 
+	 * @Since   
+	 */
+	@Override
+	public String getUserInfo() throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException, JSONException {
+		qAppAndToken = new QAppAndToken();
+		qAppAndToken.setAppKey("101012073");
+		qAppAndToken.setOpenid("0EFD8AF8DF8AC6FA5186EC31800FDD62");
+		qAppAndToken.setAccessToken("41A76D4375591AD9ACE74E3BFCFBC0BF");
+		qqSdkService.setQAppAndToken(qAppAndToken);
+		logger.info(StringUtils.toString(qqSdkService.getUserInfo()));
+
+		return qqSdkService.getUserInfo("json");
+	}
+
+	/**    
+	 * Method：	addShare
 	 *
 	 * Description：	
 	 *			描述
@@ -252,32 +143,20 @@ public class TencentQQServiceImpl extends AbstractService implements TencentQQSe
 	 * @Author	suhao 
 	 * @Since   
 	 */
-	@SuppressWarnings("unchecked")
 	@Override
-	public void batchAddStatus() {
-		List<TUserLoginBean> ul = (List<TUserLoginBean>) this.getPersist().findListBySqlMap("tencent.getUserList", null);
-		
-		for (TUserLoginBean bean : ul) {
-			qqTAppAndToken = new TAppAndToken();
-	        qqTAppAndToken.setAppKey(QQT_APP_KEY);
-	        qqTAppAndToken.setAccessToken(bean.getAccessToken());
-	        qqTAppAndToken.setOpenid(bean.getOpenid());
-	        qqTAppAndToken.setScope("all");
-
-	        tSdkService.setQqTAppAndToken(qqTAppAndToken);
-	        
-	        TStatusInfoPara status = new TStatusInfoPara();
-	        SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
-	        status.setStatusContent(sdf.format(new Date()));
-	        try {
-				tSdkService.addStatus(status);
-			} catch (InvalidKeyException e) {
-				e.printStackTrace();
-			} catch (NoSuchAlgorithmException e) {
-				e.printStackTrace();
-			} catch (UnsupportedEncodingException e) {
-				e.printStackTrace();
-			}
-		}
+	public String addShare() {
+		qAppAndToken = new QAppAndToken();
+		qAppAndToken.setAppKey("101012073");
+		qAppAndToken.setOpenid("0EFD8AF8DF8AC6FA5186EC31800FDD62");
+		qAppAndToken.setAccessToken("41A76D4375591AD9ACE74E3BFCFBC0BF");
+		qqSdkService.setQAppAndToken(qAppAndToken);
+		QAddSharePara para = new QAddSharePara();
+		para.setTitle("test");
+		para.setUrl("http://wephi.com");
+		para.setComment("Hello World");
+		para.setSite("半杯烟火");
+		para.setFormat("json");
+		para.setFromurl("http://wephi.com");
+		return qqSdkService.addShare(QConstant.ADD_SHARE, para);
 	}
 }

@@ -2,14 +2,8 @@ package im.shs.base.util;
 
 import java.io.UnsupportedEncodingException;
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.ArrayList;
-import java.util.Collection;
-import java.util.Enumeration;
-import java.util.Iterator;
 import java.util.List;
-import java.util.Map;
 import java.util.StringTokenizer;
 
 public class StringUtils {
@@ -226,9 +220,31 @@ public class StringUtils {
 	 * @param obj
 	 * @return
 	 */
-	@SuppressWarnings({ "rawtypes", "unchecked" })
 	public static String toString(Object obj) {
-		if (obj == null)
+		if(obj == null) 
+			return "null";
+		
+		StringBuffer sb = new StringBuffer();
+
+		Class<?> clazz = obj.getClass();
+		Field[] fields = clazz.getDeclaredFields();
+		
+		sb.append(clazz.getName() + "{");
+		try {
+			for (Field field : fields) {
+				field.setAccessible(true);
+				sb.append("\"" + field.getName() + "\" : \"" + field.get(obj) + "\", ");
+			}
+		} catch (IllegalArgumentException | IllegalAccessException e) {
+			e.printStackTrace();
+		}
+		String sbs = sb.substring(0, sb.length() - 2);
+		StringBuffer sbf = new StringBuffer(sbs);
+		sbf.append("}");
+		
+		return sbf.toString();
+
+		/*if (obj == null)
 			return null;
 		Class objClass = obj.getClass();
 		if (objClass.getName().startsWith("java.lang"))
@@ -296,10 +312,10 @@ public class StringUtils {
 				return result.toString();
 			}
 		}
-		return result.toString();
+		return result.toString();*/
 	}
 
-	@SuppressWarnings("rawtypes")
+	@SuppressWarnings({ "rawtypes", "unused" })
 	private static boolean isSubClassOf(Class objClass, String className) {
 		do {
 			if (isClassOrInterface(objClass, className)) {
@@ -321,49 +337,6 @@ public class StringUtils {
 				return true;
 		}
 		return false;
-	}
-
-	@SuppressWarnings("rawtypes")
-	private static String processEnumeration(Enumeration enumeration,
-			Class objClass) {
-		StringBuffer result = new StringBuffer();
-		result.append(objClass.getName());
-		result.append('{');
-		while (enumeration.hasMoreElements()) {
-			result.append(toString(enumeration.nextElement()));
-			result.append("; ");
-		}
-		result.append('}');
-		return result.toString();
-	}
-
-	@SuppressWarnings("rawtypes")
-	private static String processIterator(Iterator iterator, Class objClass) {
-		StringBuffer result = new StringBuffer();
-		result.append(objClass.getName());
-		result.append('{');
-		while (iterator.hasNext()) {
-			result.append(toString(iterator.next()));
-			result.append("; ");
-		}
-		result.append('}');
-		return result.toString();
-	}
-
-	@SuppressWarnings("rawtypes")
-	private static String processMap(Map map, Class objClass) {
-		StringBuffer result = new StringBuffer();
-		Collection keys = map.keySet();
-		Iterator iterator = keys.iterator();
-		result.append(objClass.getName());
-		result.append('{');
-		while (iterator.hasNext()) {
-			Object obj = iterator.next();
-			result.append(obj).append('=').append(toString(map.get(obj)))
-					.append("; ");
-		}
-		result.append('}');
-		return result.toString();
 	}
 
 	/**

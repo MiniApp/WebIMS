@@ -28,7 +28,7 @@ import com.ubiyao.sns.tencent.weibo.entity.TAppAndToken;
 import com.ubiyao.sns.tencent.weibo.entity.TStatus;
 import com.ubiyao.sns.tencent.weibo.entity.TStatusInfoPara;
 import com.ubiyao.sns.tencent.weibo.entity.TTimelinePara;
-import com.ubiyao.sns.tencent.weibo.service.impl.TSdkServiceImpl;
+import com.ubiyao.sns.tencent.weibo.service.TSdkServiceImpl;
 
 /**    
  *         

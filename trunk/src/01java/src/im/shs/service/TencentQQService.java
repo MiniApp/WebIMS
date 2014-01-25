@@ -1,11 +1,10 @@
 package im.shs.service;
 
-import im.shs.bean.TUserLoginBean;
-
 import java.io.UnsupportedEncodingException;
 import java.security.InvalidKeyException;
 import java.security.NoSuchAlgorithmException;
-import java.util.Map;
+
+import org.json.JSONException;
 
 /**    
  *         
@@ -19,12 +18,7 @@ import java.util.Map;
  *     
  */
 public interface TencentQQService {
-    public void addStatus(TUserLoginBean bean, Boolean isLogin) throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException;
     public String tencentQQLoginInit();
-    public String checkUserLoginInfo(TUserLoginBean bean);
-    public void addUserLoginInfo(TUserLoginBean bean);
-    public void mergeUserLoginInfo(TUserLoginBean bean);
-    @SuppressWarnings("rawtypes")
-    public Boolean checkTencentLogin(Map map);
-    public void batchAddStatus();
+    public String getUserInfo() throws InvalidKeyException, NoSuchAlgorithmException, UnsupportedEncodingException, JSONException;
+    public String addShare();
 }
