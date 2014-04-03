@@ -18,7 +18,6 @@ import javax.annotation.Resource;
  *     
  */
 public class TestIndex {
-    @SuppressWarnings("unused")
     @Resource(name="tctWeiBoService")
     private TencentWeiBoService tc;
     static int i = 0;
@@ -28,7 +27,7 @@ public class TestIndex {
         SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd HH:mm:ss");
         Date date = new Date();
         String dateStr = sdf.format(date);
-        //tc.batchAddStatus();
+        tc.batchAddStatus();
         
         System.out.println("excute " + i++ + " time: " + dateStr);
     }
