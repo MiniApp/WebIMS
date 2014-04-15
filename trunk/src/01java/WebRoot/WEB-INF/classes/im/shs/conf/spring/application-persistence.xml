@@ -18,8 +18,9 @@
 		   http://www.springframework.org/schema/task/spring-task-3.0.xsd  ">
 	<!-- 用注解方式注入bean -->
 	<context:annotation-config />
-	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>  
 	<context:component-scan base-package="*" />
+	<bean class="org.springframework.beans.factory.annotation.AutowiredAnnotationBeanPostProcessor"/>  
+	
 	<!-- 开启事务注解驱动 -->
 	<!-- <tx:annotation-driven /> -->
 	<!-- 开启task任务扫描注解 -->
@@ -42,6 +43,16 @@
 		<property name="username" value="root" />
 		<property name="password" value="root" />
 	</bean> -->
+	<!-- 基础DAO --> 
+    <bean id="baseDao" class="im.shs.base.security.dao.impl.BaseDao"> 
+        <property name="sessionFactory" ref="sessionFactory" /> 
+    </bean> 
+      
+    <!-- 继承DAO基类 parent="baseDao" --> 
+    <bean id="resourcesDao" class="im.shs.base.security.dao.impl.ResourcesDao" parent="baseDao"></bean> 
+    <bean id="rolesDao" class="im.shs.base.security.dao.impl.RolesDao" parent="baseDao"></bean> 
+    <bean id="usersDao" class="im.shs.base.security.dao.impl.UsersDao" parent="baseDao"></bean>
+	
 	<bean id="mappings" class="org.springframework.beans.factory.config.PropertyPlaceholderConfigurer">
 		<property name="locations" value="classpath:im/shs/conf/jdbc.properties"></property>
 	</bean> 
@@ -55,10 +66,11 @@
 	<bean id="sessionFactory"
 		class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 		<property name="dataSource" ref="dataSource" />
-		<property name="packagesToScan" value="im.shs.model.*" /> 
+		<property name="packagesToScan" value="im.shs.*" /> 
 		<!-- <property name="packagesToScan">
 			<list>
-				<value>im.shs.model</value>
+				<value>im.shs.model.*</value>
+				<value>im.shs.base.security.po.*</value>
 			</list>
 		</property> -->
 		<property name="hibernateProperties">
@@ -67,7 +79,8 @@
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="hibernate.dialect">org.hibernate.dialect.MySQL5Dialect</prop>
                 <prop key="hibernate.show_sql">false</prop>
-				<prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate4.SpringSessionContext</prop>
+				<!-- <prop key="hibernate.current_session_context_class">org.springframework.orm.hibernate4.SpringSessionContext</prop> -->
+				<prop key="hibernate.current_session_context_class">jta</prop>
 			</props>
 		</property>
 	</bean>
@@ -105,6 +118,7 @@
 				<prop key="hibernate.hbm2ddl.auto">update</prop>
 				<prop key="transaction.auto_close_session">true</prop>
 				<prop key="connection.autocommit">true</prop> 
+				<prop key="hibernate.current_session_context_class">jta</prop>
 	        </props>  
     	</property> 
 		<!-- <property name="persistenceXmlLocation" value="classpath:META-INF/persistence.xml"></property> -->
@@ -124,13 +138,14 @@
 	<bean id="transactionManager" class="org.springframework.orm.jpa.JpaTransactionManager">
 		<property name="entityManagerFactory" ref="entityManagerFactory" />
 	</bean>
-	<aop:config>
-		<aop:pointcut id="crudMethos" expression="execution(* im.shs.service.*.*(..))" />
+	<aop:config proxy-target-class="true">
+		<aop:pointcut id="crudMethos" expression="execution(* im.shs.*.*(..))" />
 
 		<!-- 第一个*号代表可以是任意返回类型,第二个*代表包下的所有类,第三个*代表类下的所有方法,之后的(..)代表任意的参数 -->
 		<aop:advisor advice-ref="txAdvice" pointcut-ref="crudMethos" />
 	</aop:config>
-	<tx:annotation-driven transaction-manager="transactionManager" />
+	<!-- <tx:annotation-driven transaction-manager="transactionManager" /> -->
+	<tx:annotation-driven/>
 	<tx:advice id="txAdvice" transaction-manager="transactionManager">
 		<tx:attributes>
 			<tx:method name="add*" propagation="REQUIRED" />
@@ -141,6 +156,8 @@
 			<tx:method name="batch*" propagation="REQUIRED" />
 			<tx:method name="persist*" propagation="REQUIRED" />
 			<tx:method name="remove*" propagation="REQUIRED" />
+			<tx:method name="find*" propagation="REQUIRED" />
+			<tx:method name="create*" propagation="REQUIRED" />
 			<tx:method name="*" read-only="true" />
 		</tx:attributes>
 	</tx:advice>
@@ -167,7 +184,7 @@
 	</aop:config> -->
 
 	<!-- 配置Spring Data JPA扫描目录 -->
-	<jpa:repositories base-package="im.shs.model" />
+	<jpa:repositories base-package="im.shs" />
 	<!-- Spring Data Jpa配置 -->
 	<!-- <jpa:repositories base-package="im.shs.model" transaction-manager-ref="transactionManagerJpa" 
 		entity-manager-factory-ref="entityManagerFactory" /> -->

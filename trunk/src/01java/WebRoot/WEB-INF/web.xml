@@ -21,6 +21,38 @@
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	<!-- 权限 -->  
+	<filter>  
+		<filter-name>springSecurityFilterChain</filter-name>  
+		<filter-class>  
+		    org.springframework.web.filter.DelegatingFilterProxy  
+		</filter-class>  
+	</filter>  
+	<filter-mapping>  
+	    <filter-name>springSecurityFilterChain</filter-name>  
+	    <url-pattern>/*</url-pattern>  
+	</filter-mapping> 
+	<!-- 解决Hibernate的延迟加载造成的Session提前关闭问题，设置该项使Session保持Request请求完成才关闭Session --> 
+    <filter> 
+        <filter-name>openSessionInViewFilter</filter-name>
+        <filter-class>org.springframework.orm.hibernate4.support.OpenSessionInViewFilter</filter-class> 
+        <init-param>    
+            <param-name>sessionFactoryBeanName</param-name>    
+            <param-value>sessionFactory</param-value>    
+        </init-param> 
+        <init-param>    
+            <param-name>singleSession</param-name>    
+            <param-value>true</param-value>    
+        </init-param> 
+        <init-param> 
+            <param-name>flushMode</param-name> 
+            <param-value>AUTO</param-value> 
+        </init-param> 
+    </filter> 
+    <filter-mapping>    
+        <filter-name>openSessionInViewFilter</filter-name>    
+        <url-pattern>/*</url-pattern>    
+    </filter-mapping> 
 
 	<!-- 通用配置结束   -->  
     <!-- 设置web环境上下文（方便JSP页面获取）开始   -->  
